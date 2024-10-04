@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Web bán hàng</title>
+      <link rel="stylesheet" href="main.css">
+   </head>
+   <body>
+      <div class="container">
+         <h1>Danh sách sản phẩm</h1>
+         <ul class="tab">
+            <li class="tab-item1" onclick="showCar('item1')">Porsche 911</li>
+            <li class="tab-item2" onclick="showCar('item2')">Porche 918 </li>
+         </ul>
+         <div class="list-car">
+            <ul class="item1">
+               <li><img src="assets/img/Porsche/911/pic1.jpg" id="pic1" onclick="changeImg('assets/img/Porsche/911/pic1.jpg')"></li>
+               <li><img src="assets/img/Porsche/911/pic2.jpg" id="pic2" onclick="changeImg('assets/img/Porsche/911/pic2.jpg')"></li>
+               <li><img src="assets/img/Porsche/911/pic3.jpg" id="pic3" onclick="changeImg('assets/img/Porsche/911/pic3.jpg')"></li>
+               <li><img src="assets/img/Porsche/911/pic4.jpg" id="pic4" onclick="changeImg('assets/img/Porsche/911/pic4.jpg')"></li>
+               <li><img src="assets/img/Porsche/911/pic5.jpg" id="pic5" onclick="changeImg('assets/img/Porsche/911/pic5.jpg')"></li>
+               <li><img src="assets/img/Porsche/911/pic6.jpg" id="pic6" onclick="changeImg('assets/img/Porsche/911/pic6.jpg')"></li>
+               <li><img src="assets/img/Porsche/911/pic7.jpg" id="pic7" onclick="changeImg('assets/img/Porsche/911/pic7.jpg')"></li>
+            </ul>
+            <ul class="item2">
+               <li><img src="assets/img/Porsche/918/pic1.jpg" id="pic1" onclick="changeImg('assets/img/Porsche/918/pic1.jpg')"></li>
+               <li><img src="assets/img/Porsche/918/pic2.jpg" id="pic2" onclick="changeImg('assets/img/Porsche/918/pic2.jpg')"></li>
+               <li><img src="assets/img/Porsche/918/pic3.jpg" id="pic3" onclick="changeImg('assets/img/Porsche/918/pic3.jpg')"></li>
+               <li><img src="assets/img/Porsche/918/pic4.jpg" id="pic4" onclick="changeImg('assets/img/Porsche/918/pic4.jpg')"></li>
+               <li><img src="assets/img/Porsche/918/pic5.jpg" id="pic5" onclick="changeImg('assets/img/Porsche/918/pic5.jpg')"></li>
+               <li><img src="assets/img/Porsche/918/pic6.jpg" id="pic6" onclick="changeImg('assets/img/Porsche/918/pic6.jpg')"></li>
+            </ul>
+         </div>
+         
+      </div>
+      <div id="imageOverlay" class="overlay" onclick="closeOverlay()">
+         <span class="close">&times;</span>
+         <img class="overlay-content" id="largeImage" src="">
+      </div>
+      <script src="./admin.js"></script>
+   </body>
+</html>

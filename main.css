@@ -1,0 +1,81 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    background: #f1f1f1;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+.container{
+    padding: 10px;
+    width: 800px;
+    margin: 10px 300px 100px 100px;
+}
+.container h1{
+    font-size: 18px;
+    text-transform: uppercase;
+}
+.container ul.tab {
+    list-style: none;
+}
+.container li.tab-item1{
+    border: 1px solid;
+    display: inline;
+    padding: 4px;
+    cursor: pointer;
+    background-color: aqua;
+    margin-right: 10px;
+}
+.container li.tab-item2{
+    border: 1px solid;
+    display: inline;
+    padding: 4px;
+    background-color: aqua;
+}
+li{
+    cursor: pointer;
+    list-style: none;
+}
+.container .list-car ul li img{
+    width: 200px;
+    margin: 5px;
+}  
+.list-car ul {
+    display: none;
+    list-style: none;
+    padding: 0;
+}
+
+.list-car ul.active {
+    display: flex;
+    flex-wrap: wrap;
+}
+/* Overlay container */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Màu nền đen mờ */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Ảnh lớn */
+.overlay-content {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+/* Nút đóng */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color:white;
+    font-size: 40px;
+    cursor: pointer;
+}
