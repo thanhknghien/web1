@@ -78,3 +78,14 @@ function setPositionByIndex() {
   carouselWrapper.style.transition = 'transform 0.5s ease-in-out'; // Add smooth snapping effect
   setCarouselPosition();
 }
+
+// Auto Slide function
+function startAutoScroll() {
+  autoScrollInterval = setInterval(() => {
+    currentIndex = (currentIndex + 1) % reviews.length; // Loop forward automatically
+    setPositionByIndex();
+  }, 10000); // Auto-scroll every 5 seconds
+}
+
+// Start the auto-scroll initially
+//startAutoScroll();
