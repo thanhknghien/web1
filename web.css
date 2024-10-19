@@ -1,0 +1,94 @@
+.a
+{
+    display: flex;
+    margin: 0 auto;
+    height: 15%;
+    width: 75%;
+    border: 2px solid transparent ;
+}
+
+.container 
+{
+    display: flex; 
+    justify-content: space-between; 
+
+}
+
+.box 
+{
+    width: 300px;
+    height: 200px;
+    border: 2px solid transparent; 
+    margin-left: 5%;
+    padding: 20px;
+    background-image: url('https://cigra-cars.vercel.app/Aanbond/car-1.jpg');
+    background-clip: border-box; 
+    box-sizing: border-box; 
+}
+
+.box1 
+{
+    width: 300px;
+    height: 200px;
+    border: 2px solid transparent; 
+    padding: 30px;
+    background-image: url('https://cigra-cars.vercel.app/Aanbond/car-2.jpg');
+    background-clip: border-box; 
+    box-sizing: border-box; 
+}
+
+.box2
+{
+    width: 300px;
+    height: 200px;
+    border: 2px solid transparent; 
+    padding: 20px;
+    background-image: url('https://cigra-cars.vercel.app/Aanbond/car-3.jpg');
+    background-clip: border-box; 
+    box-sizing: border-box; 
+}
+
+.box3
+{
+    float: right;
+    width: 300px;
+    height: 200px;
+    margin-right: 5%;
+    border: 2px solid transparent; 
+    padding: 20px;
+    background-image: url('https://cigra-cars.vercel.app/Aanbond/car-4.jpg');
+    background-clip: border-box; 
+    box-sizing: border-box; 
+}
+
+
+
+
+
+.marquee {
+    justify-content: center;
+    align-items: center;
+    height: 50px; 
+    margin: 0;
+    background-color: #f0f0f0;
+
+    white-space: nowrap; 
+    overflow: hidden; 
+    box-sizing: border-box;
+    width: 100%; 
+
+    display: inline-block;
+    animation: 10s linear infinite; 
+    font-size: 24px; 
+    color: #333; 
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%); 
+    }
+    100% {
+        transform: translateX(-100%); 
+    }
+}
+
