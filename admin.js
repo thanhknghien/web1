@@ -7,21 +7,19 @@ let currentTranslate = 0;
 let previousTranslate = 0;
 let animationID = 0;
 const reviewWidth = reviews[0].clientWidth;
-let autoScrollInterval; // For auto-scroll timer
+let autoScrollInterval; 
 
-// Disable right-click on reviews
+
 reviews.forEach((review) => {
   review.addEventListener('contextmenu', (e) => {
-    e.preventDefault(); // Prevent the right-click menu
+    e.preventDefault(); 
   });
 });
 
-// Touch event handlers
 carouselWrapper.addEventListener('touchstart', touchStart);
 carouselWrapper.addEventListener('touchmove', touchMove);
 carouselWrapper.addEventListener('touchend', touchEnd);
 
-// Mouse event handlers (for desktop)
 carouselWrapper.addEventListener('mousedown', touchStart);
 carouselWrapper.addEventListener('mousemove', touchMove);
 carouselWrapper.addEventListener('mouseup', touchEnd);
@@ -31,7 +29,7 @@ function touchStart(event) {
   isDragging = true;
   startPosition = getPositionX(event);
   animationID = requestAnimationFrame(animation);
-  clearInterval(autoScrollInterval); // Stop auto-scroll when user interacts
+  clearInterval(autoScrollInterval); 
 }
 
 function touchMove(event) {
@@ -45,17 +43,15 @@ function touchEnd() {
   cancelAnimationFrame(animationID);
   isDragging = false;
 
-  // Calculate how far the user swiped, and determine the next or previous review
   const movedBy = currentTranslate - previousTranslate;
 
   if (movedBy < -50) {
-    currentIndex = (currentIndex + 1) % reviews.length; // Loop forward
+    currentIndex = (currentIndex + 1) % reviews.length; 
   } else if (movedBy > 50) {
-    currentIndex = (currentIndex - 1 + reviews.length) % reviews.length; // Loop backward
+    currentIndex = (currentIndex - 1 + reviews.length) % reviews.length; 
   }
 
   setPositionByIndex();
-  //startAutoScroll(); // Resume auto-scroll after user interaction ends
 }
 
 function getPositionX(event) {
@@ -72,9 +68,8 @@ function setCarouselPosition() {
 }
 
 function setPositionByIndex() {
-  // Snap to the nearest review
   currentTranslate = currentIndex * -reviewWidth;
   previousTranslate = currentTranslate;
-  carouselWrapper.style.transition = 'transform 0.5s ease-in-out'; // Add smooth snapping effect
+  carouselWrapper.style.transition = 'transform 0.5s ease-in-out'; 
   setCarouselPosition();
 }
