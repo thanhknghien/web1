@@ -1,14 +1,219 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
 }
 
-header {
+/* Kiểu dáng cho header chứa logo và menu */
+.header {
+  display: flex; /* Sử dụng Flexbox để căn chỉnh */
+  justify-content: space-between; /* Căn giữa khoảng cách giữa logo và menu */
+  align-items: center; /* Căn chỉnh theo chiều dọc */
   background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 20px;
+  padding: 10px 20px;
 }
 
+.logo {
+  width: 100px; /* Kích thước logo */
+  height: auto;
+}
+
+/* Kiểu dáng cho thanh menu */
+nav {
+  background-color: #333; /* Nền cho nav */
+}
+
+.menu {
+  list-style-type: none; /* Không có dấu đầu dòng */
+  display: flex; /* Hiển thị menu theo chiều ngang */
+}
+
+.menu li {
+  position: relative; /* Để có thể chứa submenu */
+  margin: 0 15px; /* Khoảng cách giữa các mục menu */
+}
+
+.menu li a {
+  color: white; /* Màu chữ */
+  text-decoration: none; /* Không có gạch dưới */
+  font-size: 18px; /* Kích thước chữ */
+  padding: 10px 15px; /* Khoảng cách trong nút */
+  display: block; /* Hiển thị dưới dạng khối */
+  transition: background-color 0.3s ease; /* Hiệu ứng chuyển đổi màu nền */
+}
+
+.menu li a:hover {
+  background-color: #555; /* Màu nền khi hover */
+  border-radius: 5px; /* Bo góc */
+}
+
+/* Kiểu dáng cho submenu */
+.sub-menu {
+  display: none; /* Ẩn submenu */
+  position: absolute;
+  top: 100%; /* Hiển thị ngay bên dưới mục cha */
+  left: 0;
+  background-color: #333;
+  list-style-type: none;
+  padding: 10px 0;
+}
+
+.sub-menu li {
+  margin: 0;
+}
+
+.sub-menu li a {
+  padding: 10px 15px;
+  white-space: nowrap; /* Giữ text trên 1 dòng */
+}
+
+.menu li:hover .sub-menu {
+  display: block; /* Hiển thị submenu khi hover */
+}
+/* Kiểu dáng cho submenu */
+.b-menu {
+  display: none; /* Ẩn submenu */
+  position: absolute;
+  top: 100%; /* Hiển thị ngay bên dưới mục cha */
+  left: 0;
+  background-color: #333;
+  list-style-type: none;
+  padding: 10px 0;
+}
+
+.b-menu li {
+  margin: 0;
+}
+
+.b-menu li a {
+  padding: 10px 15px;
+  white-space: nowrap; /* Giữ text trên 1 dòng */
+}
+
+.menu li:hover .b-menu {
+  display: block; /* Hiển thị submenu khi hover */
+}/* Kiểu dáng cho c-menu */
+.c-menu {
+  display: none; /* Ẩn submenu */
+  position: absolute;
+  top: 100%; /* Hiển thị ngay bên dưới mục cha */
+  left: 0;
+  background-color: #333;
+  list-style-type: none;
+  padding: 10px 0;
+}
+
+.c-menu li {
+  margin: 0;
+}
+
+.c-menu li a {
+  padding: 10px 15px;
+  white-space: nowrap; /* Giữ text trên 1 dòng */
+}
+
+.menu li:hover .c-menu {
+  display: block; /* Hiển thị submenu khi hover */
+}
+/* Kiểu dáng cho submenu */
+.d-menu {
+  display: none; /* Ẩn submenu */
+  position: absolute;
+  top: 100%; /* Hiển thị ngay bên dưới mục cha */
+  left: 0;
+  background-color: #333;
+  list-style-type: none;
+  padding: 10px 0;
+}
+
+.d-menu li {
+  margin: 0;
+}
+
+.d-menu li a {
+  padding: 10px 15px;
+  white-space: nowrap; /* Giữ text trên 1 dòng */
+}
+
+.menu li:hover .d-menu {
+  display: block; /* Hiển thị submenu khi hover */
+}
+/* Kiểu dáng cho form đăng nhập/đăng ký */
+#login-form-container {
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  transition: top 0.5s ease; /* Tạo hiệu ứng chuyển động */
+  z-index: 999;
+}
+
+.form-heading {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+}
+
+.form-group input::placeholder {
+  color: #ccc;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.form-submit:hover {
+  background-color: #0056b3;
+}
+
+#login-form-container.show {
+  top: 20%; /* Hiển thị form khi thêm class "show" */
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+
+/*cua thanh*/
 .blog-car {
   border: 2px solid #007bff;
   padding: 20px;
