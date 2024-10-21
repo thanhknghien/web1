@@ -239,9 +239,8 @@ nav {
   line-height: 1;
 }
 
-/* Optionally, add a hover effect */
 .blog-car:hover {
-  transform: scale(1.02); /* Slight zoom effect on hover */
+  transform: scale(1.02); 
   transition: transform 0.3s ease-in-out;
 }
 
