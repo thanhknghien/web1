@@ -1,4 +1,4 @@
-//for admin
+//for user
 
 //Trí
 
