@@ -1,0 +1,91 @@
+body{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background-color: black;
+   
+}
+.card{
+    width: 400px;
+    height: 300px;
+    border-radius: 8px;
+    position: relative;
+    margin: 6px;
+}
+
+.card .image-box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 
+    0.5s ease-in-out;
+}
+
+.overlay-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: aqua;
+    border: 2px solid gray;
+    border-radius: inherit;
+    opacity: 0;
+    white-space: normal;
+    text-align: center;
+    transition: opacity 0.4s ease-in-out, inset 0.4s ease-in-out;
+}
+.card:hover img{
+    filter: 
+    grayscale(1)
+    brightness(0.4s);
+}
+
+.card .overlay-content {
+    display: block; 
+}
+
+.card:hover .overlay-content {
+    opacity: 1;
+    inset: 20px;
+}
+
+.card .content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.card:hover .content h2{
+    scale: 1;
+    opacity: 1;
+}
+
+.card:hover .content p{
+    opacity: 1;
+    transform: translate(0);
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+}
+
+.Xemthem{
+    display: flex;
+    justify-content: center;
+}
+
+.text{
+    background-color: yellow;
+    color: white;
+    border: 2px solid yellow;
+    border-radius: 10px ;
+}
+
+@media screen and (max-width: 1032px) {
+    .flex{
+        flex-wrap: wrap
+        
+    }
+}
