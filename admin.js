@@ -1,3 +1,16 @@
+//Của trí header
+
+//Của trí header
+
+//Của chí
+
+//Của chí
+
+//Của kiệt
+
+//Của kiệt
+
+//Của thành
 const carouselWrapper = document.querySelector('.carousel-wrapper');
 const reviews = document.querySelectorAll('.review');
 let currentIndex = 0;
@@ -73,16 +86,4 @@ function setPositionByIndex() {
   carouselWrapper.style.transition = 'transform 0.5s ease-in-out'; 
   setCarouselPosition();
 }
-const loginBtn = document.getElementById('login-btn');
-        const loginFormContainer = document.getElementById('login-form-container');
-
-        // Hàm hiển thị/ẩn form đăng nhập
-        function toggleLoginForm() {
-            loginFormContainer.classList.toggle('show');
-        }
-
-        // Lắng nghe sự kiện click vào nút Đăng Nhập
-        loginBtn.addEventListener('click', function(event) {
-            event.preventDefault(); // Ngăn chặn chuyển hướng mặc định
-            toggleLoginForm(); // Hiển thị form đăng nhập
-        });
+//Của thành
