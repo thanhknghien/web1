@@ -1,75 +1,40 @@
-const carouselWrapper = document.querySelector('.carousel-wrapper');
-const reviews = document.querySelectorAll('.review');
-let currentIndex = 0;
-let startPosition = 0;
-let isDragging = false;
-let currentTranslate = 0;
-let previousTranslate = 0;
-let animationID = 0;
-const reviewWidth = reviews[0].clientWidth;
-let autoScrollInterval; 
-
-
-reviews.forEach((review) => {
-  review.addEventListener('contextmenu', (e) => {
-    e.preventDefault(); 
-  });
-});
-
-carouselWrapper.addEventListener('touchstart', touchStart);
-carouselWrapper.addEventListener('touchmove', touchMove);
-carouselWrapper.addEventListener('touchend', touchEnd);
-
-carouselWrapper.addEventListener('mousedown', touchStart);
-carouselWrapper.addEventListener('mousemove', touchMove);
-carouselWrapper.addEventListener('mouseup', touchEnd);
-carouselWrapper.addEventListener('mouseleave', touchEnd);
-
-function touchStart(event) {
-  isDragging = true;
-  startPosition = getPositionX(event);
-  animationID = requestAnimationFrame(animation);
-  clearInterval(autoScrollInterval); 
-}
-
-function touchMove(event) {
-  if (isDragging) {
-    const currentPosition = getPositionX(event);
-    currentTranslate = previousTranslate + currentPosition - startPosition;
+const user = [
+  {
+    id: '002',
+    username : 'thanhknghien',
+    name : 'Thành Đinh',
+    email : 'thanh2005dinh@gmail.com',
+    sdt : '09876453',
+    address : 'q8',
+    sex : 'male',
+    birthday : '12/5/2000',
+    status : 'Khóa'
+  },
+  {
+    id : '001',
+    username : 'thanh rat ngu',
+    name : 'thành bị khùng',
+    email : 'thanh k ció',
+    sdt : 'k có đâu',
+    address : 'q chín',
+    sex : 'male',
+    birthday : '12/2/2004',
+    status: 'Hoạt động'
   }
+]
+
+function loadUser(index){
+  const u = user[index];
+  
+  document.getElementById('username').textContent = u.username
+  document.getElementById('name').textContent = u.name
+  document.getElementById('email').textContent = u.email
+  document.getElementById('sdt').textContent = u.sdt
+  document.getElementById('address').textContent = u.address
+  document.getElementById('sex').textContent = u.sex
+  document.getElementById('birthday').textContent = u.birthday
+  document.getElementById('status').textContent = u.status
+
 }
 
-function touchEnd() {
-  cancelAnimationFrame(animationID);
-  isDragging = false;
-
-  const movedBy = currentTranslate - previousTranslate;
-
-  if (movedBy < -50) {
-    currentIndex = (currentIndex + 1) % reviews.length; 
-  } else if (movedBy > 50) {
-    currentIndex = (currentIndex - 1 + reviews.length) % reviews.length; 
-  }
-
-  setPositionByIndex();
-}
-
-function getPositionX(event) {
-  return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-}
-
-function animation() {
-  setCarouselPosition();
-  if (isDragging) requestAnimationFrame(animation);
-}
-
-function setCarouselPosition() {
-  carouselWrapper.style.transform = `translateX(${currentTranslate}px)`;
-}
-
-function setPositionByIndex() {
-  currentTranslate = currentIndex * -reviewWidth;
-  previousTranslate = currentTranslate;
-  carouselWrapper.style.transition = 'transform 0.5s ease-in-out'; 
-  setCarouselPosition();
-}
+document.addEventListener("DOMContentLoaded", loadUser(1));
