@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main1.css" />
+</head>
+
+<body>
+    <table class="main-table">
+        <div id="page1" class="container active">
+            <tr>
+                <td>
+                    <div class="inner-table">
+                        <img src="../assets/img/Bentley/Continental_2023/B11.jpg" width="250" height="150" />
+                        <div class="double-inner-table">Tên xe: Bentley Continental 2023</div>
+                        <div class="double-inner-table">Giá: </div>
+                        <div class="double-inner-table">
+                            <div class="last-table"> Mua </div>
+                            <div class="last-table">
+                                <button onclick="showDetails('details1')">Chi tiết </button>
+                            </div>
+                            <div id="details1" class="modal">
+                                <div class="modal-content"> <span class="close"
+                                        onclick="closeDetails('details1')">&times;</span>
+                                    <h2>Thông tin chi tiết món đồ 1</h2> <img src="path/to/image.jpg"
+                                        alt="Hình ảnh món đồ 1" style="width:100%; height:auto;">
+                                    <p>Mô tả: Đây là món đồ 1 với chất lượng tuyệt vời...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="inner-table">
+                        <img src="../assets/img/Bentley/Flying_Spur_2021/B1.jpg" width="250" height="150" />
+                        <div class="double-inner-table">Tên xe: Bentley Flying Spur 2021</div>
+                        <div class="double-inner-table">Giá: </div>
+                        <div class="double-inner-table">
+                            <div class="last-table"> Mua </div>
+                            <div class="last-table"> Chi tiết </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="inner-table">
+                        <img src="../assets/img/Bugatti/Chiron/B32.jpg" width="250" height="150" />
+                        <div class="double-inner-table">Tên xe: Bugatti Chiron</div>
+                        <div class="double-inner-table">Giá: </div>
+                        <div class="double-inner-table">
+                            <div class="last-table"> Mua </div>
+                            <div class="last-table"> Chi tiết </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="inner-table">
+                        <img src="../assets/img/Bugatti/Divo/B26.jpg" width="250" height="150" />
+                        <div class="double-inner-table">Tên xe: Bugatti Divo</div>
+                        <div class="double-inner-table">Giá: </div>
+                        <div class="double-inner-table">
+                            <div class="last-table"> Mua </div>
+                            <div class="last-table"> Chi tiết </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="inner-table">
+                        <img src="../assets/img/Ferrari/812Superfast/pic3.jpg" width="250" height="150" />
+                        <div class="double-inner-table">Tên xe: Ferrari 812Superfast</div>
+                        <div class="double-inner-table">Giá: </div>
+                        <div class="double-inner-table">
+                            <div class="last-table"> Mua </div>
+                            <div class="last-table"> Chi tiết </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="inner-table">
+                        <img src="../assets/img/Ferrari/SF90Stradale/pic7.jpg" width="250" height="150" />
+                        <div class="double-inner-table">Tên xe: Ferrari SF90Stradale</div>
+                        <div class="double-inner-table">Giá: </div>
+                        <div class="double-inner-table">
+                            <div class="last-table"> Mua </div>
+                            <div class="last-table"> Chi tiết </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <button onclick="showPage('page1')">1</button>
+        </div>
+        <table class="main-table">
+            <div id="page2" class="container">
+                <tr>
+                    <td>
+                        <div class="inner-table">
+                            <img src="../assets/img/Bentley/Continental_2023/B11.jpg" width="250" height="150" />
+                            <div class="double-inner-table">Tên xe: Bentley Continental 2023</div>
+                            <div class="double-inner-table">Giá: </div>
+                            <div class="double-inner-table">
+                                <div class="last-table"> Mua </div>
+                                <div class="last-table"> Chi tiết </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="inner-table">
+                            <img src="../assets/img/Bentley/Flying_Spur_2021/B1.jpg" width="250" height="150" />
+                            <div class="double-inner-table">Tên xe: Bentley Flying Spur 2021</div>
+                            <div class="double-inner-table">Giá: </div>
+                            <div class="double-inner-table">
+                                <div class="last-table"> Mua </div>
+                                <div class="last-table"> Chi tiết </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="inner-table">
+                            <img src="../assets/img/Bugatti/Chiron/B32.jpg" width="250" height="150" />
+                            <div class="double-inner-table">Tên xe: Bugatti Chiron</div>
+                            <div class="double-inner-table">Giá: </div>
+                            <div class="double-inner-table">
+                                <div class="last-table"> Mua </div>
+                                <div class="last-table"> Chi tiết </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="inner-table">
+                            <img src="../assets/img/Bugatti/Divo/B26.jpg" width="250" height="150" />
+                            <div class="double-inner-table">Tên xe: Bugatti Divo</div>
+                            <div class="double-inner-table">Giá: </div>
+                            <div class="double-inner-table">
+                                <div class="last-table"> Mua </div>
+                                <div class="last-table"> Chi tiết </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="inner-table">
+                            <img src="../assets/img/Ferrari/812Superfast/pic3.jpg" width="250" height="150" />
+                            <div class="double-inner-table">Tên xe: Ferrari 812Superfast</div>
+                            <div class="double-inner-table">Giá: </div>
+                            <div class="double-inner-table">
+                                <div class="last-table"> Mua </div>
+                                <div class="last-table"> Chi tiết </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="inner-table">
+                            <img src="../assets/img/Ferrari/SF90Stradale/pic7.jpg" width="250" height="150" />
+                            <div class="double-inner-table">Tên xe: Ferrari SF90Stradale</div>
+                            <div class="double-inner-table">Giá: </div>
+                            <div class="double-inner-table">
+                                <div class="last-table"> Mua </div>
+                                <div class="last-table"> Chi tiết </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <button onclick="showPage('page2')">2</button>
+            </div>
+</body>

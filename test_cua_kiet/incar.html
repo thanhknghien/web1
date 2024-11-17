@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ và Quản lý Đơn hàng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Bảng */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Nút */
+        .button {
+            padding: 8px 12px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        /* Phần sản phẩm */
+        .product-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .product {
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Trang chủ khách hàng -->
+    <div class="container">
+        <h1>Trang chủ</h1>
+        <div class="product-list">
+            <div class="product">
+                <h3>Lamborghini</h3>
+                <button class="button" onclick="confirmOrder('Lamborghini')">Xác nhận mua hàng</button>
+            </div>
+            <div class="product">
+                <h3>Ferari</h3>
+                <button class="button" onclick="confirmOrder('Ferari')">Xác nhận mua hàng</button>
+            </div>
+            <div class="product">
+                <h3>Bugati</h3>
+                <button class="button" onclick="confirmOrder('Bugati')">Xác nhận mua hàng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quản lý Đơn hàng -->
+    <div class="container">
+        <h2>Quản lý Đơn hàng</h2>
+        <table id="orderTable">
+            <thead>
+                <tr>
+                    <th>Mã Đơn hàng</th>
+                    <th>Tên Khách hàng</th>
+                    <th>Sản phẩm</th>
+                    <th>Trạng thái</th>
+                    <th>Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Các đơn hàng sẽ được thêm vào đây qua JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Mảng để lưu trữ các đơn hàng
+        let orders = [];
+
+        // Hàm để tạo mã đơn hàng tự động
+        function generateOrderID() {
+            return `#${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`;
+        }
+
+        // Hàm xác nhận mua hàng
+        function confirmOrder(productName) {
+            const newOrder = {
+                id: generateOrderID(),
+                customerName: "Nguyễn Văn B", // Có thể thay bằng tên khách hàng thật khi có chức năng đăng nhập
+                product: productName,
+                status: "Chưa xử lý"
+            };
+            orders.push(newOrder);
+            alert(`Đơn hàng của bạn với sản phẩm ${productName} đã được tạo.`);
+            displayOrders(); // Cập nhật bảng đơn hàng
+        }
+
+        // Hàm hiển thị đơn hàng lên bảng
+        function displayOrders() {
+            const orderTableBody = document.getElementById("orderTable").getElementsByTagName("tbody")[0];
+            orderTableBody.innerHTML = ""; // Xóa nội dung cũ trước khi cập nhật
+
+            // Duyệt qua các đơn hàng và thêm từng dòng vào bảng
+            orders.forEach(order => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${order.id}</td>
+                    <td>${order.customerName}</td>
+                    <td>${order.product}</td>
+                    <td>${order.status}</td>
+                    <td><button class="button" onclick="viewOrderDetail('${order.id}')">Xem</button></td>
+                `;
+                orderTableBody.appendChild(row);
+            });
+        }
+
+        // Hàm xem chi tiết đơn hàng
+        function viewOrderDetail(orderId) {
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                alert(`Chi tiết đơn hàng:\n- Mã Đơn hàng: ${order.id}\n- Khách hàng: ${order.customerName}\n- Sản phẩm: ${order.product}\n- Trạng thái: ${order.status}`);
+            }
+        }
+    </script>
+</body>
+
+</html>

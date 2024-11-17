@@ -1,0 +1,8 @@
+.khunglogo {
+  display: flex;
+  margin: 0 auto;
+  height: 15%;
+  width: 75%;
+  justify-content: space-between;
+  border: 2px solid transparent;
+}
