@@ -1,96 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User</title>
-    <link rel="stylesheet" href="./style/main.css"/>
-    <link rel="stylesheet" href="./style/chi.css"/>
-    <link rel="stylesheet" href="./style/kiet.css"/>
-    <link rel="stylesheet" href="./style/thanh.css"/>
-    <link rel="stylesheet" href="./style/tri.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thông tin Người dùng</title>
+  <link rel="stylesheet" href="./style/thanh.css">
+  <script src="user.js" defer></script>
 </head>
 <body>
-    <!--Trí-->
-    <header>
+  <header class="header">
+    <div class="header-left">
+        <img src="./assets/logo-icon/27Team.webp" alt="27 Team" class="logo">
+    </div>
+    <div class="header-center">
+        <input type="text" placeholder="Tìm kiếm sản phẩm, cửa hàng..." class="search-bar">
+    </div>
+    <div class="header-right">
+        <a href="#" class="icon">Giỏ hàng</a>
+        <a href="#" class="icon">Tài khoản</a>
+    </div>
+  </header>
 
-    </header>
-    <!--Trí-->
-
-    <div class="wrapper">
-        <div class="container">
-            <!--Trí-->
-            <div class="side-bar">
-
-            </div>
-            <!--Trí-->
-
-            <!--Thành-->
-            <div class="content-user-infor">
-                <form id="user-form">
-                  <label for="username">Username: </label>
-                </form>
-            </div>
-            <!--Thành-->
-
-            <!--Kiệt-->
-            <div class="content-user-cart">
-              <form action="">
-
-              </form>
-          </div>
-            <!--Kiệt-->
-            
-            <!--Chí-->
-            <div class="content-user-history">
-              <form action="">
-
-              </form>
-          </div>
-            <!--Chí-->
-
-          </div>
+  <div class="wrapper">
+    <div class="nav-bar">
+      <div class="logo-user">
+        <img src="" alt="logo">
+        <p id="username"></p> <!-- Mặc định hiển thị tên -->
+      </div>
+      <div class="menu">
+        <div class="menu-li">
+          <img src="" alt="icon-user">
+          Tài khoản của tôi
+        </div>
+        <div class="menu-li">
+          <img src="" alt="icon-cart">
+          Đơn mua
+        </div>
+      </div>
     </div>
 
-    <!--Thành-->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section about">
-              <div>
-                <a href=""><img src="./assets/logo-icon/27Team.webp" alt="logo" /></a>
-              </div>
-              <h2>Về chúng tôi</h2>
-              <p>
-                Chúng tôi là the 27Team, một nền tảng hàng đầu để mua xe hơi sang trọng. Nhiệm vụ của chúng tôi là cung cấp
-                dịch vụ tốt nhất với Xe cao cấp cho khách hàng của chúng tôi.
-              </p>
-            </div>
-            <div class="footer-section links">
-              <h2>Quick Links</h2>
-              <ul>
-                <li><a href="#">Trang chủ</a></li>
-                <li><a href="#">Thể loại</a></li>
-                <li><a href="#">Dịch vụ</a></li>
-              </ul>
-            </div>
-            <div class="footer-section contact">
-            <h2>Liên hệ</h2>
-            <p>Phone: +84 0011223344</p>
-            <p>Email: info@carpla.com</p>
-            <div class="socials">
-                <a href="https://web.facebook.com/tri.tram.9279"
-                ><img src="./assets/logo-icon/icons8-facebook.svg" alt="Facebook"
-                /></a>
-                <a href="#"><img src="./assets/logo-icon/icons8-twitter.svg" alt="Twitter" /></a>
-                <a href="#"><img src="./assets/logo-icon/icons8-instagram.svg" alt="Instagram" /></a>
-            </div>
-            </div>
+    <div class="container">
+      <div class="content">
+        <div class="title">
+          <h3>Hồ sơ của tôi</h3>
+          <p>Quản lí hồ sơ để bảo mật tài khoản</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 27Team | Designed by the 27Team</p>
+        <div class="body-content">
+          <div class="user-info">
+            <p><strong>Họ và tên:</strong> <span id="user-fullname"></span></p>
+            <p><strong>Số điện thoại:</strong> <span id="user-sdt"></span></p>
+            <p><strong>Trạng thái:</strong> <span id="user-status"></span></p>
+          </div>
+          <div class="user-address">
+            <h3>Địa chỉ giao hàng</h3>
+            <ul id="address-list">
+              <!-- Danh sách địa chỉ sẽ hiển thị tại đây -->
+            </ul>
+          </div>
         </div>
-    </footer>
-    <!--Thành-->
-    <script src="user.js"></script>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

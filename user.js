@@ -1,17 +1,6 @@
-//for user
+fetch("../resource/user.json")
+.then((response) => response.json())
+.then((data) => {
+  localStorage.setItem("user", JSON.stringify(data));
+})
 
-//Trí
-
-//Trí
-
-//Chí
-
-//Chí
-
-//Kiệt
-
-//Kiệt
-
-//Thành
-
-//Thành

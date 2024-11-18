@@ -1,0 +1,34 @@
+[
+  {
+    "id" : "1111",
+    "username" : "thanh",
+    "addresses": [
+      {
+        "street": "123 Nguyen Trai",
+        "district": "Thanh Xuan",
+        "city": "Hanoi"
+      },
+      {
+        "street": "456 Le Loi",
+        "district": "Ha Dong",
+        "city": "Hanoi"
+      }
+    ]
+  },
+  {
+    "id" : "1112",
+    "username" : "thanh123",
+    "addresses": [
+      {
+        "street": "123 Nguyen Trai",
+        "district": "Thanh Xuan",
+        "city": "Hanoi"
+      },
+      {
+        "street": "456 Le Loi",
+        "district": "Ha Dong",
+        "city": "Hanoi"
+      }
+    ]
+  }
+]

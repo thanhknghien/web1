@@ -1,0 +1,18 @@
+[
+  {
+    "id" : "1111",
+    "username" : "thanh",
+    "fullname":"Đinh Phúc Thành",
+    "password" : "thanh12345",
+    "sdt" : "0123456789",
+    "status" : "active"
+  },
+  {
+    "id" : "1112",
+    "username" : "thanh123",
+    "fullname":"Đinh Phúc Thành",
+    "password" : "thanh12345",
+    "sdt" : "0123456789",
+    "status" : "lock"
+  }
+]
