@@ -14,5 +14,13 @@
     "password" : "thanh12345",
     "sdt" : "0123456789",
     "status" : "lock"
+  },
+  {
+    "id" : "1113",
+    "username" : "thanh123",
+    "fullname":"Đinh Phúc Thành",
+    "password" : "thanh12345",
+    "sdt" : "0123456789",
+    "status" : "lock"
   }
 ]

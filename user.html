@@ -25,14 +25,14 @@
     <div class="nav-bar">
       <div class="logo-user">
         <img src="" alt="logo">
-        <p id="username"></p> <!-- Mặc định hiển thị tên -->
+        <p id="username">Tên người dùng</p>
       </div>
-      <div class="menu">
-        <div class="menu-li">
+      <div class="menu" id="menu">
+        <div class="menu-li" id="profile-tab">
           <img src="" alt="icon-user">
           Tài khoản của tôi
         </div>
-        <div class="menu-li">
+        <div class="menu-li" id="order-history-tab">
           <img src="" alt="icon-cart">
           Đơn mua
         </div>
@@ -41,26 +41,84 @@
 
     <div class="container">
       <div class="content">
-        <div class="title">
-          <h3>Hồ sơ của tôi</h3>
-          <p>Quản lí hồ sơ để bảo mật tài khoản</p>
-        </div>
-        <div class="body-content">
+        <!-- Hồ sơ cá nhân -->
+        <div id="profile-content">
+          <div class="title">
+            <h3>Hồ sơ của tôi</h3>
+            <p>Quản lí hồ sơ để bảo mật tài khoản</p>
+          </div>
           <div class="user-info">
-            <p><strong>Họ và tên:</strong> <span id="user-fullname"></span></p>
-            <p><strong>Số điện thoại:</strong> <span id="user-sdt"></span></p>
-            <p><strong>Trạng thái:</strong> <span id="user-status"></span></p>
+            <p><strong>Họ và tên:</strong> <span id="user-fullname">Nguyễn Văn A</span></p>
+            <p><strong>Số điện thoại:</strong> <span id="user-sdt">0123456789</span></p>
+            <p><strong>Trạng thái:</strong> <span id="user-status">Hoạt động</span></p>
+            <button id="edit-profile-btn">Sửa thông tin</button>
           </div>
           <div class="user-address">
             <h3>Địa chỉ giao hàng</h3>
             <ul id="address-list">
-              <!-- Danh sách địa chỉ sẽ hiển thị tại đây -->
+              
             </ul>
+            <button id="add-address-btn">Thêm Địa Chỉ</button>
+            <div id="popup" class="popup" style="display: none;">
+              <div class="popup-content">
+                <h3>Thêm Địa Chỉ Mới</h3>
+                <input type="text" id="popup-street" placeholder="Đường">
+                <input type="text" id="popup-district" placeholder="Quận/Huyện">
+                <input type="text" id="popup-city" placeholder="Thành phố">
+                <div class="popup-buttons">
+                  <button id="save-address-btn">Lưu</button>
+                  <button id="close-popup-btn">Đóng</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Đơn mua -->
+        <div id="orders-content" class="hidden">
+          <div class="title">
+            <h3>Đơn mua của bạn</h3>
+            <p>Xem lại các đơn hàng đã đặt.</p>
+          </div>
+          <ul id="order-list">
+            <table id="invoice-table">
+              <thead>
+                <th>ID Hóa Đơn</th>
+                <th>Tên Khách Hàng</th>
+                <th>Ngày mua</th>
+                <th>Số lượng</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+                <th>Chi tiết hóa đơn</th>
+                <tbody id="body-oder">
+                  <!--Các hóa đơn sẽ hiện ở đây-->
+                </tbody>
+              </thead>
+            </table>
+          </ul>
+          <!-- Popup Hiển Thị Chi Tiết Hóa Đơn -->
+          <div id="popup-oder" class="popup" style="display: none;">
+            <div class="popup-content">
+              <h3>Chi tiết hóa đơn</h3>
+              <table id="detail-oder">
+                <thead>
+                  <tr>
+                    <th>ID Sản Phẩm</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Số Lượng</th>
+                    <th>Đơn Giá</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Các dòng chi tiết hóa đơn sẽ được thêm vào đây -->
+                </tbody>
+              </table>
+              <button id="close-popup">Đóng</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </body>
 </html>

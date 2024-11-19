@@ -4,14 +4,14 @@
     "username" : "thanh",
     "addresses": [
       {
-        "street": "123 Nguyen Trai",
-        "district": "Thanh Xuan",
-        "city": "Hanoi"
+        "street": "123 Nguyễn Trãi",
+        "district": "Thanh Xuân",
+        "city": "Hà Nội"
       },
       {
-        "street": "456 Le Loi",
-        "district": "Ha Dong",
-        "city": "Hanoi"
+        "street": "456 Lê Lợi",
+        "district": "Hà Đông",
+        "city": "Hà Nội"
       }
     ]
   },
