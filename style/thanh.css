@@ -55,173 +55,88 @@ body {
   background-color: #007bff;
 }
 
+.hidden {
+  display: none;
+  
+}
 
+/* Hiển thị phần tử */
+.visible {
+  display: block;
+  
+}
 
-.blog-car {
-    border: 2px solid #007bff;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #efffad;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px 20px 50px 50px;
-  }
-  
-  .blog-car p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #333;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .blog-car p:first-letter {
-    font-size: 26px;
-    font-weight: bold;
-    color: #007bff;
-    float: left;
-    margin-right: 10px;
-    line-height: 1;
-  }
-  
-  .blog-car:hover {
-    transform: scale(1.02); 
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .carousel-container {
-    position: relative;
-    overflow: hidden;
-    margin: 20px 20px 50px 50px;
-  }
-  
-  .carousel-wrapper {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-  
-  .slide {
-    display: flex;
-    width: 100%;
-  }
-  
-  .review {
-    max-width: 100%;
-    min-width: 100%;
-    box-sizing: border-box;
-  
-    border-radius: 20px;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: center;
-  }
-  
-  .review:hover {
-    color: #007bff;
-    border: 2px #007bff solid;
-  }
-  
-  .review p {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .review h4 {
-    font-size: 16px;
-    font-weight: 400;
-    color: #555;
-  }
-  
-  .review {
-    user-select: none;
-  }
-  
-  footer {
-    background-color: #393f41;
-    color: white;
-    padding: 40px 0;
-    text-align: left;
-  }
-  
-  .footer-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    gap: 20px;
-    max-width: 1200px;
-    margin: auto;
-    padding: 0 20px;
-  }
-  
-  .footer-section {
-    margin: 15px;
-  }
-  
-  .footer-section h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #f4f4f4;
-  }
-  
-  .footer-section p,
-  .footer-section ul {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  
-  .footer-section ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-section ul li {
-    margin-bottom: 10px;
-  }
-  
-  .footer-section ul li a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .footer-section ul li a:hover {
-    color: #007bff;
-  }
-  
-  .footer-bottom {
-    background-color: #2b2d2e;
-    color: #ccc;
-    padding: 10px 0;
-    text-align: center;
-  }
-  
-  .footer-bottom p {
-    margin: 0;
-  }
-  
-  .socials {
-    display: flex;
-  }
-  
-  .socials a {
-    margin-right: 10px;
-    width: 100%;
-  }
-  
-  .socials img {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .footer-section div a img {
-    width: 40%;
-  }
-  
-  @media (max-width: 768px) {
-    .footer-container {
-      grid-template-columns: 1fr; /* Stack columns vertically on small screens */
-      text-align: center;
-    }
-  
-    .footer-section {
-      margin: 20px 0;
-    }
-  }
+/* Định dạng cho popup */
+
+.popup {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+.popup-content input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.popup-buttons button {
+  margin: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.popup-buttons #save-address-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.popup-buttons #close-popup-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+#invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#invoice-table th, #invoice-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+#invoice-table th {
+  background-color: #f2f2f2;
+}
+
+#invoice-table td a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+#invoice-table td a:hover {
+  text-decoration: underline;
+}

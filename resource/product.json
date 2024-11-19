@@ -5,6 +5,7 @@
     "price" : "200,000",
     "brand" : "Vinfast",
     "fuel" : "Xăng",
+    "year" :"2020",
     "src" : [
       "../assets/img/Vin/VF president/pic1.jpg",
       "../assets/img/Vin/VF president/pic2.jpg",
@@ -18,6 +19,7 @@
     "name" : "VF9",
     "price" : "85,000",
     "brand" : "Vinfast",
+    "year" :"2020",
     "fuel" : "Điện",
     "src" : [
       "../assets/img/Vin/VF9/pic1.jpg",
