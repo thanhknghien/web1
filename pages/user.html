@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thông tin Người dùng</title>
-  <link rel="stylesheet" href="./style/thanh.css">
-  <script src="user.js" defer></script>
+  <link rel="stylesheet" href="../style/thanh.css">
+  <script src="../javascript/user.js" defer></script>
 </head>
 <body>
   <header class="header">
     <div class="header-left">
-        <img src="./assets/logo-icon/27Team.webp" alt="27 Team" class="logo">
+        <img src="../assets/logo-icon/27Team.webp" alt="27 Team" class="logo">
     </div>
     <div class="header-center">
         <input type="text" placeholder="Tìm kiếm sản phẩm, cửa hàng..." class="search-bar">
@@ -24,12 +24,12 @@
   <div class="wrapper">
     <div class="nav-bar">
       <div class="logo-user">
-        <img src="" alt="logo">
+        <img src="../assets/logo-icon/account.svg" alt="logo">
         <p id="username">Tên người dùng</p>
       </div>
       <div class="menu" id="menu">
         <div class="menu-li" id="profile-tab">
-          <img src="" alt="icon-user">
+          <img src="../assets/logo-icon/danhmuc.jpg" alt="icon-user">
           Tài khoản của tôi
         </div>
         <div class="menu-li" id="order-history-tab">
@@ -48,15 +48,15 @@
             <p>Quản lí hồ sơ để bảo mật tài khoản</p>
           </div>
           <div class="user-info">
-            <p><strong>Họ và tên:</strong> <span id="user-fullname">Nguyễn Văn A</span></p>
-            <p><strong>Số điện thoại:</strong> <span id="user-sdt">0123456789</span></p>
-            <p><strong>Trạng thái:</strong> <span id="user-status">Hoạt động</span></p>
+            <p><strong>Họ và tên:</strong> <span id="user-fullname"></span></p>
+            <p><strong>Số điện thoại:</strong> <span id="user-sdt"></span></p>
+            <p><strong>Trạng thái:</strong> <span id="user-status"></span></p>
             <button id="edit-profile-btn">Sửa thông tin</button>
           </div>
           <div class="user-address">
             <h3>Địa chỉ giao hàng</h3>
             <ul id="address-list">
-              
+              <!--Danh sách các địa chỉ hiện ở đây-->
             </ul>
             <button id="add-address-btn">Thêm Địa Chỉ</button>
             <div id="popup" class="popup" style="display: none;">
@@ -80,6 +80,36 @@
             <h3>Đơn mua của bạn</h3>
             <p>Xem lại các đơn hàng đã đặt.</p>
           </div>
+          <div class="search-oder">
+            <input type="date" id="search-start-date" placeholder="Từ ngày">
+            <input type="date" id="search-end-date" placeholder="Đến ngày">
+            
+            <label for="search-total">Tổng tiền:</label>
+            <input type="number" id="search-total" placeholder="Nhập tổng tiền...">
+            
+            <label for="search-address">Địa chỉ:</label>
+            <input type="text" id="search-address" placeholder="Nhập địa chỉ gần đúng">
+
+            <label for="search-status">Trạng thái:</label>
+            <select id="search-status">
+              <option value="">--Tất cả--</option>
+              <option value="Chưa thanh toán">Chưa thanh toán</option>
+              <option value="Đang giao">Đang xử lý</option>
+              <option value="Đã thanh toán">Đã thanh toán</option>
+              <option value="Yêu cầu hủy">Yêu cầu hủy</option>
+              <option value="Đã hủy">Đã hủy</option>
+            </select>
+            
+            <select id="search-payment">
+              <option value="">Chọn phương thức thanh toán</option>
+              <option value="Cast">Tiền mặt</option>
+              <option value="Chuyển khoản">Chuyển khoản</option>
+              <option value="Thẻ tín dụng">Thẻ tín dụng</option>
+            </select>
+
+            <button id="search-btn">Tìm kiếm</button>
+          </div>
+          
           <ul id="order-list">
             <table id="invoice-table">
               <thead>
@@ -88,6 +118,8 @@
                 <th>Ngày mua</th>
                 <th>Số lượng</th>
                 <th>Tổng tiền</th>
+                <th>Phương thức thanh toán</th>
+                <th>Địa chỉ</th>
                 <th>Trạng thái</th>
                 <th>Chi tiết hóa đơn</th>
                 <tbody id="body-oder">

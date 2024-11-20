@@ -18,14 +18,16 @@ fetch("../resource/oder.json")
 const listUser = JSON.parse(localStorage.getItem("user")) || [];
 const listOder = JSON.parse(localStorage.getItem("oder")) || [];
 const listAddress = JSON.parse(localStorage.getItem("user-address")) || [];
+
 //lưu vào mảng
 const user = listUser.find(user => user.id === userID);
 const addressData = listAddress.find(user => user.id === userID);
 const oderData = listOder.filter(user => user.idCustomer === userID);
 
-console.log(user);
-console.log(addressData);
-console.log(oderData);
+//Các biến
+const popupOder = document.getElementById('popup-oder');
+const popup = document.getElementById("popup");
+
 
 // Hiển thị thông tin người dùng
 function loadUserInfor(){
@@ -64,11 +66,72 @@ function loadUserAddresses() {
   }
 }
 
+// Xóa địa chỉ
+function deleteAddress(addressToDelete) {
+  if (addressData) {
+    // Lọc bỏ địa chỉ cần xóa
+    addressData.addresses = addressData.addresses.filter(
+      address =>
+        address.street !== addressToDelete.street ||
+        address.district !== addressToDelete.district ||
+        address.city !== addressToDelete.city
+    );
+
+    // Cập nhật Local Storage
+    localStorage.setItem("user-address", JSON.stringify(listAddress));
+
+    // Cập nhật giao diện
+    loadUserAddresses();
+
+    alert("Xóa địa chỉ thành công!");
+  } else {
+    alert("Không thể xóa địa chỉ.");
+  }
+}
+
+//hiển thị chi tiết hóa đơn
+function showInvoiceDetails(list) {
+  const detailTable = document.getElementById('detail-oder')?.getElementsByTagName('tbody')[0];
+
+  if (!popupOder || !detailTable) {
+    console.error("Popup hoặc bảng chi tiết không tồn tại!");
+    return;
+  }
+
+  // Hiển thị popup
+  popupOder.style.display = "flex";
+
+  // Xóa dữ liệu cũ trong bảng chi tiết
+  detailTable.innerHTML = '';
+
+  // Thêm dữ liệu mới vào bảng
+  list.forEach(detail => {
+    const row = document.createElement('tr');
+
+    const idCell = document.createElement('td');
+    idCell.textContent = detail.idProduct || 'N/A'; // Giá trị mặc định nếu thiếu
+    row.appendChild(idCell);
+
+    const productName = document.createElement('td');
+    productName.textContent = detail.name || 'N/A';
+    row.appendChild(productName);
+
+    const quantity = document.createElement('td');
+    quantity.textContent = detail.quantity || '0';
+    row.appendChild(quantity);
+
+    const unitPrice = document.createElement('td');
+    unitPrice.textContent = (detail.unitPrice || 0) + "$";
+    row.appendChild(unitPrice);
+
+    detailTable.appendChild(row);
+  });
+}
+
 loadUserInfor();
 loadUserAddresses();
 
 // Mở popup khi nhấn "Thêm Địa Chỉ"
-const popup = document.getElementById("popup");
 document.getElementById("add-address-btn").addEventListener("click", () => {
   popup.style.display = "flex";
 });
@@ -111,29 +174,6 @@ document.getElementById("save-address-btn").addEventListener("click", () => {
   }
 });
 
-// Xóa địa chỉ
-function deleteAddress(addressToDelete) {
-  if (addressData) {
-    // Lọc bỏ địa chỉ cần xóa
-    addressData.addresses = addressData.addresses.filter(
-      address =>
-        address.street !== addressToDelete.street ||
-        address.district !== addressToDelete.district ||
-        address.city !== addressToDelete.city
-    );
-
-    // Cập nhật Local Storage
-    localStorage.setItem("user-address", JSON.stringify(listAddress));
-
-    // Cập nhật giao diện
-    loadUserAddresses();
-
-    alert("Xóa địa chỉ thành công!");
-  } else {
-    alert("Không thể xóa địa chỉ.");
-  }
-}
-
 // chuyển đổi từ đơn mua sang tài khoản và ngược lại
 document.addEventListener('DOMContentLoaded', () => {
   const profileTab = document.getElementById('profile-tab');
@@ -156,7 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //Hiển thị hóa đơn và chi tiết hóa đơn nếu ckick vào chi tiết hóa đơn
 document.addEventListener('DOMContentLoaded', () => {
-  const popupOder = document.getElementById('popup-oder');
 
   // Hiển thị các hóa đơn trong bảng
   const invoiceTable = document.getElementById('invoice-table').getElementsByTagName('tbody')[0];
@@ -198,36 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Thêm dòng vào bảng
     invoiceTable.appendChild(row);
   });
-
-  // Hiển thị chi tiết hóa đơn trong popup
-  function showInvoiceDetails(list) {
-    popupOder.style.display = "flex";
-    
-    console.log(list);
-    const detailTable = document.getElementById('detail-oder')?.getElementsByTagName('tbody')[0];
-
-    list.forEach(detail => {
-      const row = document.createElement('tr');
-
-      const idCell = document.createElement('td');
-      idCell.textContent = detail.idProduct;
-      row.appendChild(idCell);
-
-      const productName = document.createElement('td');
-      productName.textContent = detail.name;
-      row.appendChild(productName);
-
-      const quantity = document.createElement('td');
-      quantity.textContent = detail.quantity;
-      row.appendChild(quantity);
-
-      const unitPrice = document.createElement('td')
-      unitPrice.textContent = detail.unitPrice + "$";
-      row.appendChild(unitPrice);
-
-      detailTable.appendChild(row);
-    })
-  }
 
   // Đóng popup
   document.getElementById('close-popup').addEventListener('click', () => {
@@ -302,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loadUserInfor();
         return;
       }
-      if(newSdt.length <= 10 ){
+      if(newSdt.length < 10 ){
         alert('Số điện thoại không hợp lệ!');
         loadUserInfor();
         return;
@@ -315,4 +324,120 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Thông tin đã được cập nhật!');
     }
   });
+});
+
+//Tìm kiếm hóa đơn
+document.addEventListener('DOMContentLoaded', () => {
+  const searchButton = document.getElementById('search-btn');
+  const startDateInput = document.getElementById('search-start-date');
+  const endDateInput = document.getElementById('search-end-date');
+  const totalInput = document.getElementById('search-total');
+  const statusInput = document.getElementById('search-status');
+  const addressInput = document.getElementById('search-address');
+  const paymentInput = document.getElementById('search-payment');
+  const invoiceTableBody = document.getElementById('body-oder');
+
+  // Hàm hiển thị dữ liệu lên bảng
+  function displayInvoices(invoices) {
+    // Xóa bảng cũ
+    invoiceTableBody.innerHTML = '';
+
+    // Thêm các hóa đơn vào bảng
+    invoices.forEach(invoice => {
+      const row = document.createElement('tr');
+
+      //ID
+      const idCell = document.createElement('td');
+      idCell.textContent = invoice.idOder;
+      row.appendChild(idCell);
+
+      //tên khách
+      const nameCell = document.createElement('td');
+      nameCell.textContent = user.fullname;
+      row.appendChild(nameCell);
+
+      //Ngày mua
+      const dateCell = document.createElement('td');
+      dateCell.textContent = invoice.date;
+      row.appendChild(dateCell);
+
+      //Số lượng
+      const quantityCell = document.createElement('td');
+      quantityCell.textContent = invoice.totalQuantity;
+      row.appendChild(quantityCell);
+
+      //Tổng tiền
+      const totalCell = document.createElement('td');
+      totalCell.textContent = invoice.total;
+      row.appendChild(totalCell);
+
+      //Phương thức thanh toán
+      const paymentCell = document.createElement('td');
+      paymentCell.textContent = invoice.payment;
+      row.appendChild(paymentCell)
+
+      //Địa chỉ
+      const addresCell = document.createElement('td');
+      addresCell.textContent = `${invoice.address.street}, ${invoice.address.district}, ${invoice.address.city}`;
+      row.appendChild(addresCell);
+
+      //Trạng thái
+      const statusCell = document.createElement('td');
+      statusCell.textContent = invoice.status;
+      row.appendChild(statusCell);
+
+      const detailsCell = document.createElement('td');
+      const detailsButton = document.createElement('button');
+      detailsButton.textContent = 'Xem chi tiết';
+      detailsButton.addEventListener('click', () => showInvoiceDetails(invoice.listProduct));
+      detailsCell.appendChild(detailsButton);
+      row.appendChild(detailsCell);
+
+      invoiceTableBody.appendChild(row);
+    });
+  }
+
+  // Hàm tìm kiếm hóa đơn
+  function searchInvoices() {
+    const startDate = startDateInput.value ? new Date(startDateInput.value) : null;
+    const endDate = endDateInput.value ? new Date(endDateInput.value) : null;
+    const searchTotal = totalInput.value ? parseFloat(totalInput.value) : null;
+    const searchStatus = statusInput.value;
+    const searchAddress = addressInput.value.toLowerCase();
+    const searchPayment = paymentInput.value.toLowerCase();
+
+    // Lọc dữ liệu
+    const filteredInvoices = oderData.filter(invoice => {
+      const invoiceDate = new Date(invoice.date.split("/").reverse().join("-")); // Chuyển ngày từ dd/mm/yyyy sang yyyy-mm-dd
+
+      // Kiểm tra khoảng thời gian
+      const matchesDate = (startDate && endDate) 
+        ? invoiceDate >= startDate && invoiceDate <= endDate
+        : true;
+
+      // Kiểm tra tổng tiền
+      const matchesTotal = searchTotal ? parseFloat(invoice.total) >= searchTotal : true;
+
+      // Kiểm tra trạng thái
+      const matchesStatus = searchStatus ? invoice.status === searchStatus : true;
+
+      // Kiểm tra địa chỉ (bao gồm cả street, district, city)
+      const address = `${invoice.address.street} ${invoice.address.district} ${invoice.address.city}`.toLowerCase();
+      const matchesAddress = searchAddress ? address.includes(searchAddress) : true;
+
+      // Kiểm tra phương thức thanh toán
+      const matchesPayment = searchPayment ? invoice.payment.toLowerCase().includes(searchPayment) : true;
+
+      return matchesDate && matchesTotal && matchesStatus && matchesAddress && matchesPayment;
+    });
+
+    // Hiển thị kết quả lọc
+    displayInvoices(filteredInvoices);
+  }
+
+  // Gắn sự kiện click cho nút tìm kiếm
+  searchButton.addEventListener('click', searchInvoices);
+
+  // Hiển thị toàn bộ dữ liệu ban đầu
+  displayInvoices(oderData);
 });

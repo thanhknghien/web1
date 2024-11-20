@@ -1,7 +1,6 @@
 [
   {
     "id" : "1111",
-    "username" : "thanh",
     "addresses": [
       {
         "street": "123 Nguyễn Trãi",
@@ -17,7 +16,6 @@
   },
   {
     "id" : "1112",
-    "username" : "thanh123",
     "addresses": [
       {
         "street": "123 Nguyen Trai",
