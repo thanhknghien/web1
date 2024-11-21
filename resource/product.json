@@ -2,7 +2,7 @@
   {
     "id" : "1",
     "name" : "Vinfast President",
-    "price" : "200,000",
+    "price" : "200000",
     "brand" : "Vinfast",
     "fuel" : "Xăng",
     "year" :"2020",
@@ -17,7 +17,7 @@
   {
     "id" : "2",
     "name" : "VF9",
-    "price" : "85,000",
+    "price" : "85000",
     "brand" : "Vinfast",
     "year" :"2020",
     "fuel" : "Điện",
@@ -33,7 +33,7 @@
   {
     "id" : "3",
     "name" : "Porsche 911 GT1",
-    "price" : "200,000",
+    "price" : "200000",
     "brand" : "Vinfast",
     "fuel" : "Xăng",
     "src" : [
@@ -47,7 +47,7 @@
   {
     "id" : "1",
     "name" : "Vinfast President",
-    "price" : "20,000,000",
+    "price" : "20000000",
     "brand" : "Vinfast",
     "fuel" : "Xăng",
     "src" : [
@@ -61,7 +61,7 @@
   {
     "id" : "1",
     "name" : "Vinfast President",
-    "price" : "200,000",
+    "price" : "200000",
     "brand" : "Vinfast",
     "fuel" : "Xăng",
     "src" : [

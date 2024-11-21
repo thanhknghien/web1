@@ -17,16 +17,17 @@
       }
     ],
     "totalQuantity" : "4",
-    "total" : "285,000",
-    "address" : [
+    "total" : "285000000",
+    "payment": "Cast",
+    "address" : 
       {
         "street": "123 Nguyen Trai",
         "district": "Thanh Xuan",
-        "city": "Hanoi"
+        "city": "HCM"
       }
-    ],
-    "date" : "21/10/2024",
-    "status" : "Đã đặt"
+    ,
+    "date" : "01/10/2024",
+    "status" : "Chưa thanh toán"
   },
   {
     "idOder" : "124",
@@ -36,7 +37,7 @@
         "idProduct" : "1",
         "quantity" : "2",
         "name": "ABC",
-        "unitPrice" : "200,000"
+        "unitPrice" : "200000"
       },
       {
         "idProduct" : "2",
@@ -46,14 +47,15 @@
       }
     ],
     "totalQuantity" : "4",
-    "total" : "285,000",
-    "address" : [
+    "total" : "285000",
+    "payment": "Chuyển khoản",
+    "address" : 
       {
         "street": "123 Nguyen Trai",
         "district": "Thanh Xuan",
         "city": "Hanoi"
       }
-    ],
+    ,
     "date" : "21/10/2024",
     "status" : "Đã đặt"
   }
