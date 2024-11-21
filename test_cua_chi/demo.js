@@ -96,3 +96,43 @@ function resetAutoSlide() {
 
 setCurrent(currentIndex);
 
+// JS form đăng nhập
+
+function showFormLogin(){
+    console.log("Click đăng nhập")
+    var showSignIn = document.getElementById('form-signIn')
+    if (getComputedStyle(showSignIn).display == 'block'){
+        showSignIn.style.display = 'none'
+     }
+    var showlogin = document.getElementById('form-login')
+    var form = showlogin.querySelector("form");
+     if (getComputedStyle(showlogin).display == 'none'){
+        showlogin.style.display = 'block'
+     }
+     else{
+        showlogin.style.display = 'none';
+        form.reset();
+     }
+}
+
+
+
+// JS form đăng kí
+
+function showFormSignIn(){
+    console.log("Click đăng kí")
+    var showlogin = document.getElementById('form-login')
+    if (getComputedStyle(showlogin).display == 'block'){
+        showlogin.style.display = 'none'
+     }
+
+    var showSignIn = document.getElementById('form-signIn')
+    var form = showSignIn.querySelector("form");
+     if (getComputedStyle(showSignIn).display == 'none'){
+        showSignIn.style.display = 'block'
+     }
+     else{
+        showSignIn.style.display = 'none';
+        form.reset();
+     }
+}

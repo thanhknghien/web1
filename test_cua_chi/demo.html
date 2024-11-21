@@ -11,12 +11,18 @@
         <!-- Header -->
         <header class="header">
             <div class="header-top">
-                <div>
-                    <a href="#">Đăng Ký</a>
-                    <a href="#">Đăng Nhập</a>
+                <div class="login_signin" id="login_signin">
+                    <a onclick="showFormSignIn()">Đăng Ký</a>
+                    <a onclick="showFormLogin()">Đăng Nhập</a>
+                </div>
+                <div class="avatar-login" id="avatar-login">
+                    <img src="avatar.jpg">
+                    <div class="avatar-exit" id="logout">
+                        <div>Đăng xuất</div>
+                    </div>
                 </div>
             </div>
-    
+
             <div class="header-main">
                 <div class="logo">
                     <a href="#">27Team</a>
@@ -30,6 +36,56 @@
                 </div>
             </div>
         </header>
+        <!-- Form đăng nhập -->
+        <div class="form-login" id="form-login">
+            <div class="form-box">
+                <div class="exit"><button onclick="showFormLogin()">X</button></div>
+                <div class="form-value">
+                    <form>
+                        <h2>Đăng nhập</h2>
+                        <div class="inputbox">
+                            <input type="text" id="username" placeholder="Tài khoản" value="" required>
+                        </div>
+                        <div class="inputbox">
+                            <input type="password" id="password" placeholder="Mật khẩu" required>
+                        </div>
+                        <button type="submit">Đăng nhập</button>
+                        <div class="register">
+                            <p>Không có tài khoảng? <a onclick="showFormSignIn()">Đăng kí</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form đăng kí -->
+         <div class="form-signIn" id="form-signIn">
+            <div class="form-box">
+                <div class="exit"><button onclick="showFormSignIn()">X</button></div>
+                <div class="form-value">
+                    <form>
+                        <h2>Đăng kí</h2>
+                        <div class="inputbox">
+                            <input type="text" id="fullname" placeholder="Tên người dùng" required>
+                        </div>
+                        <div class="inputbox">
+                            <input type="text" id="username-sign" placeholder="Tài khoản" required>
+                        </div>
+                        <div class="inputbox">
+                            <input type="password" id="password-sign" placeholder="Mật khẩu" required>
+                        </div>
+                        <div class="inputbox">
+                            <input type="password" id="confirmPassword" placeholder="Xác nhận lại mật khẩu" required>
+                        </div>
+                        <button type="submit">Đăng kí</button>
+                        <div class="register">
+                            <p>Đã có tài khoảng? <a onclick="showFormLogin()">Đăng nhập</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+         </div>
         <!-- Slide dưới header -->
         <div class="slide">
 			<div class="slide-show">
@@ -226,5 +282,6 @@
           </footer> -->
             <script src="data.js"></script>
             <script src="demo.js"></script>
+            
     </body>
 </html>
