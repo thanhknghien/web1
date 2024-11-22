@@ -1,258 +1,75 @@
-  [
-    {
-      "id" : "1",
-      "name" : "B1.jpg Continental GT 2023",
-      "price" : "800000",
-      "brand" : "Bentley",
-      "fuel" : "Xăng",
-      "year" :"2022",
-      "src" : [
-        "../assets/img/Bentley/Continental_2023/B11.jpg",
-        "../assets/img/Bentley/Continental_2023/B12.jpg",
-        "../assets/img/Bentley/Continental_2023/B13.jpg",
-        "../assets/img/Bentley/Continental_2023/B14.jpg",
-        "../assets/img/Bentley/Continental_2023/B15.jpg",
-        "../assets/img/Bentley/Continental_2023/B16.jpg"
-      ]
-    },
-    {
-      "id" : "2",
-      "name" : "Bentley Flying Spur 2021",
-      "price" : "688000",
-      "brand" : "Bentley",
-      "fuel" : "Xăng",
-      "year" :"2021",
-      "src" : [
-        "../assets/img/Bentley/Flying_Spur_2021/B1.jpg",
-        "../assets/img/Bentley/Flying_Spur_2021/B2.jpg",
-        "../assets/img/Bentley/Flying_Spur_2021/B3.jpg",
-        "../assets/img/Bentley/Flying_Spur_2021/B4.jpg",
-        "../assets/img/Bentley/Flying_Spur_2021/B5.jpg",
-        "../assets/img/Bentley/Flying_Spur_2021/B6.jpg"
-      ]
-    },
-    {
-      "id" : "3",
-      "name" : "Bugatti Chiron",
-      "price" : "3300000",
-      "brand" : "Bugatti",
-      "fuel" : "Xăng",
-      "year" :"2016",
-      "src" : [
-        "../assets/img/Bugatti/Chiron/B32.jpg",
-        "../assets/img/Bugatti/Chiron/B31.jpg",
-        "../assets/img/Bugatti/Chiron/B33.jpg",
-        "../assets/img/Bugatti/Chiron/B34.jpg",
-        "../assets/img/Bugatti/Chiron/B35.jpg",
-        "../assets/img/Bugatti/Chiron/B36.jpg"
-      ]
-    },
-    {
-      "id" : "4",
-      "name" : "Bugatti Divo 2023",
-      "price" : "5800000",
-      "brand" : "Bugatti",
-      "fuel" : "Xăng",
-      "year" :"2023",
-      "src" : [
-        "../assets/img/Bugatti/Divo/B26.jpg",
-        "../assets/img/Bugatti/Divo/B25.jpg",
-        "../assets/img/Bugatti/Divo/B24.jpg",
-        "../assets/img/Bugatti/Divo/B23.jpg",
-        "../assets/img/Bugatti/Divo/B22.jpg",
-        "../assets/img/Bugatti/Divo/B21.jpg"
-      ]
-    },
-    {
-      "id" : "5",
-      "name" : "Ferrari 812 Superfast",
-      "price" : "1500000",
-      "brand" : "Ferrari",
-      "fuel" : "Xăng",
-      "year" :"2022",
-      "src" : [
-        "../assets/img/Ferrari/812Superfast/pic3.jpg",
-        "../assets/img/Ferrari/812Superfast/pic2.jpg",
-        "../assets/img/Ferrari/812Superfast/pic1.jpg",
-        "../assets/img/Ferrari/812Superfast/pic4.jpg",
-        "../assets/img/Ferrari/812Superfast/pic5.jpg",
-        "../assets/img/Ferrari/812Superfast/pic6.jpg"
-      ]
-    },
-    {
-      "id" : "6",
-      "name" : "Ferrari SF90 Stradale",
-      "price" : "1666000",
-      "brand" : "Ferrari",
-      "fuel" : "Xăng",
-      "year" :"2023",
-      "src" : [
-        "../assets/img/Ferrari/SF90Stradale/pic5.jpg",
-        "../assets/img/Ferrari/SF90Stradale/pic1.jpg",
-        "../assets/img/Ferrari/SF90Stradale/pic2.jpg",
-        "../assets/img/Ferrari/SF90Stradale/pic4.jpg",
-        "../assets/img/Ferrari/SF90Stradale/pic6.jpg",
-        "../assets/img/Ferrari/SF90Stradale/pic3.jpg"
-      ]
-    },
-    {
-      "id" : "7",
-      "name" : "Lamborghini",
-      "price" : "688000",
-      "brand" : "Lamborghini",
-      "fuel" : "Xăng",
-      "year" :"2017",
-      "src" : [
-        "../assets/img/Lamborghini/Aventador/B1.jpg",
-        "../assets/img/Lamborghini/Aventador/B1.jpg",
-        "../assets/img/Lamborghini/Aventador/B1.jpg",
-        "../assets/img/Lamborghini/Aventador/B1.jpg",
-        "../assets/img/Lamborghini/Aventador/B1.jpg",
-        "../assets/img/Lamborghini/Aventador/B1.jpg"
-      ]
-    },
-    {
-      "id" : "8",
-      "name" : "Lamborghini",
-      "price" : "688000",
-      "brand" : "Lamborghini",
-      "fuel" : "Xăng",
-      "year" :"2021",
-      "src" : [
-        "../assets/img/Lamborghini/Huracan/B1.jpg",
-        "../assets/img/Lamborghini/Huracan/B1.jpg",
-        "../assets/img/Lamborghini/Huracan/B1.jpg",
-        "../assets/img/Lamborghini/Huracan/B1.jpg",
-        "../assets/img/Lamborghini/Huracan/B1.jpg",
-        "../assets/img/Lamborghini/Huracan/B1.jpg"
-      ]
-    },
-    {
-      "id" : "9",
-      "name" : "Mercdes",
-      "price" : "688000",
-      "brand" : "Mercdes",
-      "fuel" : "Xăng",
-      "year" :"2021",
-      "src" : [
-        "../assets/img/Mercdes/AMG/B1.jpg",
-        "../assets/img/Mercdes/AMG/B1.jpg",
-        "../assets/img/Mercdes/AMG/B1.jpg",
-        "../assets/img/Mercdes/AMG/B1.jpg",
-        "../assets/img/Mercdes/AMG/B1.jpg",
-        "../assets/img/Mercdes/AMG/B1.jpg"
-      ]
-    },
-    {
-      "id" : "10",
-      "name" : "Mercdes",
-      "price" : "688000",
-      "brand" : "Mercdes",
-      "fuel" : "Xăng",
-      "year" :"2021",
-      "src" : [
-        "../assets/img/Mercdes/MaybachS680/B1.jpg",
-        "../assets/img/Mercdes/MaybachS680/B1.jpg",
-        "../assets/img/Mercdes/MaybachS680/B1.jpg",
-        "../assets/img/Mercdes/MaybachS680/B1.jpg",
-        "../assets/img/Mercdes/MaybachS680/B1.jpg",
-        "../assets/img/Mercdes/MaybachS680/B1.jpg"
-      ]
-    },
-    {
-      "id" : "11",
-      "name" : "Porsche",
-      "price" : "688000",
-      "brand" : "Porsche",
-      "fuel" : "Xăng",
-      "year" :"2021",
-      "src" : [
-        "../assets/img/Porsche/911 GT1/B1.jpg",
-        "../assets/img/Porsche/911 GT1/B1.jpg",
-        "../assets/img/Porsche/911 GT1/B1.jpg",
-        "../assets/img/Porsche/911 GT1/B1.jpg",
-        "../assets/img/Porsche/911 GT1/B1.jpg",
-        "../assets/img/Porsche/911 GT1/B1.jpg"
-      ]
-    },
-    {
-      "id" : "12",
-      "name" : "Porsche",
-      "price" : "688000",
-      "brand" : "Porsche",
-      "fuel" : "Xăng",
-      "year" :"2021",
-      "src" : [
-        "../assets/img/Porsche/918 Spyder/B1.jpg",
-        "../assets/img/Porsche/918 Spyder/B1.jpg",
-        "../assets/img/Porsche/918 Spyder/B1.jpg",
-        "../assets/img/Porsche/918 Spyder/B1.jpg",
-        "../assets/img/Porsche/918 Spyder/B1.jpg",
-        "../assets/img/Porsche/918 Spyder/B1.jpg"
-      ]
-    },
-    {
-      "id" : "13",
-      "name" : "Rolls-Royce",
-      "price" : "688000",
-      "brand" : "Rolls-Royce",
-      "fuel" : "Xăng",
-      "year" :"2021",
-      "src" : [
-        "../assets/img/Rolls-Royce/Dawn/B1.jpg",
-        "../assets/img/Rolls-Royce/Dawn/B1.jpg",
-        "../assets/img/Rolls-Royce/Dawn/B1.jpg",
-        "../assets/img/Rolls-Royce/Dawn/B1.jpg",
-        "../assets/img/Rolls-Royce/Dawn/B1.jpg",
-        "../assets/img/Rolls-Royce/Dawn/B1.jpg"
-      ]
-    },
-    {
-      "id" : "14",
-      "name" : "Rolls-Royce",
-      "price" : "688000",
-      "brand" : "Rolls-Royce",
-      "fuel" : "Xăng",
-      "year" :"2021",
-      "src" : [
-        "../assets/img/Rolls-Royce/Phantom/B1.jpg",
-        "../assets/img/Rolls-Royce/Phantom/B1.jpg",
-        "../assets/img/Rolls-Royce/Phantom/B1.jpg",
-        "../assets/img/Rolls-Royce/Phantom/B1.jpg",
-        "../assets/img/Rolls-Royce/Phantom/B1.jpg",
-        "../assets/img/Rolls-Royce/Phantom/B1.jpg"
-      ]
-    },
-    {
-      "id" : "15",
-      "name" : "Vinfast",
-      "price" : "688000",
-      "brand" : "Vinfast",
-      "fuel" : "Điện",
-      "year" :"2021",
-      "src" : [
-        "../assets/img/Vin/VF president/B1.jpg",
-        "../assets/img/Vin/VF president/B1.jpg",
-        "../assets/img/Vin/VF president/B1.jpg",
-        "../assets/img/Vin/VF president/B1.jpg",
-        "../assets/img/Vin/VF president/B1.jpg",
-        "../assets/img/Vin/VF president/B1.jpg"
-      ]
-    },
-    {
-      "id" : "16",
-      "name" : "Vinfast",
-      "price" : "688000",
-      "brand" : "Vinfast",
-      "fuel" : "Điện",
-      "year" :"2021",
-      "src" : [
-        "../assets/img/Vin/VF9/B1.jpg",
-        "../assets/img/Vin/VF9/B1.jpg",
-        "../assets/img/Vin/VF9/B1.jpg",
-        "../assets/img/Vin/VF9/B1.jpg",
-        "../assets/img/Vin/VF9/B1.jpg",
-        "../assets/img/Vin/VF9/B1.jpg"
-      ]
-    }
-  ]
+[
+  {
+    "id" : "1",
+    "name" : "Vinfast President",
+    "price" : "200000",
+    "brand" : "Vinfast",
+    "fuel" : "Xăng",
+    "year" :"2020",
+    "src" : [
+      "../assets/img/Vin/VF president/pic1.jpg",
+      "../assets/img/Vin/VF president/pic2.jpg",
+      "../assets/img/Vin/VF president/pic3.jpg",
+      "../assets/img/Vin/VF president/pic4.jpg",
+      "../assets/img/Vin/VF president/pic5.jpg"
+    ]
+  },
+  {
+    "id" : "2",
+    "name" : "VF9",
+    "price" : "85000",
+    "brand" : "Vinfast",
+    "year" :"2020",
+    "fuel" : "Điện",
+    "src" : [
+      "../assets/img/Vin/VF9/pic1.jpg",
+      "../assets/img/Vin/VF9/pic2.jpg",
+      "../assets/img/Vin/VF9/pic3.jpg",
+      "../assets/img/Vin/VF9/pic4.jpg",
+      "../assets/img/Vin/VF9/pic5.jpg",
+      "../assets/img/Vin/VF9/pic6.jpg"
+    ]
+  },
+  {
+    "id" : "3",
+    "name" : "Porsche 911 GT1",
+    "price" : "200000",
+    "brand" : "Vinfast",
+    "fuel" : "Xăng",
+    "src" : [
+      "../assets/img/Vin/VF president/pic1.jpg",
+      "../assets/img/Vin/VF president/pic2.jpg",
+      "../assets/img/Vin/VF president/pic3.jpg",
+      "../assets/img/Vin/VF president/pic4.jpg",
+      "../assets/img/Vin/VF president/pic5.jpg"
+    ]
+  },
+  {
+    "id" : "1",
+    "name" : "Vinfast President",
+    "price" : "20000000",
+    "brand" : "Vinfast",
+    "fuel" : "Xăng",
+    "src" : [
+      "../assets/img/Vin/VF president/pic1.jpg",
+      "../assets/img/Vin/VF president/pic2.jpg",
+      "../assets/img/Vin/VF president/pic3.jpg",
+      "../assets/img/Vin/VF president/pic4.jpg",
+      "../assets/img/Vin/VF president/pic5.jpg"
+    ]
+  },
+  {
+    "id" : "1",
+    "name" : "Vinfast President",
+    "price" : "200000",
+    "brand" : "Vinfast",
+    "fuel" : "Xăng",
+    "src" : [
+      "../assets/img/Vin/VF president/pic1.jpg",
+      "../assets/img/Vin/VF president/pic2.jpg",
+      "../assets/img/Vin/VF president/pic3.jpg",
+      "../assets/img/Vin/VF president/pic4.jpg",
+      "../assets/img/Vin/VF president/pic5.jpg"
+    ]
+  }
+]
