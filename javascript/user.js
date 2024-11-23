@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-//Hiển thị hóa đơn và chi tiết hóa đơn nếu ckick vào chi tiết hóa đơn
+//Hiển thị hóa đơn và chi tiết hóa đơn nếu click vào chi tiết hóa đơn
 document.addEventListener('DOMContentLoaded', () => {
 
   // Hiển thị các hóa đơn trong bảng
@@ -490,7 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-//Nút clear
+//Nút clear tìm kiếm
 document.getElementById("reset-btn").addEventListener('click', () => {
   // Lấy tất cả các thẻ input
   const inputs = document.getElementsByTagName('input');
