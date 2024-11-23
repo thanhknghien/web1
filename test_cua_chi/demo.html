@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
         <link rel="stylesheet" href="demo1.css">
-
+        <title>Trang chủ bán xe oto</title>
     </head>
 
     <body>
@@ -25,7 +25,7 @@
 
             <div class="header-main">
                 <div class="logo">
-                    <a href="#">27Team</a>
+                    <a href="#"><img src="../assets/logo-icon/27Team.webp" alt=""></a>
                 </div>
                 <div class="search-bar">
                     <input type="text" class="search-input" id="search-input" oninput="Search()" placeholder="Tìm kiếm ...">
@@ -156,7 +156,7 @@
                             <span class="filter-title">Danh mục:</span>
                             <div class="filter-category">
                                 <label>
-                                    <input type="checkbox" class="filter-option" value="Vinfast"> Vin
+                                    <input type="checkbox" class="filter-option" value="Vinfast"> Vinfast
                                 </label>
                                 <label>
                                     <input type="checkbox" class="filter-option" value="Lamborghini"> Lamborghini
@@ -196,7 +196,7 @@
                                 <div class="price-inputs">
                                     <input type="number" id="price-min" class="price-input" min="0" max="1000" value="200" placeholder="Từ">
                                     <span>-</span>
-                                    <input type="number" id="price-max" class="price-input" min="0" max="1000" value="35000000000" placeholder="Đến">
+                                    <input type="number" id="price-max" class="price-input" min="0" max="1000" value="100000000" placeholder="Đến">
                                 </div>
                                 <button class="price-apply" onclick="findProduct(); filterbar()">Áp dụng</button>
                             </div>
@@ -243,43 +243,35 @@
                 
             
         </div>
-        <!-- <footer>
+        <footer class="footer">
             <div class="footer-container">
-              <div class="footer-section about">
-                <div>
-                  <a href=""><img src="./web1/assets/logo-icon/27Team.webp" alt="" /></a>
-                </div>
-                <h2>Về chúng tôi</h2>
-                <p>
-                  Chúng tôi là the 27Team, một nền tảng hàng đầu để mua xe hơi sang trọng. Nhiệm vụ của chúng tôi là cung cấp
-                  dịch vụ tốt nhất với Xe cao cấp cho khách hàng của chúng tôi.
-                </p>
-              </div>
-              <div class="footer-section links">
-                <h2>Quick Links</h2>
+              <div class="footer-section">
+                <h4>Giới thiệu</h4>
                 <ul>
-                  <li><a href="#">Trang chủ</a></li>
-                  <li><a href="#">Thể loại</a></li>
-                  <li><a href="#">Dịch vụ</a></li>
+                  <li><a href="#">Về chúng tôi</a></li>
+                  <li><a href="#">Điều khoản dịch vụ</a></li>
+                  <li><a href="#">Chính sách bảo mật</a></li>
                 </ul>
               </div>
-              <div class="footer-section contact">
-                <h2>Liên hệ</h2>
-                <p>Phone: +84 0011223344</p>
-                <p>Email: info@carpla.com</p>
-                <div class="socials">
-                  <a href="https://web.facebook.com/tri.tram.9279"
-                    ><img src="./assets/logo-icon/icons8-facebook.svg" alt="Facebook"
-                  /></a>
-                  <a href="#"><img src="./assets/logo-icon/icons8-twitter.svg" alt="Twitter" /></a>
-                  <a href="#"><img src="./assets/logo-icon/icons8-instagram.svg" alt="Instagram" /></a>
-                </div>
+              <div class="footer-section">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                  <li><a href="#">Câu hỏi thường gặp</a></li>
+                  <li><a href="#">Hỗ trợ khách hàng</a></li>
+                  <li><a href="#">Trung tâm trợ giúp</a></li>
+                </ul>
+              </div>
+              <div class="footer-section">
+                <h4>Liên hệ</h4>
+                <p>Email: support@gmail.com.com</p>
+                <p>Hotline: 1900-123-456</p>
+                <p>Địa chỉ: 154 Đường Âu Dương Lân,Quận 8, TP. HCM</p>
               </div>
             </div>
             <div class="footer-bottom">
-              <p>&copy; 2024 27Team | Designed by the 27Team</p>
+              <p>© 2024 27 Team. Tất cả quyền được bảo lưu.</p>
             </div>
-          </footer> -->
+          </footer>
             <script src="data.js"></script>
             <script src="demo.js"></script>
             
