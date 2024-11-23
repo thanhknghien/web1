@@ -183,8 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Hiển thị nội dung "Tài khoản của tôi"
   profileTab.addEventListener('click', () => {
-    profileContent.classList.remove('hidden');
+
     orderContent.classList.add('hidden');
+    profileContent.classList.remove('hidden');
   });
 
   // Hiển thị nội dung "Đơn mua"
@@ -416,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
         : true;
 
       // Kiểm tra tổng tiền
-      const matchesTotal = searchTotal ? parseFloat(invoice.total) >= searchTotal : true;
+      const matchesTotal = searchTotal ? parseFloat(invoice.total) <= searchTotal : true;
 
       // Kiểm tra trạng thái
       const matchesStatus = searchStatus ? invoice.status === searchStatus : true;
@@ -440,4 +441,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Hiển thị toàn bộ dữ liệu ban đầu
   displayInvoices(oderData);
+});
+
+//Hiển thị các nút đăng nhập đăng xuất
+document.addEventListener('DOMContentLoaded', ()=>{
+  if(!userID){
+    document.getElementById("logIn").style.display = "block";
+    document.getElementById("logIn").addEventListener('click', () =>{
+      alert("Chuyển về trang chủ để đăng nhập!");
+      window.location.href ='trang_chu.html';
+      return false;
+    })
+  }else{
+    document.getElementById("logOut").style.display = "block";
+    document.getElementById("logOut").addEventListener('click', ()=>{
+      alert("Đăng xuất thành công");
+      localStorage.setItem('isLogIn','');  // Xóa userID trong localStorage
+      window.location.reload();
+      return false;  // Ngăn chặn hành động mặc định của sự kiện
+    })
+  }
+})
+
+//Đổi ảnh đại diện
+document.addEventListener('DOMContentLoaded', () => {
+  // Lấy ảnh đại diện mặc định
+  const defaultAvatar = "../assets/logo-icon/account.svg";
+
+  // Lấy phần tử ảnh đại diện
+  const avatarImg = document.getElementById("user-avatar");
+
+  // Xử lý thay đổi ảnh đại diện khi nhấn nút
+  document.getElementById('change-avatar-btn').addEventListener('click', () => {
+    document.getElementById('avatar-upload').click();  // Mở hộp thoại chọn ảnh
+  });
+
+  // Xử lý khi người dùng chọn ảnh mới
+  document.getElementById('avatar-upload').addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const imageUrl = e.target.result;  // Lấy URL của ảnh đã chọn
+        avatarImg.src = imageUrl;  // Cập nhật ảnh đại diện trên giao diện
+      };
+      reader.readAsDataURL(file);  // Đọc ảnh dưới dạng Base64
+    }
+  });
+});
+
+//Nút clear
+document.getElementById("reset-btn").addEventListener('click', () => {
+  // Lấy tất cả các thẻ input
+  const inputs = document.getElementsByTagName('input');
+  
+  for (let input of inputs) {
+    input.value = ''; // Đặt giá trị của input về chuỗi rỗng
+  }
+
+  const selects = document.getElementsByTagName('select');
+  for (let select of selects) {
+    select.selectedIndex = 0; // Đặt về tùy chọn đầu tiên
+  }
 });
