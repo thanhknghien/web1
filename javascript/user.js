@@ -2,15 +2,15 @@
 const userID = localStorage.getItem("isLogIn");
 
 // Fetch dữ liệu từ file JSON và lưu vào Local Storage
-fetch("./resource/user.json")
+fetch("../resource/user.json")
   .then(response => response.json())
   .then(data => localStorage.setItem("user", JSON.stringify(data)));
 
-fetch("./resource/user-address.json")
+fetch("../resource/user-address.json")
   .then(response => response.json())
   .then(data => localStorage.setItem("user-address", JSON.stringify(data)));
 
-fetch("./resource/oder.json")
+fetch("../resource/oder.json")
   .then(response => response.json())
   .then(data => localStorage.setItem("oder",JSON.stringify(data)));
 
