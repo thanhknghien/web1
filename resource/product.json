@@ -34,11 +34,11 @@
     "brand" : "Porsche",
     "fuel" : "Xăng",
     "src" : [
-      "../assets/img/Porsche/Porsche 911 GT1/pic1.jpg",
-      "../assets/img/Porsche/Porsche 911 GT1/pic2.jpg",
-      "../assets/img/Porsche/Porsche 911 GT1/pic3.jpg",
-      "../assets/img/Porsche/Porsche 911 GT1/pic4.jpg",
-      "../assets/img/Porsche/Porsche 911 GT1/pic5.jpg"
+      "../assets/img/Porsche/911 GT1/pic1.jpg",
+      "../assets/img/Porsche/911 GT1/pic2.jpg",
+      "../assets/img/Porsche/911 GT1/pic3.jpg",
+      "../assets/img/Porsche/911 GT1/pic4.jpg",
+      "../assets/img/Porsche/911 GT1/pic5.jpg"
     ]
   },
   {
@@ -49,12 +49,12 @@
     "year" : "2013",
     "fuel" : "Xăng",
     "src" : [
-      "../assets/img/Porsche/Porsche 918 Spyder/pic1.jpg",
-      "../assets/img/Porsche/Porsche 918 Spyder/pic2.jpg",
-      "../assets/img/Porsche/Porsche 918 Spyder/pic3.jpg",
-      "../assets/img/Porsche/Porsche 918 Spyder/pic4.jpg",
-      "../assets/img/Porsche/Porsche 918 Spyder/pic5.jpg",
-      "../assets/img/Porsche/Porsche 918 Spyder/pic6.jpg"
+      "../assets/img/Porsche/918 Spyder/pic1.jpg",
+      "../assets/img/Porsche/918 Spyder/pic2.jpg",
+      "../assets/img/Porsche/918 Spyder/pic3.jpg",
+      "../assets/img/Porsche/918 Spyder/pic4.jpg",
+      "../assets/img/Porsche/918 Spyder/pic5.jpg",
+      "../assets/img/Porsche/918 Spyder/pic6.jpg"
     ]
   },
   {
