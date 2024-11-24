@@ -32,6 +32,7 @@
     "name" : "Porsche 911 GT1",
     "price" : "20000000",
     "brand" : "Porsche",
+    "year" : "1996",
     "fuel" : "Xăng",
     "src" : [
       "../assets/img/Porsche/911 GT1/pic1.jpg",
