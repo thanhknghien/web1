@@ -1,4 +1,23 @@
 // Load dữ liệu từ file Json lên localStorage 
+fetch("../resource/user.json") // User
+  .then(response => response.json())
+  .then(data => localStorage.setItem("user", JSON.stringify(data)));
+
+fetch("../resource/user-address.json") //User address
+  .then(response => response.json())
+  .then(data => localStorage.setItem("user-address", JSON.stringify(data)));
+
+fetch("../resource/oder.json") // Oder
+  .then(response => response.json())
+  .then(data => localStorage.setItem("oder",JSON.stringify(data)));
+
+fetch("../resource/product.json") // Product
+    .then(response => response.json())
+    .then(data => localStorage.setItem("product",JSON.stringify(data)));
+
+fetch("../resource/cart.json") // Cart
+    .then(response => response.json())
+    .then(data => localStorage.setItem("cart",JSON.stringify(data)));
 
 // Tạo key isLogin(dùng để value id người đăng nhập)
 createIsLoginKey();
@@ -42,9 +61,9 @@ function showAvatar(){
 
 
 // Lấy dữ liệu từ localStorage
-var products = JSON.parse(localStorage.getItem('product')) || [];
-var users = JSON.parse(localStorage.getItem('user')) || []; 
-var carts = JSON.parse(localStorage.getItem('cart')) || [];
+const products = JSON.parse(localStorage.getItem('product')) || [];
+const users = JSON.parse(localStorage.getItem('user')) || []; 
+const carts = JSON.parse(localStorage.getItem('cart')) || [];
 var currentPage = 1; // Trang hiện tại
 var perPage = 10; // Số sản phẩm mỗi trang
 var totalPage = Math.ceil(products.length / perPage); // Tổng số trang
