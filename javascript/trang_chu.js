@@ -329,7 +329,7 @@ function company_menu(input) {
     console.log("Đã click vào menu hãng sản xuất:", input);
 
     const filteredProducts = products.filter((sanPham) => {
-        return input.includes(sanPham.hang);
+        return input.includes(sanPham.brand);
     });
 
     currentPage = 1;
@@ -363,7 +363,7 @@ document.getElementById('form-login').addEventListener('submit', function(event)
         return password.includes(user.password) && username.includes(user.username);
     });
 
-    if (userValue != 'null'){
+    if (userValue){
         updateIsLoginKey(userValue.id);
         showFormLogin();
         showAvatar();
@@ -385,12 +385,12 @@ document.getElementById('form-signIn').addEventListener('submit', function(event
         return username == user.username;
     });
     if(userValue){
-        alert('ten tai khoang da ton tai')
+        alert('Tên tài khoản đã tồn tại.')
         return;
     }
 
     if(password != confirmPassword){
-        alert('xác nhận mật khẩu và mật khẩu không trùng khớp')
+        alert('Xác nhận mật khẩu và mật khẩu không trùng khớp.')
         return;
     }
 
@@ -518,7 +518,7 @@ function closeDanhMucTrai(){
   var danhmuctrai = document.getElementById("categoryid");
   let t = document.getElementById("productid");
   let product =  document.getElementById("product");
-  let gridRows = document.querySelectorAll(".grid_row");
+  let gridRows = document.getElementById("grid_row1");
   if (getComputedStyle(timkiem).display === "none" && getComputedStyle(loc).display === "flex"){
       timkiem.style.display = "flex";
       loc.style.display = "none";
@@ -526,10 +526,7 @@ function closeDanhMucTrai(){
       t.style.width = "100%";
       product.style.display = "flex";
       product.style.justifyContent = "center";
-      if (gridRows.length >= 2) {
-          let secondRow = gridRows[1];
-          secondRow.style.width = "83.334%";
-      }
+      gridRows.style.width = "83.334%";
   }
 }
 
@@ -537,15 +534,12 @@ function filterbar(){
   let danhmuctrai = document.getElementById("categoryid");
   let t = document.getElementById("productid");
   let product =  document.getElementById("product");
-  let gridRows = document.querySelectorAll(".grid_row");
+  let gridRows = document.getElementById("grid_row1");
   if (getComputedStyle(danhmuctrai).display !== "block"){
       t.style.width = "100%";
       product.style.display = "flex";
       product.style.justifyContent = "center";
-      if (gridRows.length >= 2) {
-          let secondRow = gridRows[1];
-          secondRow.style.width = "83.334%";
-      }
+      gridRows.style.width = "83.334%";
   }
       
 
@@ -566,12 +560,12 @@ let thumbnails = document.querySelectorAll('.thumbnail');
 let currentIndex = 0;
 
 function setCurrent(index) {
-currentIndex = index;
-imgWrap.src = listImg[currentIndex];
+    currentIndex = index;
+    imgWrap.src = listImg[currentIndex];
 
-thumbnails.forEach((thumbnail) => thumbnail.classList.remove('active'));
+    thumbnails.forEach((thumbnail) => thumbnail.classList.remove('active'));
 
-thumbnails[currentIndex].classList.add('active');
+    thumbnails[currentIndex].classList.add('active');
 }
 
 thumbnails.forEach((thumbnail) => {
@@ -583,28 +577,28 @@ thumbnail.addEventListener('click', () => {
 });
 
 next.addEventListener('click', () => {
-currentIndex = (currentIndex + 1) % listImg.length;
-setCurrent(currentIndex);
-resetAutoSlide();
+    currentIndex = (currentIndex + 1) % listImg.length;
+    setCurrent(currentIndex);
+    resetAutoSlide();
 });
 
 prev.addEventListener('click', () => {
-currentIndex = (currentIndex - 1 + listImg.length) % listImg.length;
-setCurrent(currentIndex);
-resetAutoSlide();
+    currentIndex = (currentIndex - 1 + listImg.length) % listImg.length;
+    setCurrent(currentIndex);
+    resetAutoSlide();
 });
 
 let autoSlideInterval = setInterval(() => {
-currentIndex = (currentIndex + 1) % listImg.length;
-setCurrent(currentIndex);
+    currentIndex = (currentIndex + 1) % listImg.length;
+    setCurrent(currentIndex);
 }, 3000);
 
 function resetAutoSlide() {
-clearInterval(autoSlideInterval);
-autoSlideInterval = setInterval(() => {
-  currentIndex = (currentIndex + 1) % listImg.length;
-  setCurrent(currentIndex);
-}, 3000);
+    clearInterval(autoSlideInterval);
+    autoSlideInterval = setInterval(() => {
+    currentIndex = (currentIndex + 1) % listImg.length;
+    setCurrent(currentIndex);
+    }, 3000);
 }
 
 setCurrent(currentIndex);
