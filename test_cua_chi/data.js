@@ -73,10 +73,10 @@ function chuyenSanPhamThanhHTML(sanPham){
     html +=    '<div class="product-item">';
     html +=        '<img src="' + sanPham.src[0] + '" alt="">';
     html +=        '<div class="product-item-name">' + sanPham.name + '</div>';
-    html +=        '<div class="product-item-price">' + sanPham.price.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</div>';
+    html +=        '<div class="product-item-price">' + sanPham.price.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' $</div>';
     html +=        '<div class="product-item-buy_detail">';
     html +=            '<div class="product-item-detail">';
-    html +=                 '<button onclick="ClickChiTiet(' + String(sanPham.id) + ')">Chi tiet</button>';
+    html +=                 '<button onclick="ClickChiTiet(' + String(sanPham.id) + ')">Chi tiết</button>';
     html +=            '</div>';
     html +=            '<div class="product-item-buy">';
     html +=                '<button onclick="addProductCart(' + String(sanPham.id) + ', ' + sanPham.price + ')">Mua</button>';
@@ -181,13 +181,13 @@ function ClickChiTiet(input) {
 
         show.querySelector('.detal-infor').innerHTML = `
             <div>Tên: ${find.name}</div>
-            <div>Giá: ${find.price}</div>
+            <div>Giá: ${find.price} $</div>
             <div>Thương hiệu: ${find.brand}</div>
             <div>Nhiên liệu: ${find.fuel}</div>
             <div>Năm sản xuất: ${find.year}</div>
         `;
         show.querySelector('.close-detalbuy').innerHTML = `
-            <button onclick="addProductCart('${String(find.id)}', '${find.price}')">Thêm giỏ hàng</button>
+            <button onclick="addProductCart('${String(find.id)}', '${find.price}')">Mua</button>
             <button onclick="closeDetal()">Đóng</button>
         `;
 
@@ -420,7 +420,6 @@ document.getElementById('logout').addEventListener('click', function(){
 
 // JS Thêm sản phẩm vào giỏ hàng (Tạo đối tượng giỏ hàng)
 function addProductCart(idSanPham, priceSanPham){
-    console.log(idSanPham)
     // Kiểm tra xem khách hàng đã đăng nhập chưa
     if (!localStorage.getItem('isLogIn')) {
         showFormLogin();
@@ -433,7 +432,7 @@ function addProductCart(idSanPham, priceSanPham){
 
         console.log(userCart)
         if(!userCart){
-            console.log('Khong ton tai gio hang tao gio hang')
+            alert('Đã thêm sản phẩm vào giỏ hàng')
             var listProductBuy = [{
                 idProduct : idSanPham,
                 quantity : "1",
@@ -455,12 +454,12 @@ function addProductCart(idSanPham, priceSanPham){
             });
 
             if (productValue){
-                console.log('da co san pham nay trong gio hang')
+                alert('Đã thêm sản phẩm vào giỏ hàng')
                 productValue.quantity = String(parseInt(productValue.quantity) + 1);
                 userCart.total = String(parseFloat(userCart.total) + parseFloat(priceSanPham));
                 userCart.totalQuantity = String(parseInt(userCart.totalQuantity) + 1);
             }else{          
-                console.log('chua co san pham nay trong gio hang')
+                alert('Đã thêm sản phẩm vào giỏ hàng')
                 var SanPham = {
                     idProduct : idSanPham,
                     quantity : "1",

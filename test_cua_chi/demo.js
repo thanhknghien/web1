@@ -100,6 +100,10 @@ setCurrent(currentIndex);
 
 function showFormLogin(){
     console.log("Click đăng nhập")
+    var show = document.getElementById('form-detal');
+    if (getComputedStyle(show).display == 'block'){
+        show.style.display = 'none';
+    }
     var showSignIn = document.getElementById('form-signIn')
     if (getComputedStyle(showSignIn).display == 'block'){
         showSignIn.style.display = 'none'
