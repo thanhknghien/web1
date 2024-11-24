@@ -1,34 +1,34 @@
 [
   {
-    "id" : "1111",
-    "username" : "thanh123",
-    "fullname":"Đinh Phúc Thành",
-    "password" : "thanh12345",
-    "sdt" : "0123456789",
-    "status" : "ACTIVE"
+    "id": "1111",
+    "username": "thanh123",
+    "fullname": "Đinh Phúc Thành",
+    "password": "thanh12345",
+    "sdt": "0123456789",
+    "status": "ACTIVE"
   },
   {
-    "id" : "1112",
-    "username" : "kiet123",
-    "fullname":"Võ Lâm Gia Kiệt",
-    "password" : "kiet12345",
-    "sdt" : "0123456789",
-    "status" : "ACTIVE"
+    "id": "1112",
+    "username": "kiet123",
+    "fullname": "Võ Lâm Gia Kiệt",
+    "password": "kiet12345",
+    "sdt": "0123456789",
+    "status": "ACTIVE"
   },
   {
-    "id" : "1113",
-    "username" : "chi123",
-    "fullname":"Nguyễn Văn Chí",
-    "password" : "chi12345",
-    "sdt" : "0123456789",
-    "status" : "ACTIVE"
+    "id": "1113",
+    "username": "chi123",
+    "fullname": "Nguyễn Văn Chí",
+    "password": "chi12345",
+    "sdt": "0123456789",
+    "status": "ACTIVE"
   },
   {
-    "id" : "1114",
-    "username" : "tri123",
-    "fullname":"Mai Văn Minh Chí",
-    "password" : "tri12345",
-    "sdt" : "0123456789",
-    "status" : "ACTIVE"
+    "id": "1114",
+    "username": "tri123",
+    "fullname": "Mai Văn Minh Chí",
+    "password": "tri12345",
+    "sdt": "0123456789",
+    "status": "ACTIVE"
   }
 ]
