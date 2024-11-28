@@ -54,5 +54,397 @@
     },
     "date": "21/10/2024",
     "status": "Đang xử lý"
+  },
+  {
+      "idOder": "125",
+      "idCustomer": "1111",
+      "listProduct": [
+        {
+          "idProduct": "1",
+          "quantity": "2",
+          "name": "Vinfast President",
+          "unitPrice": "200000"
+        },
+        {
+          "idProduct": "2",
+          "quantity": "1",
+          "name": "VF9",
+          "unitPrice": "85000"
+        }
+      ],
+      "totalQuantity": "3",
+      "total": "485000",
+      "payment": "Cash",
+      "address": {
+        "street": "123 Nguyễn Trãi",
+        "district": "Thanh Xuân",
+        "city": "Hà Nội"
+      },
+      "date": "01/10/2024",
+      "status": "Chưa thanh toán"
+  },
+  {
+      "idOder": "126",
+      "idCustomer": "1112",
+      "listProduct": [
+        {
+          "idProduct": "3",
+          "quantity": "1",
+          "name": "Porsche 911 GT1",
+          "unitPrice": "20000000"
+        }
+      ],
+      "totalQuantity": "1",
+      "total": "20000000",
+      "payment": "Chuyển khoản",
+      "address": {
+        "street": "45 Nguyễn Huệ",
+        "district": "Quận 1",
+        "city": "TP.HCM"
+      },
+      "date": "02/11/2024",
+      "status": "Đã thanh toán"
+  },
+  {
+      "idOder": "127",
+      "idCustomer": "1113",
+      "listProduct": [
+        {
+          "idProduct": "4",
+          "quantity": "1",
+          "name": "Porsche 918 Spyder",
+          "unitPrice": "20000000"
+        },
+        {
+          "idProduct": "5",
+          "quantity": "1",
+          "name": "Rolls-Royce Dawn",
+          "unitPrice": "1875000"
+        }
+      ],
+      "totalQuantity": "2",
+      "total": "21875000",
+      "payment": "Thẻ tín dụng",
+      "address": {
+        "street": "22 Lý Tự Trọng",
+        "district": "Thanh Khê",
+        "city": "Đà Nẵng"
+      },
+      "date": "15/11/2024",
+      "status": "Đang xử lý"
+  },
+  {
+      "idOder": "128",
+      "idCustomer": "1114",
+      "listProduct": [
+        {
+          "idProduct": "6",
+          "quantity": "1",
+          "name": "Rolls-Royce Phantom",
+          "unitPrice": "2916000"
+        }
+      ],
+      "totalQuantity": "1",
+      "total": "2916000",
+      "payment": "Cash",
+      "address": {
+        "street": "123 Lê Lợi",
+        "district": "Hải Châu",
+        "city": "Đà Nẵng"
+      },
+      "date": "20/11/2024",
+      "status": "Chưa thanh toán"
+  },
+  {
+      "idOder": "129",
+      "idCustomer": "1115",
+      "listProduct": [
+        {
+          "idProduct": "7",
+          "quantity": "2",
+          "name": "Ferrari 812 Superfast",
+          "unitPrice": "1400000"
+        }
+      ],
+      "totalQuantity": "2",
+      "total": "2800000",
+      "payment": "Thẻ tín dụng",
+      "address": {
+        "street": "101 Lý Thường Kiệt",
+        "district": "Ba Đình",
+        "city": "Hà Nội"
+      },
+      "date": "22/11/2024",
+      "status": "Đã thanh toán"
+  },
+  {
+    "idOder": "130",
+    "idCustomer": "1116",
+    "listProduct": [
+      {
+        "idProduct": "9",
+        "quantity": "1",
+        "name": "Lamborghini Aventador",
+        "unitPrice": "2200000"
+      },
+      {
+        "idProduct": "6",
+        "quantity": "1",
+        "name": "Rolls-Royce Phantom",
+        "unitPrice": "2916000"
+      }
+    ],
+    "totalQuantity": "2",
+    "total": "5116000",
+    "payment": "Chuyển khoản",
+    "address": {
+      "street": "234 Kim Mã",
+      "district": "Ba Đình",
+      "city": "Hà Nội"
+    },
+    "date": "23/11/2024",
+    "status": "Đang xử lí"
+  },
+  {
+    "idOder": "131",
+    "idCustomer": "1117",
+    "listProduct": [
+      {
+        "idProduct": "4",
+        "quantity": "1",
+        "name": "Porsche 918 Spyder",
+        "unitPrice": "20000000"
+      },
+      {
+        "idProduct": "15",
+        "quantity": "1",
+        "name": "Mercedes AMG ONE",
+        "unitPrice": "2700000"
+      }
+    ],
+    "totalQuantity": "2",
+    "total": "22700000",
+    "payment": "Thẻ tín dụng",
+    "address": {
+      "street": "78 Đào Tấn",
+      "district": "Ba Đình",
+      "city": "Hà Nội"
+    },
+    "date": "23/11/2024",
+    "status": "Đã thanh toán"
+  },
+  {
+    "idOder": "132",
+    "idCustomer": "1118",
+    "listProduct": [
+      {
+        "idProduct": "3",
+        "quantity": "2",
+        "name": "Porsche 911 GT1",
+        "unitPrice": "20000000"
+      }
+    ],
+    "totalQuantity": "2",
+    "total": "40000000",
+    "payment": "Cash",
+    "address": {
+      "street": "12 Trần Duy Hưng",
+      "district": "Cầu Giấy",
+      "city": "Hà Nội"
+    },
+    "date": "22/11/2024",
+    "status": "Chưa thanh toán"
+  },
+  {
+    "idOder": "133",
+    "idCustomer": "1119",
+    "listProduct": [
+      {
+        "idProduct": "14",
+        "quantity": "1",
+        "name": "Bugatti Divo",
+        "unitPrice": "5320000"
+      },
+      {
+        "idProduct": "11",
+        "quantity": "1",
+        "name": "Bentley Continental",
+        "unitPrice": "800000"
+      }
+    ],
+    "totalQuantity": "2",
+    "total": "6120000",
+    "payment": "Thẻ tín dụng",
+    "address": {
+      "street": "45 Láng Hạ",
+      "district": "Đống Đa",
+      "city": "Hà Nội"
+    },
+    "date": "21/11/2024",
+    "status": "Đã thanh toán"
+  },
+  {
+    "idOder": "134",
+    "idCustomer": "1120",
+    "listProduct": [
+      {
+        "idProduct": "12",
+        "quantity": "1",
+        "name": "Bentley Flying Spur",
+        "unitPrice": "670000"
+      },
+      {
+        "idProduct": "10",
+        "quantity": "1",
+        "name": "Lamborghini Huracan",
+        "unitPrice": "3100000"
+      }
+    ],
+    "totalQuantity": "2",
+    "total": "3770000",
+    "payment": "Chuyển khoản",
+    "address": {
+      "street": "100 Hoàng Quốc Việt",
+      "district": "Cầu Giấy",
+      "city": "Hà Nội"
+    },
+    "date": "22/11/2024",
+    "status": "Đang xử lí"
+  },
+    {
+      "idOder": "135",
+      "idCustomer": "1121",
+      "listProduct": [
+        {
+          "idProduct": "8",
+          "quantity": "1",
+          "name": "Ferrari SF90 Stradale",
+          "unitPrice": "1600000"
+        },
+        {
+          "idProduct": "2",
+          "quantity": "2",
+          "name": "VF9",
+          "unitPrice": "85000"
+        }
+      ],
+      "totalQuantity": "3",
+      "total": "1770000",
+      "payment": "Cash",
+      "address": {
+        "street": "56 Võ Chí Công",
+        "district": "Tây Hồ",
+        "city": "Hà Nội"
+      },
+      "date": "22/11/2024",
+      "status": "Chưa thanh toán"
+    },
+    {
+      "idOder": "136",
+      "idCustomer": "1122",
+      "listProduct": [
+        {
+          "idProduct": "13",
+          "quantity": "1",
+          "name": "Bugatti Chiron Super Sport",
+          "unitPrice": "3251000"
+        },
+        {
+          "idProduct": "5",
+          "quantity": "1",
+          "name": "Rolls-Royce Dawn",
+          "unitPrice": "1875000"
+        }
+      ],
+      "totalQuantity": "2",
+      "total": "5126000",
+      "payment": "Chuyển khoản",
+      "address": {
+        "street": "75 Phạm Hùng",
+        "district": "Nam Từ Liêm",
+        "city": "Hà Nội"
+      },
+      "date": "22/11/2024",
+      "status": "Đang xử lí"
+    },
+    {
+      "idOder": "137",
+      "idCustomer": "1123",
+      "listProduct": [
+        {
+          "idProduct": "16",
+          "quantity": "2",
+          "name": "Mercedes Maybach S680",
+          "unitPrice": "300000"
+        }
+      ],
+      "totalQuantity": "2",
+      "total": "600000",
+      "payment": "Thẻ tín dụng",
+      "address": {
+        "street": "23 Nguyễn Văn Cừ",
+        "district": "Long Biên",
+        "city": "Hà Nội"
+      },
+      "date": "23/11/2024",
+      "status": "Đã thanh toán"
+    },
+    {
+      "idOder": "138",
+      "idCustomer": "1124",
+      "listProduct": [
+        {
+          "idProduct": "1",
+          "quantity": "1",
+          "name": "Vinfast President",
+          "unitPrice": "200000"
+        },
+        {
+          "idProduct": "7",
+          "quantity": "1",
+          "name": "Ferrari 812 Superfast",
+          "unitPrice": "1400000"
+        }
+      ],
+      "totalQuantity": "2",
+      "total": "1600000",
+      "payment": "Cash",
+      "address": {
+        "street": "89 Trần Phú",
+        "district": "Hà Đông",
+        "city": "Hà Nội"
+      },
+      "date": "23/11/2024",
+      "status": "Đã thanh toán"
+    },
+    {
+      "idOder": "139",
+      "idCustomer": "1125",
+      "listProduct": [
+        {
+          "idProduct": "3",
+          "quantity": "1",
+          "name": "Porsche 911 GT1",
+          "unitPrice": "20000000"
+        },
+        {
+          "idProduct": "14",
+          "quantity": "1",
+          "name": "Bugatti Divo",
+          "unitPrice": "5320000"
+        }
+      ],
+      "totalQuantity": "2",
+      "total": "25320000",
+      "payment": "Thẻ tín dụng",
+      "address": {
+        "street": "101 Hoàng Cầu",
+        "district": "Đống Đa",
+        "city": "Hà Nội"
+      },
+      "date": "22/11/2024",
+      "status": "Đã thanh toán"
   }
 ]
+  
+
