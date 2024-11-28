@@ -38,6 +38,10 @@ body {
   font-size: 16px;
 }
 
+.header-right{
+  display: flex;
+}
+
 .header-right .icon {
   text-decoration: none;
   margin: 0 15px;

@@ -30,5 +30,77 @@
     "password": "tri12345",
     "sdt": "0123456789",
     "status": "ACTIVE"
+  },
+  {
+    "id": "1115",
+    "username": "mai234",
+    "fullname": "Nguyễn Thị Mai",
+    "password": "mai23456",
+    "sdt": "0987654321",
+    "status": "LOCK"
+  },
+  {
+    "id": "1116",
+    "username": "hoa345",
+    "fullname": "Trần Văn Hoa",
+    "password": "hoa34567",
+    "sdt": "0912345678",
+    "status": "LOCK"
+  },
+  {
+    "id": "1117",
+    "username": "anh456",
+    "fullname": "Phạm Anh Tú",
+    "password": "anh45678",
+    "sdt": "0945678910",
+    "status": "LOCK"
+  },
+  {
+    "id": "1118",
+    "username": "lan567",
+    "fullname": "Lê Lan Phương",
+    "password": "lan56789",
+    "sdt": "0901234567",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "1119",
+    "username": "son678",
+    "fullname": "Vũ Minh Sơn",
+    "password": "son67890",
+    "sdt": "0967890123",
+    "status": "LOCK"
+  },
+  {
+    "id": "1120",
+    "username": "trang789",
+    "fullname": "Hoàng Thị Trang",
+    "password": "trang78901",
+    "sdt": "0923456789",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "1121",
+    "username": "dung890",
+    "fullname": "Đặng Quang Dũng",
+    "password": "dung89012",
+    "sdt": "0978901234",
+    "status": "LOCK"
+  },
+  {
+    "id": "1122",
+    "username": "ha901",
+    "fullname": "Đỗ Thị Hà",
+    "password": "ha90123",
+    "sdt": "0934567890",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "1123",
+    "username": "minh012",
+    "fullname": "Nguyễn Minh Quân",
+    "password": "minh01234",
+    "sdt": "0956789012",
+    "status": "LOCK"
   }
 ]
