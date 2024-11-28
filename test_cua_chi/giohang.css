@@ -1,0 +1,159 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgb(242, 242, 242);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-grid{
+    display: grid;
+    grid-template-columns: auto 180px 120px 120px 20px;
+    column-gap: 24px;
+}
+
+.cart {
+    display: flex;
+    flex-wrap: nowrap;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.cart-infor{
+    flex: 1 1 0%;
+    width: calc(100% - 380px);
+    margin-right: 20px;
+
+}
+
+.cart-product{
+    background-color: #ffffff;
+}
+
+.quantity-product{
+    display: flex;
+    align-items: center;
+}
+
+.quantity-product span{
+    padding: auto;
+}
+.quantity-product input{
+    width: 18px;
+    height: 18px;
+}
+
+
+
+.item-infor{
+    display: grid;
+    grid-template-columns: 18px 80px 1fr;
+    column-gap: 12px;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.item-infor input{
+    width: 18px;
+    height: 18px;
+}
+
+.item-infor img{
+    width: 80px;
+    height: 80px;
+}
+
+
+
+.cart-header {
+    background: rgb(255, 255, 255);
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: rgb(36, 36, 36);
+    font-weight: 400;
+    font-size: 13px;
+    margin-bottom: 12px;
+    position: sticky;
+    top: 20px;
+    z-index: 99;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+
+.item {
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 16px;
+}
+
+.item-quantity{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.quantity{
+    display: inline-flex;
+        flex-wrap: nowrap;
+        border: 1px solid rgb(200, 200, 200);
+        border-radius: 3px;
+        width: 84px;
+}
+
+.item-quantity .quantity button{
+    display: inline-block;
+    border-right: 1px solid rgb(200, 200, 200);
+    color: rgb(153, 153, 153);
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.quantity-input{
+    border: none;
+    background: transparent;
+    width: 32px;
+    text-align: center;
+    font-size: 13px;
+    appearance: none;
+    margin: 0px;
+    outline: none;
+}
+
+
+
+
+/* Địa chỉ và thanh toán */
+.address-payment{
+ width: 380px;
+}
+    /* Địa chỉ */
+
+    .address{
+        background: rgb(255, 255, 255);
+        border-radius: 4px;
+        padding: 16px;
+    }
+
+    /* Thanh toán */
+
+    .payment{
+        margin-top: 10px;
+        background: rgb(255, 255, 255);
+        border-radius: 4px;
+        padding: 16px;
+    }
+
+    .pay-method{
+        
+    }

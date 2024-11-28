@@ -152,7 +152,6 @@ body{
   }
   
   .grid_column-10{
-    padding-left: 12px;
     width: 83.3334%;
   }
   
@@ -245,6 +244,15 @@ body{
   .filter-title {
     font-weight: bold;
     color: #333;
+  }
+
+  .filter-lowtohigh-price{
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
   
   .filter-option {
@@ -572,7 +580,7 @@ body{
     top: 100px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
+    z-index: 3;
   }
   .form-login .form-box{
     position: relative;
@@ -656,7 +664,7 @@ body{
     top: 75px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
+    z-index: 3;
   }
   .form-signIn .form-box{
     position: relative;
@@ -789,4 +797,17 @@ body{
     margin: 0;
     color: #bbb;
   }
+
+
+  .papewhite {
+    display: none;
+    position: fixed; /* Cố định lớp nền */
+    top: 0;
+    left: 0;
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+    height: 100%; /* Chiếm toàn bộ chiều cao */
+    background-color: rgba(255, 255, 255, 0.8); /* Nền trắng với độ mờ 80% */
+    z-index: 2; /* Đặt dưới biểu mẫu chính */
+}
+
   

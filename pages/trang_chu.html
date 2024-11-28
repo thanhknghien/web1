@@ -57,7 +57,7 @@
         </div>
 
         <!-- Form đăng kí -->
-         <div class="form-signIn" id="form-signIn">
+        <div class="form-signIn" id="form-signIn">
             <div class="form-box">
                 <div class="exit"><button onclick="showFormSignIn()">X</button></div>
                 <div class="form-value">
@@ -82,8 +82,8 @@
                     </form>
                 </div>
             </div>
-
          </div>
+         <div class="papewhite" id="overlay"></div>
         <!-- Slide dưới header -->
         <div class="slide">
 			<div class="slide-show">
@@ -201,8 +201,8 @@
                         
                             <div class="filter-sort" id="sort-options">
                                 <span class="filter-title">Sắp xếp:</span>
-                                <button class="filter-option" value="price-asc">Giá thấp đến cao</button>
-                                <button class="filter-option" value="price-desc">Giá cao đến thấp</button>
+                                <button class="filter-lowtohigh-price"  onclick="sortProducts()" value="price-asc">Giá thấp đến cao</button>
+                                <button class="filter-lowtohigh-price" onclick="sortProducts()" value="price-desc">Giá cao đến thấp</button>
                             </div>
                         </div>
                         

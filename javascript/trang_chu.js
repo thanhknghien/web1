@@ -73,7 +73,7 @@ init();
 
 // JS hiện thị danh sách sản phẩm
 function chuyenDanhSachDoiTuongSanPhamThanhHTML(products){
-    var HTMLDanhSachSanPham = '<div class="grid_row">';
+    var HTMLDanhSachSanPham = '<div class="grid_row" id="grid_row1">';
 
     products.forEach((sanPham) =>{
         var htmlSanPham = chuyenSanPhamThanhHTML(sanPham); 
@@ -299,29 +299,32 @@ function findProduct() {
 
 // Hàm sắp xếp sản phẩm
 // Hàm sắp xếp sản phẩm
-function sortProducts(event) {
-    const sortOption = event.target.value; // Lấy giá trị của nút bấm mà người dùng chọn
+function sortProducts() {
+    const lowtohigh = document.querySelectorAll('.filter-lowtohigh-price')
 
-    let sortedProducts = [...product]; // Tạo một bản sao của danh sách sản phẩm hiện tại
+    lowtohigh.forEach(option =>{
+        option.addEventListener('click', e =>{
+            console.log(option.value)
+             // Lấy giá trị của nút bấm mà người dùng chọn
+            let sortedProducts = [...product]; // Tạo một bản sao của danh sách sản phẩm hiện tại
 
-    // Dựa trên lựa chọn của người dùng, sắp xếp danh sách sản phẩm
-    if (sortOption === 'price-asc') {
-        // Sắp xếp theo giá tăng dần
-        sortedProducts.sort((a, b) => a.price - b.price);
-    } else if (sortOption === 'price-desc') {
-        // Sắp xếp theo giá giảm dần
-        sortedProducts.sort((a, b) => b.price - a.price);
-    }
+            // Dựa trên lựa chọn của người dùng, sắp xếp danh sách sản phẩm
+            if (option.value === 'price-asc') {
+                // Sắp xếp theo giá tăng dần
+                sortedProducts.sort((a, b) => a.price - b.price);
+            } else if (option.value === 'price-desc') {
+                // Sắp xếp theo giá giảm dần
+                sortedProducts.sort((a, b) => b.price - a.price);
+            }
 
-    // Cập nhật danh sách sản phẩm đã sắp xếp
-    product = sortedProducts;
-    updatePagination(); // Cập nhật phân trang sau khi sắp xếp
+            // Cập nhật danh sách sản phẩm đã sắp xếp
+            product = sortedProducts;
+            updatePagination(); // Cập nhật phân trang sau khi sắp xếp           
+        });
+    })
+    
 }
 
-// Lắng nghe sự kiện click trên các nút sắp xếp
-document.querySelectorAll('.filter-option').forEach(button => {
-    button.addEventListener('click', sortProducts);
-});
 
 
 // JS hiện thi danh sách sản phẩm theo thương hiệu
@@ -526,7 +529,7 @@ function closeDanhMucTrai(){
       t.style.width = "100%";
       product.style.display = "flex";
       product.style.justifyContent = "center";
-      gridRows.style.width = "83.334%";
+      gridRows.style.width = "80.8334%";
   }
 }
 
@@ -539,7 +542,7 @@ function filterbar(){
       t.style.width = "100%";
       product.style.display = "flex";
       product.style.justifyContent = "center";
-      gridRows.style.width = "83.334%";
+      gridRows.style.width = "80.8334%";
   }
       
 
@@ -607,21 +610,16 @@ setCurrent(currentIndex);
 
 function showFormLogin(){
   console.log("Click đăng nhập")
-  var show = document.getElementById('form-detal');
-  if (getComputedStyle(show).display == 'block'){
-      show.style.display = 'none';
-  }
-  var showSignIn = document.getElementById('form-signIn')
-  if (getComputedStyle(showSignIn).display == 'block'){
-      showSignIn.style.display = 'none'
-   }
+  var overlay = document.getElementById('overlay')
   var showlogin = document.getElementById('form-login')
   var form = showlogin.querySelector("form");
    if (getComputedStyle(showlogin).display == 'none'){
+      overlay.style.display = 'block';
       showlogin.style.display = 'block'
    }
    else{
       showlogin.style.display = 'none';
+      overlay.style.display = 'none';
       form.reset();
    }
 }
@@ -632,18 +630,16 @@ function showFormLogin(){
 
 function showFormSignIn(){
   console.log("Click đăng kí")
-  var showlogin = document.getElementById('form-login')
-  if (getComputedStyle(showlogin).display == 'block'){
-      showlogin.style.display = 'none'
-   }
-
+  var overlay = document.getElementById('overlay')
   var showSignIn = document.getElementById('form-signIn')
   var form = showSignIn.querySelector("form");
    if (getComputedStyle(showSignIn).display == 'none'){
-      showSignIn.style.display = 'block'
+      showSignIn.style.display = 'block';
+      overlay.style.display = 'block';
    }
    else{
       showSignIn.style.display = 'none';
+      overlay.style.display = 'none';
       form.reset();
    }
 }
