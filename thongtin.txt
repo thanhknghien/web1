@@ -1,0 +1,72 @@
+trang của ai nấy làm nhưng không liên kết với nhau thì không gọi là làm việc nhóm
+3 trang cơ bản (trang chủ, profile, giỏ hàng ) liên kết với nhau qua cặp key = "isLogIn" và id người đăng nhập
+trang admin thì đăng nhập bằng url (không chung với người dùng) 
+
+thuộc tính cần có trong các file json:
+
+#user [
+  {
+    "id": // 4 số khi đăng kí thì tự random,
+    "username": tên đăng nhập,
+    "fullname": họ tên đầy đủ,
+    "password": mật khẩu tùy ràng buộc để tăng bảo mật,
+    "sdt": số điện thoại nên thêm ràng buộc bắt đầu từ số 0 và ít nhất 8 số tới 10 số,
+    "status": 2 trạng thái là "ACTIVE" và "LOCK" (lock thì k cho đặt hàng vẫn thêm vào giỏ dc)
+  }
+]
+
+#user-address [
+  {
+    "id" : id khách hàng,
+    "address" chứa mảng các địa chỉ
+    {
+      "street" : tên đường,
+      "district" : quận/huyện,
+      "city" : tên thành phố
+    }
+
+  }
+]
+
+#product [
+  {
+    "id" : ID xe,
+    "name" : tên,
+    "price" : giá,
+    "brand" : hãng,
+    "fuel" : nhiên liệu,
+    "year" : năm sx,
+    "src" : chứa các mảng lưu địa chỉ tương đối của ảnh các xe trong thư mục assets
+  }
+]
+
+#cart [ // tương tự trang giỏ hàng shopee về logic và giao diện
+  {
+    "id" : khách hàng,
+    "listProduct" : dssp thêm vào giỏ chứa mảng {
+      "idProduct" : id xe,
+        "quantity" : số lượng,
+        "price" : giá
+    }
+    "total" : tổng số tiền (nhớ viết hàm tự động cập nhật khi thêm xe vô giỏ),
+    "totalQuantity" : tổng số lượng(nhớ viết hàm tự động cập nhật khi thêm xe vô giỏ)
+  }
+]
+
+#oder[ //tạo tự động khi nhấn đặt hàng trong giỏ
+  {
+    "idOder" : ID hóa đơn,
+    "idCustomer" : ID khách hàng,
+    "listProduct" : dssp,
+    "totalQuantity" : tổng số lượng,
+    "total" : tổng tiền,
+    "payment": phương thức thanh toán//Cast, Chuyển khoản,Thẻ tín dụng ,
+    "address" : 
+      {
+        địa chỉ
+      }
+    ,
+    "date" : ngày mua,
+    "status" : trạng thái //Chưa thanh toán, Đã thanh toán, Đang xử lí
+  }
+]

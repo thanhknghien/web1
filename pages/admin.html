@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../style/kiet.css" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <img src="../assets/logo-icon/27Team.webp" alt="Logo" class="logo">
+            <h1>Admin </h1>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="trang_chu.html">Trang chủ</a></li>
+                <li><a href="#" class="btn manage-user">Quản lý người dùng</a></li>
+                <li><a href="#" class="btn manage-product">Quản lý sản phẩm</a></li>
+                <li><a href="#" class="btn manage-order">Quản lý đơn hàng</a></li>
+                <li><a href="#" class="btn manage-stats">Thống kê kinh doanh</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="admin-options">
+        <div class="option-card">
+            <img src="../assets/logo-icon/27Team.webp" alt="Quản lý người dùng" />
+            <h3>Quản lý người dùng</h3>
+            <p>Thêm, sửa, hoặc xóa người dùng.</p>
+            <a href="#" class="btn manage-user">Quản lý</a>
+        </div>
+        <div class="option-card">
+            <img src="../assets/logo-icon/27Team.webp" alt="Quản lý sản phẩm" />
+            <h3>Quản lý sản phẩm</h3>
+            <p>Thêm, sửa, hoặc xóa sản phẩm.</p>
+            <a href="#" class="btn manage-product">Quản lý</a>
+        </div>
+        <div class="option-card">
+            <img src="../assets/logo-icon/27Team.webp" alt="Quản lý đơn hàng" />
+            <h3>Quản lý đơn hàng</h3>
+            <p>Xem và xử lý đơn hàng.</p>
+            <a href="#" class="btn manage-order">Quản lý</a>
+        </div>
+        <div class="option-card">
+            <img src="../assets/logo-icon/27Team.webp" alt="Thống kê kinh doanh" />
+            <h3>Thống kê kinh doanh </h3>
+            <p>Xem tình hình kinh doanh của gara.</p>
+            <a href="#" class="btn manage-stats">Quản lý</a>
+        </div>
+    </div>
+    </div>
+
+    <!-- Modal Quản lý Người dùng -->
+    <div class="modal" id="user-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-user-modal">&times;</span>
+            <h3>Quản lý Người dùng</h3>
+            <div class="form">
+                <div class="form-group">
+                    <label for="name">Nhập tên đăng nhập: </label>
+                    <input id="name" type="text" class="form-input">
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="full-name">Nhập họ và tên: </label>
+                    <input id="full-name" type="text" class="form-input">
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Nhập password: </label>
+                    <input id="password" type="password" class="form-input">
+                    <div class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="sdt">Nhập SĐT: </label>
+                    <input id="sdt" type="text" class="form-input">
+                    <div class="error-message"></div>
+                </div>
+                <button id="add-user-btn">Thêm người dùng mới</button>
+            </div>
+            <h4>Danh sách người dùng</h4>
+            <table id="user-table" border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên đăng nhập</th>
+                        <th>Họ và tên</th>
+                        <th>Password</th>
+                        <th>SĐT</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                        <th>Chi tiết</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Hàng dữ liệu sẽ được thêm vào đây -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal Quản lý Sản phẩm -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quản lý Sản phẩm</h3>
+                <span class="close-btn" id="close-product-modal">&times;</span>
+            </div>
+
+            <!-- Form quản lý sản phẩm -->
+            <form id="product-form" class="product-form">
+                <div class="form-group">
+                    <label for="product-name">Tên xe:</label>
+                    <input id="product-name" type="text" class="form-input" required>
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-price">Giá xe:</label>
+                    <input id="product-price" type="text" class="form-input" required>
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-brand">Thương hiệu:</label>
+                    <input id="product-brand" type="text" class="form-input" required>
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-fuel">Nhiên liệu:</label>
+                    <input id="product-fuel" type="text" class="form-input" required>
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-year">Năm sản xuất:</label>
+                    <input id="product-year" type="text" class="form-input" required>
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-image">Hình ảnh xe:</label>
+                    <input id="product-image" type="file" class="form-input" accept="image/*" multiple>
+                    <div class="image-preview" id="image-preview"></div>
+                    <div class="error-message"></div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="add-product-btn" class="primary-btn">
+                        <span class="btn-text">Thêm mới</span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Bảng danh sách sản phẩm -->
+            <div class="table-container">
+                <h4>Danh sách sản phẩm</h4>
+                <table id="product-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Thương hiệu</th>
+                            <th>Nhiên liệu</th>
+                            <th>Năm SX</th>
+                            <th>Hình ảnh</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dữ liệu sản phẩm sẽ được thêm vào đây -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Quản lý Đơn Hàng -->
+    <div class="modal" id="order-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-order-modal">&times;</span>
+            <h3>Quản lý Đơn Hàng</h3>
+
+            <!-- Bộ lọc đơn hàng -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="date-from">Từ ngày:</label>
+                    <input type="date" id="date-from" />
+                </div>
+                <div class="filter-group">
+                    <label for="date-to">Đến ngày:</label>
+                    <input type="date" id="date-to" />
+                </div>
+                <div class="filter-group">
+                    <label for="status-filter">Trạng thái:</label>
+                    <select id="status-filter">
+                        <option value="all">Tất cả</option>
+                        <option value="Đã thanh toán">Đã thanh toán</option>
+                        <option value="Chưa thanh toán">Chưa thanh toán</option>
+                        <option value="Đang xử lý">Đang xử lý</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="district-filter">Tìm theo quận:</label> <input type="text" id="district-filter"
+                        placeholder="Nhập tên quận" />
+                </div> <button id="filter-btn">Lọc</button>
+            </div>
+
+            <!-- Danh sách đơn hàng -->
+            <h4>Danh sách Đơn Hàng</h4>
+            <table id="order-table" border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ngày</th>
+                        <th>ID khách hàng</th>
+                        <th>Sản phẩm</th>
+                        <th>Tổng sản phẩm</th>
+                        <th>Địa chỉ</th>
+                        <th>Tổng tiền</th>
+                        <th>Hình thức thanh toán</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dữ liệu sẽ được thêm ở đây -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal: Thống kê kinh doanh -->
+    <div class="modal" id="stats-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-stats-modal">&times;</span>
+            <h3>Thống kê Kinh doanh</h3>
+
+            <!-- Filter Section -->
+            <div>
+                <label for="start-date">Từ ngày:</label>
+                <input type="date" id="start-date">
+                <label for="end-date">Đến ngày:</label>
+                <input type="date" id="end-date">
+                <button id="generate-stats-btn">Thống kê</button>
+            </div>
+
+            <!-- Stats Section -->
+            <h4>Kết quả thống kê</h4>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Mặt hàng</th>
+                        <th>Số lượng bán</th>
+                        <th>Tổng thu</th>
+                    </tr>
+                </thead>
+                <tbody id="stats-table-body">
+                    <!-- Data dynamically generated -->
+                </tbody>
+            </table>
+            <p><strong>Tổng doanh thu:</strong> <span id="total-revenue">0</span> USD</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2024 27Team | Designed by the 27Team</p>
+        </div>
+    </footer>
+    <script src="../javascript/admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+[
+  {
+    "id" : "1111",
+    "addresses": [
+      {
+        "street": "123 Nguyễn Trãi",
+        "district": "Thanh Xuân",
+        "city": "Hà Nội"
+      },
+      {
+        "street": "456 Lê Lợi",
+        "district": "Hà Đông",
+        "city": "Hà Nội"
+      }
+    ]
+  },
+  {
+    "id" : "1112",
+    "addresses": [
+      {
+        "street": "123 Nguyen Trai",
+        "district": "Thanh Xuan",
+        "city": "Hanoi"
+      },
+      {
+        "street": "456 Le Loi",
+        "district": "Ha Dong",
+        "city": "Hanoi"
+      }
+    ]
+  }
+]

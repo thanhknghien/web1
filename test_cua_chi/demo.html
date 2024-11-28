@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="demo1.css">
+        <title>Trang chủ bán xe oto</title>
+    </head>
+
+    <body>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top">
+                <div class="login_signin" id="login_signin">
+                    <a onclick="showFormSignIn()">Đăng Ký</a>
+                    <a onclick="showFormLogin()">Đăng Nhập</a>
+                </div>
+                <div class="avatar-login" id="avatar-login">
+                    <img src="avatar.jpg">
+                    <div class="avatar-exit" id="logout">
+                        <div>Đăng xuất</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-main">
+                <div class="logo">
+                    <a href="#"><img src="../assets/logo-icon/27Team.webp" alt=""></a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" class="search-input" id="search-input" oninput="Search()" placeholder="Tìm kiếm ...">
+                    <button class="search-button" onclick="Search()">Tìm kiếm</button>
+                </div>
+                <div class="nav-links">
+                    <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                </div>
+            </div>
+        </header>
+        <!-- Form đăng nhập -->
+        <div class="form-login" id="form-login">
+            <div class="form-box">
+                <div class="exit"><button onclick="showFormLogin()">X</button></div>
+                <div class="form-value">
+                    <form>
+                        <h2>Đăng nhập</h2>
+                        <div class="inputbox">
+                            <input type="text" id="username" placeholder="Tài khoản" value="" required>
+                        </div>
+                        <div class="inputbox">
+                            <input type="password" id="password" placeholder="Mật khẩu" required>
+                        </div>
+                        <button type="submit">Đăng nhập</button>
+                        <div class="register">
+                            <p>Không có tài khoảng? <a onclick="showFormSignIn()">Đăng kí</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form đăng kí -->
+         <div class="form-signIn" id="form-signIn">
+            <div class="form-box">
+                <div class="exit"><button onclick="showFormSignIn()">X</button></div>
+                <div class="form-value">
+                    <form>
+                        <h2>Đăng kí</h2>
+                        <div class="inputbox">
+                            <input type="text" id="fullname" placeholder="Tên người dùng" required>
+                        </div>
+                        <div class="inputbox">
+                            <input type="text" id="username-sign" placeholder="Tài khoản" required>
+                        </div>
+                        <div class="inputbox">
+                            <input type="password" id="password-sign" placeholder="Mật khẩu" required>
+                        </div>
+                        <div class="inputbox">
+                            <input type="password" id="confirmPassword" placeholder="Xác nhận lại mật khẩu" required>
+                        </div>
+                        <button type="submit">Đăng kí</button>
+                        <div class="register">
+                            <p>Đã có tài khoảng? <a onclick="showFormLogin()">Đăng nhập</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+         </div>
+        <!-- Slide dưới header -->
+        <div class="slide">
+			<div class="slide-show">
+				<span class="control prev">
+					<i class="bx bx-chevron-left"></i>
+				</span>
+				<span class="control next">
+					<i class="bx bx-chevron-right"></i>
+				</span>
+				<div class="img-wrap">
+					<img src="img1.jpeg" alt="" />
+				</div>
+				
+				<div class="thumbnails">
+					<div class="thumbnail" data-index="0"></div>
+					<div class="thumbnail" data-index="1"></div>
+					<div class="thumbnail" data-index="2"></div>
+					<div class="thumbnail" data-index="3"></div>
+				</div>
+			</div>
+		</div>
+        <!-- Sản phẩm -->
+        <div class="container">
+            <div class="grid">
+                <div class="grid_row">
+                    <!-- Danh mục trái -->
+                    <div class="grid_column-2" id="categoryid">
+                        <nav class="category">
+                            <h3 class="category_heading">
+                                <i class="category_heading-icon fa-solid fa-bars"></i>
+                                Danh mục
+                            </h3>
+            
+                            <ul class="category-list">
+                                <li class="category-item">
+                                    <button onclick="company_menu('Vin')" class="category-item_link" >Vin</button>
+                                </li>
+                                <li class="category-item">
+                                    <button onclick="company_menu('Mercedes')" class="category-item_link">Mercedes</button>
+                                </li>
+                                <li class="category-item">
+                                    <button onclick="company_menu('Bugatti')" class="category-item_link">Bugatti</button>
+                                </li>
+                                <li class="category-item">
+                                    <button onclick="company_menu('Ferrari')" class="category-item_link">Ferrari</button>
+                                </li>
+                                <li class="category-item">
+                                    <button onclick="company_menu('Lamborghini')" class="category-item_link">Lamborghini</button>
+                                </li>
+                                <li class="category-item">
+                                    <button onclick="company_menu('Bentley')" class="category-item_link">Bentley</button>
+                                </li>
+                                <li class="category-item">
+                                    <button onclick="company_menu('Porsche')" class="category-item_link">Porsche</button>
+                                </li>
+                                <li class="category-item">
+                                    <button onclick="company_menu('Rolls-Royce')" class="category-item_link">Rolls-Royce</button>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- Sản Phẩm và thanh lọc sản phẩm -->
+                    <div class="grid_column-10" id="productid">
+                        <div class="filter-bar-main" id="filter-bar-main">
+                            <button onclick="closeDanhMucTrai()">Lọc tìm kiếm</button>
+                        </div>
+                        <div class="filter-bar" id="filter-bar">
+                            <span class="filter-title">Danh mục:</span>
+                            <div class="filter-category">
+                                <label>
+                                    <input type="checkbox" class="filter-option" value="Vinfast"> Vinfast
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="filter-option" value="Lamborghini"> Lamborghini
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="filter-option" value="Bentley"> Bentley
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="filter-option" value="Mercedes"> Mercedes
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="filter-option" value="Ferrari"> Ferrari
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="filter-option" value="Rolls-Royce"> Rolls-Royce
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="filter-option" value="Porsche"> Porsche
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="filter-option" value="Bugatti"> Bugatti
+                                </label>
+                            </div>
+                        
+                            <span class="filter-title">Nhiên liệu:</span>
+                            <div class="filter-fuel">
+                                <label>
+                                    <input type="checkbox" class="filter-option" value="Dien"> Điện
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="filter-option" value="Xang"> Xăng
+                                </label>
+                            </div>
+                        
+                            <div class="filter-price">
+                                <span class="filter-title">Khoảng giá:</span>
+                                <div class="price-inputs">
+                                    <input type="number" id="price-min" class="price-input" min="0" max="1000" value="200" placeholder="Từ">
+                                    <span>-</span>
+                                    <input type="number" id="price-max" class="price-input" min="0" max="1000" value="100000000" placeholder="Đến">
+                                </div>
+                                <button class="price-apply" onclick="findProduct(); filterbar()">Áp dụng</button>
+                            </div>
+                        
+                            <div class="filter-sort" id="sort-options">
+                                <span class="filter-title">Sắp xếp:</span>
+                                <button class="filter-option" value="price-asc">Giá thấp đến cao</button>
+                                <button class="filter-option" value="price-desc">Giá cao đến thấp</button>
+                            </div>
+                        </div>
+                        
+                        <div class="product" id="product" >
+                            <div class="grid_row">
+
+                                <div class="grid_column-2">
+                                    <div class="product-item">
+                                        <img src="./web1/assets/img/Bugatti/Chiron/B31.jpg" alt="">
+                                        <div class="product-item-name">
+                                            Ten
+                                        </div>
+                                        <div class="product-item-price">
+                                            Gia
+                                        </div>
+                                        <div class="product-item-buy_detail">
+                                            <div class="product-item-detail">
+                                                <button onclick="ClickChiTiet()">Chi tiet</button>
+                                            </div>
+                                            <div class="product-item-buy">
+                                                <button onclick="ClickThemGioHang()">Mua</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="product-next" id="product-next"></div>
+
+                    </div>
+                </div>
+            </div>
+                
+            
+        </div>
+        <footer class="footer">
+            <div class="footer-container">
+              <div class="footer-section">
+                <h4>Giới thiệu</h4>
+                <ul>
+                  <li><a href="#">Về chúng tôi</a></li>
+                  <li><a href="#">Điều khoản dịch vụ</a></li>
+                  <li><a href="#">Chính sách bảo mật</a></li>
+                </ul>
+              </div>
+              <div class="footer-section">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                  <li><a href="#">Câu hỏi thường gặp</a></li>
+                  <li><a href="#">Hỗ trợ khách hàng</a></li>
+                  <li><a href="#">Trung tâm trợ giúp</a></li>
+                </ul>
+              </div>
+              <div class="footer-section">
+                <h4>Liên hệ</h4>
+                <p>Email: support@gmail.com.com</p>
+                <p>Hotline: 1900-123-456</p>
+                <p>Địa chỉ: 154 Đường Âu Dương Lân,Quận 8, TP. HCM</p>
+              </div>
+            </div>
+            <div class="footer-bottom">
+              <p>© 2024 27 Team. Tất cả quyền được bảo lưu.</p>
+            </div>
+          </footer>
+            <script src="data.js"></script>
+            <script src="demo.js"></script>
+            
+    </body>
+</html>
