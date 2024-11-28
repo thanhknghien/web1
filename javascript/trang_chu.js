@@ -93,14 +93,13 @@ function chuyenSanPhamThanhHTML(sanPham){
     html +=        '<img src="' + sanPham.src[0] + '" alt="">';
     html +=        '<div class="product-item-name">' + sanPham.name + '</div>';
     html +=        '<div class="product-item-price">' + sanPham.price.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' $</div>';
-    html +=        '<div class="product-item-buy_detail">';
     html +=            '<div class="product-item-detail">';
-    html +=                 '<button onclick="ClickChiTiet(' + String(sanPham.id) + ')">Chi tiết</button>';
+    html +=                 '<div onclick="ClickChiTiet(' + String(sanPham.id) + '); ; overLay2()">Chi tiết</div>';
     html +=            '</div>';
     html +=            '<div class="product-item-buy">';
-    html +=                '<button onclick="addProductCart(' + String(sanPham.id) + ', ' + sanPham.price + ')">Mua</button>';
+    html +=                '<div onclick="addProductCart(' + String(sanPham.id) + ', ' + sanPham.price + ')">'
+    html +=                        '<i class="fa-solid fa-cart-plus iconcart"></i></div>';
     html +=            '</div>';
-    html +=        '</div>';
     html +=    '</div>';
     html +=     '<div class="form-detal" id="form-detal">';
     html +=         '<div class="detal-img">';
@@ -115,8 +114,6 @@ function chuyenSanPhamThanhHTML(sanPham){
     html +=             '</div>'; 
     html +=         '</div>';
     html +=         '<div class="detal-infor">';
-    html +=         '</div>';
-    html +=         '<div class="close-detalbuy">';             
     html +=         '</div>';
     html +=     '</div>';
     html +='</div>';
@@ -195,19 +192,16 @@ function ClickChiTiet(input) {
     var find = products.find((sanPham) =>{
         return String(input) === sanPham.id;
     });
-    console.log(find)
     if (find) {
 
         show.querySelector('.detal-infor').innerHTML = `
-            <div>Tên: ${find.name}</div>
-            <div>Giá: ${find.price} $</div>
-            <div>Thương hiệu: ${find.brand}</div>
-            <div>Nhiên liệu: ${find.fuel}</div>
-            <div>Năm sản xuất: ${find.year}</div>
-        `;
-        show.querySelector('.close-detalbuy').innerHTML = `
-            <button onclick="addProductCart('${String(find.id)}', '${find.price}')">Mua</button>
-            <button onclick="closeDetal()">Đóng</button>
+            <div class="infor">Tên: ${find.name}</div>
+            <div class="infor">Giá: ${find.price} $</div>
+            <div class="infor">Thương hiệu: ${find.brand}</div>
+            <div class="infor">Nhiên liệu: ${find.fuel}</div>
+            <div class="infor">Năm sản xuất: ${find.year}</div>
+            <div class="detail-buy" onclick="addProductCart('${String(find.id)}', '${find.price}')"><i class="fa-solid fa-cart-plus iconcart"></i></div>
+            <div class="hide-detail" onclick="closeDetal(); overLay2()">Đóng</div>
         `;
 
 
@@ -297,32 +291,25 @@ function findProduct() {
 
 // JS sắp xếp sản phẩm 
 
-// Hàm sắp xếp sản phẩm
-// Hàm sắp xếp sản phẩm
-function sortProducts() {
-    const lowtohigh = document.querySelectorAll('.filter-lowtohigh-price')
+function sortProducts(input) {
 
-    lowtohigh.forEach(option =>{
-        option.addEventListener('click', e =>{
-            console.log(option.value)
-             // Lấy giá trị của nút bấm mà người dùng chọn
-            let sortedProducts = [...product]; // Tạo một bản sao của danh sách sản phẩm hiện tại
+     // Lấy giá trị của nút bấm mà người dùng chọn
+    let sortedProducts = [...product]; // Tạo một bản sao của danh sách sản phẩm hiện tại
 
-            // Dựa trên lựa chọn của người dùng, sắp xếp danh sách sản phẩm
-            if (option.value === 'price-asc') {
-                // Sắp xếp theo giá tăng dần
-                sortedProducts.sort((a, b) => a.price - b.price);
-            } else if (option.value === 'price-desc') {
-                // Sắp xếp theo giá giảm dần
-                sortedProducts.sort((a, b) => b.price - a.price);
-            }
-
-            // Cập nhật danh sách sản phẩm đã sắp xếp
-            product = sortedProducts;
-            updatePagination(); // Cập nhật phân trang sau khi sắp xếp           
-        });
-    })
-    
+    // Dựa trên lựa chọn của người dùng, sắp xếp danh sách sản phẩm
+    if (input === 'price-asc') {
+    // Sắp xếp theo giá tăng dần
+    sortedProducts.sort((a, b) => a.price - b.price);
+    }
+    if (input === 'price-desc') {
+       // Sắp xếp theo giá giảm dần
+    sortedProducts.sort((a, b) => b.price - a.price);
+    }
+    // Cập nhật danh sách sản phẩm đã sắp xếp
+    currentPage = 1;
+    product = sortedProducts;
+    updatePagination(); // Cập nhật phân trang sau khi sắp xếp           
+    filterbar()   
 }
 
 
@@ -534,17 +521,22 @@ function closeDanhMucTrai(){
 }
 
 function filterbar(){
+    
   let danhmuctrai = document.getElementById("categoryid");
   let t = document.getElementById("productid");
   let product =  document.getElementById("product");
   let gridRows = document.getElementById("grid_row1");
+  console.log(window.getComputedStyle(document.getElementById('grid_row1')).width);
   if (getComputedStyle(danhmuctrai).display !== "block"){
+    console.log(window.getComputedStyle(document.getElementById('grid_row1')).width);
+    console.log('filterbar')
       t.style.width = "100%";
       product.style.display = "flex";
       product.style.justifyContent = "center";
       gridRows.style.width = "80.8334%";
   }
-      
+  console.log(window.getComputedStyle(document.getElementById('grid_row1')).width);
+
 
 }
 
@@ -606,40 +598,31 @@ function resetAutoSlide() {
 
 setCurrent(currentIndex);
 
-// JS form đăng nhập
-
-function showFormLogin(){
-  console.log("Click đăng nhập")
-  var overlay = document.getElementById('overlay')
-  var showlogin = document.getElementById('form-login')
-  var form = showlogin.querySelector("form");
-   if (getComputedStyle(showlogin).display == 'none'){
-      overlay.style.display = 'block';
-      showlogin.style.display = 'block'
-   }
-   else{
-      showlogin.style.display = 'none';
-      overlay.style.display = 'none';
-      form.reset();
-   }
+function showPopup(formId) {
+    document.getElementById(formId).style.display = 'block';
 }
 
+function hidePopup(formId) {
+    document.getElementById(formId).style.display = 'none';
+}
 
+function overLay1(){
+    let login = document.getElementById('form-login');
+    let sign = document.getElementById('form-signIn');
 
-// JS form đăng kí
+    if (login.style.display == 'block' || sign.style.display == 'block'){
+        document.getElementById('overlay').style.display = 'block';
+    }else{
+        document.getElementById('overlay').style.display = 'none';
+    }
+}
 
-function showFormSignIn(){
-  console.log("Click đăng kí")
-  var overlay = document.getElementById('overlay')
-  var showSignIn = document.getElementById('form-signIn')
-  var form = showSignIn.querySelector("form");
-   if (getComputedStyle(showSignIn).display == 'none'){
-      showSignIn.style.display = 'block';
-      overlay.style.display = 'block';
-   }
-   else{
-      showSignIn.style.display = 'none';
-      overlay.style.display = 'none';
-      form.reset();
-   }
+function overLay2(){
+    let detal = document.getElementById('form-detal') 
+
+    if (detal.style.display == 'block'){
+        document.getElementById('overlay').style.display = 'block';
+    }else{
+        document.getElementById('overlay').style.display = 'none';
+    }
 }

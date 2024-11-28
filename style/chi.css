@@ -3,6 +3,7 @@ body{
     border: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    min-width: 660px;
   }
   /* Header */
   .header {
@@ -293,28 +294,28 @@ body{
     width: 100%;
   }
   
-  .grid_column-10 .product img{
-    width: 100%;
-    height: 120px;
-  }
-  
   .product .grid_row{
-  
     display: flex;
     flex-wrap: wrap;
     margin-top: 24px;
-    justify-content: center;
-  
   }
   
   .product-item{
     position: relative;;
     height: 300px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     border: 1px solid;
+    border-radius: 5px;
   }
   
+  .product-item img{
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+  }
+
   .product-item:hover{
-    background-color: rgb(255, 164, 99);
+    transform: scale(1.02);
   }
   
   .product-item-name{
@@ -326,33 +327,55 @@ body{
     margin:10px 5px 5px 5px ;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
-  
-  .product-item-buy_detail{
-    display: flex;
-    justify-content: space-between;
+
+  .product-item-buy{
     position: absolute;
-    width: 100%;
-    bottom: 10px;
-  
-  } 
-  .product-item-buy button{
+    right: 10px;
+    top: 80%;
+
+  }
+
+  .product-item-buy div{
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
     cursor: pointer;
-    background-color: #ff5722;
   }
-  
-  .product-item-detail button{
+
+  .iconcart{
+    width: 32px;
+    height: 32px;
+  }
+
+  .iconcart:hover{
+    color: #5daafc;
+  }
+
+  .product-item-detail{
+    position: absolute;
+    left: 10px;
+    top: 80%;
+    width: 60px;
+    height: 20px;
     cursor: pointer;
-    background-color: #ff5722;
+    background-color: #F5F5F5;
+    border: 1px solid #959292;
+    border-radius: 10px;  
   }
-  
-  .product-item-buy button:hover{
-    background-color: #ffffff;
+
+  .product-item-detail div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  
-  .product-item-detail button:hover{
-    background-color: #ffffff;
+
+  .product-item-detail:hover{
+    background-color: #5daafc;
   }
+
+
   
+ 
   .product .grid_row .grid_column-2{
     padding-left: 12px;
     padding-right: 12px;
@@ -418,7 +441,7 @@ body{
     }
   
     .product .grid_row {
-      justify-content: center;
+    justify-content: center;
     }
   }
   
@@ -515,21 +538,27 @@ body{
   }
   
   .form-detal{
-    display: none;
-      background-color: white;
+      display: none;
+      background-color: rgba(255, 255, 255, 0.874);
       position: fixed;
       width: 250px;
+      height: 320px;
       left: 50%;
       transform: translateX(-50%);
       top: 25%;
       border: 1px solid black;
-    z-index: 2;
+      border-radius: 6px;
+      z-index: 3;
   }
   
   .form-detal .detal-img {
       width: 250px;
       height: 180px;
       position: relative;
+  }
+
+  .form-detal .detal-img img{
+    border-radius: 6px;
   }
   
   .form-detal .control {
@@ -539,6 +568,11 @@ body{
       font-size: 20px;
       color: white;
       cursor: pointer;
+
+  }
+
+  .form-detal .control:hover{
+    color: rgb(255, 89, 0);
   }
   
   .form-detal .prev {
@@ -554,25 +588,37 @@ body{
       height: 100%;
   }
   
-  .form-detal .detal-infor div{
-      border-bottom: 2px solid black;
+  .form-detal .detal-infor .infor{ 
+      border-bottom: 1px solid rgba(22, 19, 19, 0.833);
       margin: 2px;
   }
   
-  .form-detal .close-detalbuy{
-      margin: 2px;
-      display: flex;
-      justify-content: space-between;
-  }
-  
-  .form-detal .close-detalbuy button{
+  .detail-buy{
+    font-size: 20px;
+    position: absolute;
+    bottom : -6px;
+    left: 10px;
     cursor: pointer;
-    background-color: #ff5722;
+  }
+
+  .hide-detail{
+    width: 60px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(22, 19, 19, 0.833);
+    border-radius: 10px;
+    position: absolute;
+    bottom : 5px;
+    right: 10px;
+    cursor: pointer;
+  }
+
+  .hide-detail:hover{
+    background-color: #5daafc;
   }
   
-  .form-detal .close-detalbuy button:hover{
-    background-color: #ffffff;
-  }
   /* Đăng nhập */
   .form-login{
     display: none;
@@ -799,15 +845,15 @@ body{
   }
 
 
-  .papewhite {
-    display: none;
-    position: fixed; /* Cố định lớp nền */
+  .overlay {
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%; /* Chiếm toàn bộ chiều rộng */
-    height: 100%; /* Chiếm toàn bộ chiều cao */
-    background-color: rgba(255, 255, 255, 0.8); /* Nền trắng với độ mờ 80% */
-    z-index: 2; /* Đặt dưới biểu mẫu chính */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền với độ trong suốt */
+    z-index: 2;
+    display: none; /* Ẩn mặc định */
 }
 
   
