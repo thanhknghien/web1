@@ -237,7 +237,8 @@ label {
 .admin-content {
   width: 75%;
   padding: 20px;
-  display: none; /* Ẩn tất cả bảng ban đầu */
+  display: none;
+  /* Ẩn tất cả bảng ban đầu */
   transition: all 0.3s ease-in-out;
   overflow-y: auto;
 }
@@ -261,7 +262,7 @@ label {
 
 #user-table th,
 #user-table td {
-  padding: 10px;
+  padding: 20px;
   border: 1px solid #ddd;
   text-align: left;
 }
@@ -305,7 +306,8 @@ label {
 /* Khi hiển thị, bảng chiếm toàn bộ phần bên phải */
 .admin-content.active {
   display: block;
-  width: calc(100% - 20%); /* Trừ đi chiều rộng của sidebar */
+  width: calc(100% - 20%);
+  /* Trừ đi chiều rộng của sidebar */
   margin: 0 auto;
   padding: 20px;
   background: #f9f9f9;
@@ -344,11 +346,16 @@ label {
 }
 
 .product-img {
-  width: 100px; /* Chiều rộng cố định */
-  height: 100px; /* Chiều cao cố định */
-  object-fit: cover; /* Đảm bảo ảnh được cắt gọn theo khung */
-  border-radius: 5px; /* Tùy chọn: bo góc ảnh */
-  margin: 5px; /* Tùy chọn: khoảng cách giữa các ảnh */
+  width: 100px;
+  /* Chiều rộng cố định */
+  height: 100px;
+  /* Chiều cao cố định */
+  object-fit: cover;
+  /* Đảm bảo ảnh được cắt gọn theo khung */
+  border-radius: 5px;
+  /* Tùy chọn: bo góc ảnh */
+  margin: 5px;
+  /* Tùy chọn: khoảng cách giữa các ảnh */
 }
 
 .filters {
@@ -376,4 +383,18 @@ label {
   display: flex;
   gap: 15px;
   align-items: center;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

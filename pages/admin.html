@@ -119,8 +119,8 @@
                         </select>
                     </div>
                     <div class="filter-group">
-                        <label for="district-filter">Tìm kiếm theo địa chỉ:</label> <input type="text" id="district-filter"
-                            placeholder="Nhập tên quận" />
+                        <label for="district-filter">Tìm kiếm theo địa chỉ:</label> <input type="text"
+                            id="district-filter" placeholder="Nhập địa chỉ khách hàng" />
                     </div> <button id="filter-btn">Lọc</button>
                 </div>
                 <table id="oder-table" border="1">
@@ -310,6 +310,14 @@
                 <!-- Dữ liệu khách hàng sẽ được thêm vào đây -->
             </tbody>
         </table>
+    </div>
+
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Chi tiết đơn hàng</h2>
+            <div id="orderDetails"></div>
+        </div>
     </div>
 
     <script src="../javascript/admin.js"></script>
