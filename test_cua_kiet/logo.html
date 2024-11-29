@@ -9,22 +9,93 @@
 </head>
 
 <body>
-    <div>
-        <div class="khunglogo">
-            <img src="../assets/image/bentley.jpg" width="150" height="100" />
-            <img src="../assets/image/bugatti.png" width="125" height="100" />
-            <img src="../assets/image/vinfast.png" width="100" height="75" />
-            <img src="../assets/image/mec.png" width="100" height="75" />
+    <div class="form">
+        <div class="form-group">
+            <label for="name">Name: </label>
+            <input id="name" type="type" class="form-input">
+            <div class="error-message"></div>
         </div>
-    </div>
-    <div>
-        <div class="khunglogo">
-            <img src="../assets/image/porsche.png" width="150" height="100" />
-            <img src="../assets/image/ferrari.png" width="150" height="100" />
-            <img src="../assets/image/lamborghini.png" width="125" height="100" />
-            <img src="../assets/image/rolls-royce.png" width="125" height="100" />
+        <div class="form">
+            <div class="form-group">
+                <label for="address">Address: </label>
+                <input id="address" type="type" class="form-input">
+                <div class="error-message"></div>
+            </div>
         </div>
+        <button onclick="addNew()">Add new</button>
     </div>
+
+    <table border="1" cellspacing="0" cellpadding="10" id="tableContent">
+
+    </table>
+
+    <script>
+        //CRUD
+        function validateInput() {
+            let formElement = document.querySelector(".form")
+            let inputElement = formElement.querySelectorAll(".form-input") //lấy ra form-input
+            for (let i = 0; i < inputElement.length; i++) {
+                if (inputElement[i].value === "") { //kiểm tra dữ liệu rỗng
+                    inputElement[i].parentElement.querySelector(".error-message").innerText = 'Vui lòng nhập'  //từ lớp cha tìm đến lớp con 
+                } else {
+                    inputElement[i].parentElement.querySelector(".error-message").innerText = ""
+                }
+            }
+        }
+
+        function addNew() {
+            validateInput()
+            let formElement = document.querySelector(".form")
+            let errorElement = formElement.querySelectorAll(".error-message")
+            let arrErrorElement = [] // tạo mảng rỗng
+            for (let i = 0; i < errorElement.length; i++) { //vòng lặp nếu có lỗi sẽ in VLN
+                arrErrorElement.push(errorElement[i].innerText)
+            }
+            let checkErrorElement = arrErrorElement.every(value => value === "") //kiểm tra có giá trị sai k
+            if (checkErrorElement) {
+                let name = document.getElementById("name").value
+                let address = document.getElementById("address").value
+                let listStudent = localStorage.getItem("list-student") ? JSON.parse(localStorage.getItem("list-student")) : [] //kiểm tra xem list student có dlieu chưa nếu chưa sẽ tạo mảng mới nếu r sẽ thêm tiếp
+                listStudent.push({
+                    name: name,
+                    address: address
+                })
+                localStorage.setItem("list-student", JSON.stringify(listStudent))// đẩy vào local
+                renderStudent()
+            }
+        }
+
+
+        function renderStudent() {
+            let listStudent = localStorage.getItem("list-student") ? JSON.parse(localStorage.getItem("list-student")) : []
+            let student = `<tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>`
+
+            listStudent.map((value, index) => {
+                student += `<tr>
+                <td>${index + 1}</td>
+                <td>${value.name}</td>
+                <td>${value.address}</td>
+                <td>
+                    <button onclick="editStudent(${index})"> Edit </button>
+                    <button> Delete </button>
+                </td>
+            </tr>`
+            }) //duyệt mảng lấy dữ liệu mảng
+
+            document.getElementById("tableContent").innerHTML = student
+        }
+
+        function editStudent(index) {
+            console.log(index)
+        }
+
+    </script>
+
 </body>
 
 </html>
