@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ Hàng</title>
+  <link rel="stylesheet" href="giohang.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Giỏ Hàng</h1>
+    <div class="cart">
+      <div class="cart-infor">
+        <!-- Mục tiêu đề -->
+        <div class="cart-header cart-grid">
+          <div class="quantity-product">
+            <input type="checkbox">
+            <span>Tất cả (3 sản phẩm)</span>
+          </div>
+          
+          <span class="header-price">Đơn giá</span>
+          <span class="header-quantity">Số lượng</span>
+          <span class="header-total">Thành tiền</span>
+          <div>🗑</div>
+        </div>
+        
+        <!-- Danh sách sản phẩm có trong giỏ hàng -->
+        <div class="cart-product" id="cart-product">
+          <div class="item cart-grid">
+            <div class="item-infor">
+              <input type="checkbox">
+              <img src="S1.jpg" alt="hình ảnh">
+              <div>
+                Tên sản phẩm
+              </div>
+            </div>
+            <div>
+              <p class="price">8.000 đ</p>
+            </div>
+            
+            <div class="item-quantity">
+              <div class="quantity">
+                <button>-</button>
+                <input type="tel" class="quantity-input" value="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <button>+</button>
+              </div>
+            </div>
+            <div class="item-total">
+              8.0000
+              <sup>$</sup>
+            </div>
+            <div class="delect">
+              <div>🗑</div>
+            </div>
+          </div>
+          <div class="item cart-grid">
+            <div class="item-infor">
+              <input type="checkbox">
+              <img src="S1.jpg" alt="hình ảnh">
+              <div>
+                Tên sản phẩm
+              </div>
+            </div>
+            <div>
+              <p class="price">8.000 đ</p>
+            </div>
+            
+            <div class="item-quantity">
+              <div class="quantity">
+                <button>-</button>
+                <input type="tel" class="quantity-input" value="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <button>+</button>
+              </div>
+            </div>
+            <div class="item-total">
+              8.0000
+              <sup>$</sup>
+            </div>
+            <div class="delect">
+              <div>🗑</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Địa chỉ và thanh toán -->
+      <div class="address-payment">
+        <!-- Địa chỉ giao hàng -->
+        <div class="address">
+          <label>Địa chỉ giao hàng</label>
+          <div>
+            <div> 123 Đibnh tiên hoàng</div>
+            <button>Thay đổi</button>
+          </div>
+        </div>
+        <!-- Phương thức thanh toán -->
+        <div class="payment">
+          <label> Thanh toán</label>
+          <form class="pay-method">
+            <label for="">Chọn phương thức thanh toán</label>
+            <br>
+            <label for="">
+              <input type="radio" name="payment-method" value="cash">Tiền mặt</input>
+            </label>
+            <br>
+            <label for="">
+              <input type="radio" name="payment-method" value="momo">MoMo</input>
+            </label>
+            <br>
+            <label for="">
+              <input type="radio" name="payment-method" value="bank">Ngân hàng</input>
+            </label>
+            <br>
+            <label for="">
+              <input type="radio" name="payment-method" value="visa">Visa</input>
+            </label>
+            <br>
+          </form>
+          <div>
+            Tổng tiền: 0000000$
+          </div>
+          <div>
+            <button>Mua hàng</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+
+  </footer>
+  <script src="giohangupdate.js"></script>
+</body>
+</html>

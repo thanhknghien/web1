@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel="stylesheet" href="https://fontawesome.com/icons/cart-plus?f=classic&s=solid">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
         <link rel="stylesheet" href="../style/chi.css">
@@ -12,8 +13,8 @@
         <header class="header">
             <div class="header-top">
                 <div class="login_signin" id="login_signin">
-                    <a onclick="showFormSignIn()">Đăng Ký</a>
-                    <a onclick="showFormLogin()">Đăng Nhập</a>
+                    <a onclick="showPopup('form-signIn'); overLay1()">Đăng Ký</a>
+                    <a onclick="showPopup('form-login'); overLay1()">Đăng Nhập</a>
                 </div>
                 <div class="avatar-login" id="avatar-login">
                     <img src="..//assets/logo-icon/account.svg">
@@ -37,7 +38,7 @@
         <!-- Form đăng nhập -->
         <div class="form-login" id="form-login">
             <div class="form-box">
-                <div class="exit"><button onclick="showFormLogin()">X</button></div>
+                <div class="exit"><button onclick="hidePopup('form-login'); overLay1()">X</button></div>
                 <div class="form-value">
                     <form>
                         <h2>Đăng nhập</h2>
@@ -49,7 +50,7 @@
                         </div>
                         <button type="submit">Đăng nhập</button>
                         <div class="register">
-                            <p>Không có tài khoảng? <a onclick="showFormSignIn()">Đăng kí</a></p>
+                            <p>Không có tài khoảng? <a onclick="showPopup('form-signIn'); hidePopup('form-login'); overLay1()">Đăng kí</a></p>
                         </div>
                     </form>
                 </div>
@@ -57,9 +58,9 @@
         </div>
 
         <!-- Form đăng kí -->
-         <div class="form-signIn" id="form-signIn">
+        <div class="form-signIn" id="form-signIn">
             <div class="form-box">
-                <div class="exit"><button onclick="showFormSignIn()">X</button></div>
+                <div class="exit"><button onclick="hidePopup('form-signIn'); overLay1()">X</button></div>
                 <div class="form-value">
                     <form>
                         <h2>Đăng kí</h2>
@@ -77,13 +78,13 @@
                         </div>
                         <button type="submit">Đăng kí</button>
                         <div class="register">
-                            <p>Đã có tài khoảng? <a onclick="showFormLogin()">Đăng nhập</a></p>
+                            <p>Đã có tài khoảng? <a onclick="showPopup('form-login'); hidePopup('form-signIn'); overLay1()">Đăng nhập</a></p>
                         </div>
                     </form>
                 </div>
             </div>
-
-         </div>
+        </div>
+        <div class="overlay" id="overlay"></div>
         <!-- Slide dưới header -->
         <div class="slide">
 			<div class="slide-show">
@@ -94,7 +95,7 @@
 					<i class="bx bx-chevron-right"></i>
 				</span>
 				<div class="img-wrap">
-					<img src="img1.jpeg" alt="" />
+					<img src="" alt="" >
 				</div>
 				
 				<div class="thumbnails">
@@ -201,8 +202,8 @@
                         
                             <div class="filter-sort" id="sort-options">
                                 <span class="filter-title">Sắp xếp:</span>
-                                <button class="filter-option" value="price-asc">Giá thấp đến cao</button>
-                                <button class="filter-option" value="price-desc">Giá cao đến thấp</button>
+                                <button class="filter-lowtohigh-price"  onclick="sortProducts('price-asc')" value="price-asc">Giá thấp đến cao</button>
+                                <button class="filter-lowtohigh-price" onclick="sortProducts('price-desc')" value="price-desc">Giá cao đến thấp</button>
                             </div>
                         </div>
                         
