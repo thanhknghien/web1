@@ -7,13 +7,13 @@
         "idProduct": "1",
         "quantity": "2",
         "name": "ABC",
-        "unitPrice": "200,000"
+        "unitPrice": "200000"
       },
       {
         "idProduct": "2",
         "quantity": "2",
         "name": "ABC",
-        "unitPrice": "85,000"
+        "unitPrice": "85000"
       }
     ],
     "totalQuantity": "4",
@@ -41,7 +41,7 @@
         "idProduct": "2",
         "quantity": "2",
         "name": "ABC",
-        "unitPrice": "85,000"
+        "unitPrice": "85000"
       }
     ],
     "totalQuantity": "4",
