@@ -1,252 +1,242 @@
+//Dảm bảo code chỉ chạy khi toàn bộ DOM đã được tải
 document.addEventListener("DOMContentLoaded", () => {
-  // Modal Người dùng
+  // Lấy các phần tử nút và các bảng
+  const manageUserButton = document.querySelector("#manageUserButton"); //
+  const manageUserLink = document.querySelector(".manage-user");
+  const manageProductLink = document.querySelector(".manage-product");
+  const manageOrderLink = document.querySelector(".manage-order");
+  const userTableContainer = document
+    .querySelector("#user-table")
+    .closest(".admin-content");
+  const productTableContainer = document
+    .querySelector("#product-table")
+    .closest(".admin-content");
+  const orderTableContainer = document
+    .querySelector("#oder-table")
+    .closest(".admin-content");
+
+  // Thêm các nút quản lý ở sidebar
+  const manageProductButton = document.querySelector(
+    ".option-card:nth-child(2) .btn"
+  );
+  const manageOrderButton = document.querySelector(
+    ".option-card:nth-child(3) .btn"
+  );
+  //Nút để mở modal và lưu người dùng
+  const addUserButton = document.getElementById("addUserButton");
   const userModal = document.getElementById("user-modal");
   const closeUserModal = document.getElementById("close-user-modal");
-  const manageUserButtons = document.querySelectorAll(".manage-user");
+  const saveUserButton = document.getElementById("add-user-btn");
+  //Khởi tạo biến
+  let currentRowToEdit = null;
 
-  // Gắn sự kiện cho tất cả các nút "Quản lý người dùng"
-  manageUserButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      userModal.style.display = "flex";
-    });
-  });
+  // Hàm ẩn tất cả các bảng
+  const hideAllTables = () => {
+    [userTableContainer, productTableContainer, orderTableContainer].forEach(
+      (table) => {
+        table.style.display = "none"; // Ẩn tất cả bảng
+      }
+    );
+  };
 
-  closeUserModal.addEventListener("click", () => {
-    userModal.style.display = "none";
-  });
+  // Hàm hiển thị bảng được chọn
+  const showTable = (table) => {
+    hideAllTables(); // Ẩn các bảng khác
+    table.style.display = "block"; // Hiển thị bảng được chọn
+  };
 
-  // Modal Sản phẩm
-  const productModal = document.getElementById("product-modal");
-  const closeProductModal = document.getElementById("close-product-modal");
-  const manageProductButtons = document.querySelectorAll(".manage-product");
+  // Gắn chức năng click cho từng nút
+  manageUserButton.addEventListener("click", () =>
+    showTable(userTableContainer)
+  );
+  manageUserLink.addEventListener("click", () => showTable(userTableContainer));
+  manageProductLink.addEventListener("click", () =>
+    showTable(productTableContainer)
+  );
+  manageOrderLink.addEventListener("click", () =>
+    showTable(orderTableContainer)
+  );
 
-  // Gắn sự kiện cho tất cả các nút "Quản lý sản phẩm"
-  manageProductButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      productModal.style.display = "flex";
-    });
-  });
+  // Gắn chức năng cho nút "Quản lý" trong sidebar
+  manageProductButton.addEventListener("click", () =>
+    showTable(productTableContainer)
+  );
+  manageOrderButton.addEventListener("click", () =>
+    showTable(orderTableContainer)
+  );
 
-  closeProductModal.addEventListener("click", () => {
-    productModal.style.display = "none";
-  });
-
-  // Modal Đơn hàng
-  const orderModal = document.getElementById("order-modal");
-  const closeOrderModal = document.getElementById("close-order-modal");
-  const manageOrderButtons = document.querySelectorAll(".manage-order");
-
-  // Gắn sự kiện cho tất cả các nút "Quản lý đơn hàng"
-  manageOrderButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      orderModal.style.display = "flex";
-    });
-  });
-
-  closeOrderModal.addEventListener("click", () => {
-    orderModal.style.display = "none";
-  });
-
-  //Modal Thống kê
-  const statsModal = document.getElementById("stats-modal");
-  const closeStatsModal = document.getElementById("close-stats-modal");
-  const manageStatsButtons = document.querySelectorAll(".manage-stats");
-
-  // Gắn sự kiện cho tất cả các nút "Thống kê kinh doanh"
-  manageStatsButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      statsModal.style.display = "flex";
-    });
-  });
-
-  closeStatsModal.addEventListener("click", () => {
-    statsModal.style.display = "none";
-  });
-
-  // Đóng modal khi click ngoài modal
-  window.addEventListener("click", (e) => {
-    if (e.target === userModal) userModal.style.display = "none";
-    if (e.target === productModal) productModal.style.display = "none";
-    if (e.target === orderModal) orderModal.style.display = "none";
-  });
-});
-
-//CRUD của User
-// Biến để lưu trạng thái người dùng đang chỉnh sửa
-let currentRowToEdit = null;
-
-// Fetch dữ liệu từ file JSON và lưu vào Local Storage
-function fetchDataAndSaveToLocal() {
+  //CRUD của user
+  //Hiển thị modal thên ng dùng
   fetch("../resource/user.json")
     .then((response) => response.json())
-    .then((data) => localStorage.setItem("user", JSON.stringify(data)))
-    .catch((error) => console.error("Lỗi khi tải user.json:", error));
-}
+    .then((data) => localStorage.setItem("user", JSON.stringify(data)));
 
-// Khởi tạo dữ liệu vào bảng từ Local Storage
-function initializeUserTable() {
-  const users = JSON.parse(localStorage.getItem("user")) || [];
-  const userTable = document.querySelector("#user-table tbody");
-
-  // Xóa nội dung cũ trong bảng
-  userTable.innerHTML = "";
-
-  // Hiển thị từng người dùng trong bảng
-  users.forEach((user) => {
-    const newRow = userTable.insertRow();
-    newRow.innerHTML = `
-      <td>${user.id}</td>
-      <td>${user.username}</td>
-      <td>${user.fullname}</td>
-      <td>${user.password}</td>
-      <td>${user.sdt}</td>
-      <td class="status">${user.status === "ACTIVE" ? "Unlock" : "Lock"}</td>
-      <td>
-        <button class="toggle-status">${
-          user.status === "ACTIVE" ? "Lock" : "Unlock"
-        }</button>
-      </td>
-      <td>
-        <button class="edit-btn">Sửa</button>
-        <button class="delete-btn">Xóa</button>
-      </td>
-    `;
-
-    // Thêm sự kiện cho các nút
-    newRow
-      .querySelector(".toggle-status")
-      .addEventListener("click", () => toggleStatus(user.id));
-    newRow
-      .querySelector(".edit-btn")
-      .addEventListener("click", () => editUser(user.id));
-    newRow
-      .querySelector(".delete-btn")
-      .addEventListener("click", () => confirmDeleteUser(user.id));
+  addUserButton.addEventListener("click", () => {
+    userModal.style.display = "block";
+    resetForm();
   });
-}
+  //Đóng modal
+  closeUserModal.addEventListener("click", () => {
+    userModal.style.display = "none";
+    resetForm();
+  });
+  //Khởi tạo bảng
+  function initializeUserTable() {
+    const users = JSON.parse(localStorage.getItem("user")) || [];
+    populateUserTable(users);
+  }
+  //Điền dữ liệu vào bảng ng dùng
+  function populateUserTable(users) {
+    const tableBody = document.querySelector("#user-table tbody");
+    tableBody.innerHTML = "";
 
-// Cập nhật trạng thái của người dùng
-function toggleStatus(userId) {
-  const users = JSON.parse(localStorage.getItem("user")) || [];
-  const user = users.find((user) => user.id === userId);
-  if (user) {
-    user.status = user.status === "ACTIVE" ? "INACTIVE" : "ACTIVE";
+    users.forEach((user) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${user.id}</td>
+        <td>${user.username}</td>
+        <td>${user.fullname}</td>
+        <td>${user.password}</td>
+        <td>${user.sdt}</td>
+        <td>
+          <button class="status-btn">${user.status}</button>
+        </td>
+        <td>
+          <button class="edit-btn">Sửa</button>
+          <button class="delete-btn">Xóa</button>
+        </td>
+      `;
+      tableBody.appendChild(row);
+
+      //Chức năng thay đổi trạng thái
+      row
+        .querySelector(".status-btn")
+        .addEventListener("click", () => toggleStatus(user.id));
+
+      //Chức năng sửa và xóa
+      row
+        .querySelector(".edit-btn")
+        .addEventListener("click", () => editUser(user.id));
+      row
+        .querySelector(".delete-btn")
+        .addEventListener("click", () => confirmDeleteUser(user.id));
+    });
+  }
+  //Hàm thay đổi trạng thái người dùng
+  function toggleStatus(userId) {
+    const users = JSON.parse(localStorage.getItem("user")) || [];
+    const user = users.find((user) => user.id === userId);
+    if (user) {
+      user.status = user.status === "ACTIVE" ? "LOCK" : "ACTIVE";
+      localStorage.setItem("user", JSON.stringify(users));
+      initializeUserTable(); // Cập nhật lại bảng
+    }
+  }
+  //Hàm hiện xác nhận xoá
+  function confirmDeleteUser(userId) {
+    if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
+      deleteUser(userId);
+    }
+  }
+  //Hàm xoá danh sách người dùng
+  function deleteUser(userId) {
+    let users = JSON.parse(localStorage.getItem("user")) || [];
+    users = users.filter((user) => user.id !== userId);
     localStorage.setItem("user", JSON.stringify(users));
     initializeUserTable();
   }
-}
-
-// Xóa người dùng với xác nhận
-function confirmDeleteUser(userId) {
-  const confirmation = confirm("Bạn có chắc chắn muốn xóa người dùng này?");
-  if (confirmation) {
-    deleteUser(userId);
+  //Hiển thị thông tin người dùng cần sửa
+  function editUser(userId) {
+    const users = JSON.parse(localStorage.getItem("user")) || [];
+    const user = users.find((user) => user.id === userId);
+    if (user) {
+      document.getElementById("name").value = user.username;
+      document.getElementById("full-name").value = user.fullname;
+      document.getElementById("password").value = user.password;
+      document.getElementById("sdt").value = user.sdt;
+      currentRowToEdit = userId;
+      userModal.style.display = "block";
+    }
   }
-}
+  //Hàm lưu thông tin đã thêm và check lỗi ràng buộc
+  saveUserButton.addEventListener("click", () => {
+    const username = document.getElementById("name").value.trim();
+    const fullName = document.getElementById("full-name").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const phoneNumber = document.getElementById("sdt").value.trim();
 
-// Thực hiện xóa người dùng
-function deleteUser(userId) {
-  let users = JSON.parse(localStorage.getItem("user")) || [];
-  users = users.filter((user) => user.id !== userId);
-  localStorage.setItem("user", JSON.stringify(users));
-  initializeUserTable();
-}
+    let hasError = false;
 
-// Chỉnh sửa người dùng
-function editUser(userId) {
-  const users = JSON.parse(localStorage.getItem("user")) || [];
-  const user = users.find((user) => user.id === userId);
-  if (user) {
-    document.getElementById("name").value = user.username;
-    document.getElementById("full-name").value = user.fullname;
-    document.getElementById("password").value = user.password;
-    document.getElementById("sdt").value = user.sdt;
-    currentRowToEdit = userId;
-  }
-}
+    function showError(inputId, message) {
+      const inputElement = document.getElementById(inputId);
+      const errorElement = inputElement.nextElementSibling;
+      errorElement.textContent = message;
+      hasError = !!message;
+    }
 
-// Thêm hoặc cập nhật người dùng
-document.getElementById("add-user-btn").addEventListener("click", () => {
-  const username = document.getElementById("name").value.trim();
-  const fullName = document.getElementById("full-name").value.trim();
-  const password = document.getElementById("password").value.trim();
-  const phoneNumber = document.getElementById("sdt").value.trim();
+    showError("name", username === "" ? "Vui lòng nhập tên đăng nhập!" : "");
+    showError("password", password === "" ? "Vui lòng nhập mật khẩu!" : "");
+    showError(
+      "sdt",
+      phoneNumber === ""
+        ? "Vui lòng nhập số điện thoại!"
+        : /^0\d{9,10}$/.test(phoneNumber)
+        ? ""
+        : "Số điện thoại phải bắt đầu bằng 0 và có 10-11 chữ số!"
+    );
 
-  let hasError = false;
+    if (hasError) return;
 
-  function showError(inputId, message) {
-    const inputElement = document.getElementById(inputId);
-    const errorElement = inputElement.nextElementSibling;
-    errorElement.textContent = message;
-    hasError = !!message;
-  }
-
-  // Kiểm tra các trường nhập liệu
-  showError("name", username === "" ? "Vui lòng nhập tên đăng nhập!" : "");
-  showError("password", password === "" ? "Vui lòng nhập mật khẩu!" : "");
-  showError(
-    "sdt",
-    phoneNumber === ""
-      ? "Vui lòng nhập số điện thoại!"
-      : /^0\d{9,10}$/.test(phoneNumber)
-      ? ""
-      : "Số điện thoại phải bắt đầu bằng 0 và có 10-11 chữ số!"
-  );
-
-  if (hasError) return;
-
-  const users = JSON.parse(localStorage.getItem("user")) || [];
-
-  if (currentRowToEdit) {
-    // Chỉnh sửa người dùng
-    const userIndex = users.findIndex((user) => user.id === currentRowToEdit);
-    if (userIndex !== -1) {
-      users[userIndex] = {
-        ...users[userIndex],
+    const users = JSON.parse(localStorage.getItem("user")) || [];
+    //Hàm xử lý random, chỉnh sửa...
+    if (currentRowToEdit) {
+      const userIndex = users.findIndex((user) => user.id === currentRowToEdit);
+      if (userIndex !== -1) {
+        users[userIndex] = {
+          ...users[userIndex],
+          username,
+          fullname: fullName,
+          password,
+          sdt: phoneNumber,
+        };
+      }
+      currentRowToEdit = null;
+    } else {
+      const newUser = {
+        id: String(Math.floor(Math.random() * 9000) + 1000),
         username,
         fullname: fullName,
         password,
         sdt: phoneNumber,
+        status: "ACTIVE",
       };
+      users.push(newUser);
     }
-    currentRowToEdit = null;
-  } else {
-    // Thêm người dùng mới (ID ngẫu nhiên từ 100 đến 999)
-    const newUser = {
-      id: String(Math.floor(Math.random() * (999 - 100 + 1)) + 100), // ID từ 100 đến 999
-      username,
-      fullname: fullName,
-      password,
-      sdt: phoneNumber,
-      status: "ACTIVE",
-    };
-    users.push(newUser);
+
+    localStorage.setItem("user", JSON.stringify(users));
+    initializeUserTable();
+    userModal.style.display = "none";
+    resetForm();
+  });
+  //Đặt lại form
+  function resetForm() {
+    document.getElementById("name").value = "";
+    document.getElementById("full-name").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("sdt").value = "";
+    document
+      .querySelectorAll(".error-message")
+      .forEach((el) => (el.textContent = ""));
   }
-
-  localStorage.setItem("user", JSON.stringify(users));
+  //Khởi tạo bảng người dùng
   initializeUserTable();
-
-  // Reset form
-  document.getElementById("name").value = "";
-  document.getElementById("full-name").value = "";
-  document.getElementById("password").value = "";
-  document.getElementById("sdt").value = "";
 });
 
-// Gọi các hàm khởi tạo khi tải trang
-fetchDataAndSaveToLocal();
-initializeUserTable();
-
-//Phần quản lý sản phẩm
-
+//CRUD của quản lý sản phẩm
 // Biến lưu trạng thái sản phẩm đang chỉnh sửa
 let currentProductToEdit = null;
 
-// Khởi tạo các thông báo lỗi
+// Thông báo lỗi
 const errorMessages = {
   name: "Vui lòng nhập tên sản phẩm!",
   price: "Vui lòng nhập giá sản phẩm!",
@@ -255,55 +245,57 @@ const errorMessages = {
   year: "Vui lòng nhập năm sản xuất!",
 };
 
-// Fetch dữ liệu sản phẩm từ file JSON và lưu vào Local Storage
+// Fetch dữ liệu từ JSON và lưu vào localStorage
 async function fetchProductsAndSaveToLocal() {
   try {
     const response = await fetch("../resource/product.json");
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const data = await response.json();
     localStorage.setItem("product", JSON.stringify(data));
     initializeProductTable();
   } catch (error) {
-    console.error("Lỗi khi tải product.json:", error);
+    console.error("Lỗi khi tải dữ liệu sản phẩm:", error);
   }
 }
 
-// Hiển thị dữ liệu sản phẩm từ Local Storage
+// Hiển thị dữ liệu sản phẩm từ localStorage
 function initializeProductTable() {
   const products = JSON.parse(localStorage.getItem("product")) || [];
-  const productTable = document.querySelector("#product-table tbody");
-  if (!productTable) {
+  const productTableBody = document.querySelector("#product-table tbody");
+
+  if (!productTableBody) {
     console.error("Không tìm thấy bảng sản phẩm!");
     return;
   }
 
-  productTable.innerHTML = "";
+  // Xóa nội dung cũ
+  productTableBody.innerHTML = "";
 
+  // Tạo hàng mới
   products.forEach((product) => {
-    const newRow = productTable.insertRow();
+    const newRow = productTableBody.insertRow();
     newRow.innerHTML = `
-            <td>${product.id}</td>
-            <td>${product.name}</td>
-            <td>${product.price}</td>
-            <td>${product.brand}</td>
-            <td>${product.fuel}</td>
-            <td>${product.year}</td>
-            <td>
-                ${product.src
-                  .map(
-                    (src) =>
-                      `<img src="${src}" alt="${product.name}" class="product-img">`
-                  )
-                  .join("")}
-            </td>
-            <td>
-                <button class="edit-btn">Sửa</button>
-                <button class="delete-btn">Xóa</button>
-            </td>
-        `;
+      <td>${product.id}</td>
+      <td>${product.name}</td>
+      <td>${product.price}</td>
+      <td>${product.brand}</td>
+      <td>${product.fuel}</td>
+      <td>${product.year}</td>
+      <td>
+        ${product.src
+          .map(
+            (src) =>
+              `<img src="${src}" alt="${product.name}" class="product-img">`
+          )
+          .join("")}
+      </td>
+      <td>
+        <button class="edit-btn">Sửa</button>
+        <button class="delete-btn">Xóa</button>
+      </td>
+    `;
 
+    // Gán chức năng cho nút sửa và xóa
     newRow
       .querySelector(".edit-btn")
       .addEventListener("click", () => editProduct(product.id));
@@ -347,23 +339,52 @@ function showError(inputId, message) {
   return message !== "";
 }
 
-// Xử lý file ảnh
-function handleImageFiles(files) {
-  const imageUrls = [];
-  for (const file of files) {
-    if (file.type.startsWith("image/")) {
-      const imageUrl = URL.createObjectURL(file);
-      imageUrls.push(imageUrl);
-    }
+// Hiển thị modal Quản lý Sản phẩm
+function showProductModal(product = null) {
+  const modal = document.getElementById("product-modal");
+  const form = document.getElementById("product-form");
+
+  // Reset form khi mở modal
+  form.reset();
+  document
+    .querySelectorAll(".error-message")
+    .forEach((error) => (error.textContent = ""));
+  document.getElementById("image-preview").innerHTML = "";
+
+  if (product) {
+    // Nếu có sản phẩm, điền dữ liệu vào form để sửa
+    document.getElementById("product-name").value = product.name;
+    document.getElementById("product-price").value = product.price;
+    document.getElementById("product-brand").value = product.brand;
+    document.getElementById("product-fuel").value = product.fuel;
+    document.getElementById("product-year").value = product.year;
+
+    // Hiển thị ảnh hiện tại
+    const previewContainer = document.getElementById("image-preview");
+    product.src.forEach((url) => {
+      const img = document.createElement("img");
+      img.src = url;
+      img.className = "product-img";
+      previewContainer.appendChild(img);
+    });
+
+    currentProductToEdit = product.id; // Đặt trạng thái sửa
+  } else {
+    currentProductToEdit = null; // Đặt trạng thái thêm mới
   }
-  return imageUrls;
+
+  modal.style.display = "block";
 }
 
-// Thêm hoặc cập nhật sản phẩm
+// Đóng modal
+function closeProductModal() {
+  const modal = document.getElementById("product-modal");
+  modal.style.display = "none";
+}
+
+// Xử lý form khi Submit (Thêm hoặc Cập nhật sản phẩm)
 function handleProductSubmit(event) {
   event.preventDefault();
-
-  if (!validateForm()) return;
 
   const formData = {
     name: document.getElementById("product-name").value.trim(),
@@ -396,7 +417,7 @@ function handleProductSubmit(event) {
   } else {
     // Thêm sản phẩm mới
     products.push({
-      id: String(Math.floor(Math.random() * 900) + 100),
+      id: String(Math.floor(Math.random() * 900) + 100), // Tạo ID ngẫu nhiên
       ...formData,
       src: imageUrls,
     });
@@ -404,21 +425,13 @@ function handleProductSubmit(event) {
 
   localStorage.setItem("product", JSON.stringify(products));
   initializeProductTable();
-  resetForm();
+  closeProductModal();
 }
 
-// Reset form
-function resetForm() {
-  const form = document.getElementById("product-form");
-  if (form) {
-    form.reset();
-    // Xóa tất cả thông báo lỗi
-    document
-      .querySelectorAll(".error-message")
-      .forEach((error) => (error.textContent = ""));
-  }
-  currentProductToEdit = null;
-}
+// Khởi tạo sự kiện nút Thêm mới
+document
+  .getElementById("addProductButton")
+  .addEventListener("click", handleProductSubmit);
 
 // Sửa sản phẩm
 function editProduct(productId) {
@@ -426,13 +439,79 @@ function editProduct(productId) {
   const product = products.find((p) => p.id === productId);
 
   if (product) {
-    document.getElementById("product-name").value = product.name;
-    document.getElementById("product-price").value = product.price;
-    document.getElementById("product-brand").value = product.brand;
-    document.getElementById("product-fuel").value = product.fuel;
-    document.getElementById("product-year").value = product.year;
-    currentProductToEdit = productId;
+    showProductModal(product);
   }
+}
+
+// Thêm sản phẩm mới
+document.getElementById("addProductButton").addEventListener("click", () => {
+  showProductModal();
+});
+
+// Xử lý ảnh (xem trước)
+function handleImageFiles(files) {
+  const previewContainer = document.getElementById("image-preview");
+  previewContainer.innerHTML = ""; // Xóa nội dung cũ
+  const imageUrls = [];
+
+  for (const file of files) {
+    if (file.type.startsWith("image/")) {
+      const imageUrl = URL.createObjectURL(file);
+      const img = document.createElement("img");
+      img.src = imageUrl;
+      img.className = "product-img";
+      previewContainer.appendChild(img);
+      imageUrls.push(imageUrl);
+    }
+  }
+  return imageUrls;
+}
+
+// Đóng modal khi nhấn nút đóng
+document
+  .getElementById("close-product-modal")
+  .addEventListener("click", closeProductModal);
+
+// Cập nhật danh sách sản phẩm
+function initializeProductTable() {
+  const products = JSON.parse(localStorage.getItem("product")) || [];
+  const productTableBody = document.querySelector("#product-table tbody");
+
+  // Xóa nội dung cũ
+  productTableBody.innerHTML = "";
+
+  // Tạo hàng mới
+  products.forEach((product) => {
+    const newRow = productTableBody.insertRow();
+    newRow.innerHTML = `
+          <td>${product.id}</td>
+          <td>${product.name}</td>
+          <td>${product.price}</td>
+          <td>${product.brand}</td>
+          <td>${product.fuel}</td>
+          <td>${product.year}</td>
+          <td>
+              ${product.src
+                .map(
+                  (src) =>
+                    `<img src="${src}" alt="${product.name}" class="product-img">`
+                )
+                .join("")}
+          </td>
+          <td>
+              <button class="edit-btn">Sửa</button>
+              <button class="delete-btn">Xóa</button>
+          </td>
+      `;
+
+    // Gán sự kiện cho nút sửa và xóa
+    newRow
+      .querySelector(".edit-btn")
+      .addEventListener("click", () => editProduct(product.id));
+    newRow
+      .querySelector(".delete-btn")
+      .addEventListener("click", () => confirmDeleteProduct(product.id));
+  });
 }
 
 // Xóa sản phẩm
@@ -445,7 +524,7 @@ function confirmDeleteProduct(productId) {
   }
 }
 
-// Khởi tạo ứng dụng
+// Khởi chạy ứng dụng
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("product-form");
   if (form) {
@@ -453,132 +532,285 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   fetchProductsAndSaveToLocal();
 });
-
-//Quản lý đơn hàng
-document.addEventListener("DOMContentLoaded", () => {
-  const orderModal = document.getElementById("order-modal");
-  const closeOrderModal = document.getElementById("close-order-modal");
-  const filterBtn = document.getElementById("filter-btn");
-  const orderTableBody = document.querySelector("#order-table tbody");
+//CRUD của hoá đơn
+//Lấy phtu trong DOM
+document.addEventListener("DOMContentLoaded", function () {
+  const orderTableBody = document.querySelector("#oder-table tbody");
+  const dateFromInput = document.getElementById("date-from");
+  const dateToInput = document.getElementById("date-to");
   const statusFilter = document.getElementById("status-filter");
-
+  const districtFilter = document.getElementById("district-filter");
+  const filterBtn = document.getElementById("filter-btn");
+  const orderModal = document.getElementById("orderModal");
+  const orderDetails = document.getElementById("orderDetails");
+  const span = document.getElementsByClassName("close")[0];
+  //Khởi tạo lưu trữ đơn hàng
   let orders = [];
 
-  // Đọc dữ liệu từ file oder.json
-  function fetchOrders() {
-    fetch("../resource/oder.json")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        orders = data;
-        renderOrders(orders);
-      })
-      .catch((error) => {
-        console.error("Lỗi khi tải oder.json:", error);
-        orderTableBody.innerHTML =
-          '<tr><td colspan="10" style="text-align: center; color: red;">Lỗi khi tải dữ liệu</td></tr>';
-      });
-  }
+  //Lấy dữ liệu từ local
+  fetch("../resource/oder.json")
+    .then((response) => response.json())
+    .then((data) => {
+      orders = data;
+      displayOrders(orders);
+    })
+    .catch((error) => console.error("Error fetching data:", error));
 
-  // Hiển thị modal
-  document.querySelector(".manage-order").addEventListener("click", (e) => {
-    e.preventDefault();
-    orderModal.style.display = "flex";
-  });
-
-  // Đóng modal
-  closeOrderModal.addEventListener("click", () => {
-    orderModal.style.display = "none";
-  });
-
-  function renderOrders(filteredOrders) {
+  //Hàm hiển thị danh sách đơn hàng
+  function displayOrders(orders) {
     orderTableBody.innerHTML = "";
-    if (filteredOrders.length === 0) {
+    orders.forEach((order) => {
       const row = document.createElement("tr");
-      row.innerHTML =
-        '<td colspan="10" style="text-align: center;">Không tìm thấy đơn hàng nào</td>';
-      orderTableBody.appendChild(row);
-      return;
-    }
-
-    filteredOrders.forEach((order) => {
-      const row = document.createElement("tr");
-      const products = order.listProduct
-        .map(
-          (product) =>
-            `${product.name} (Số lượng: ${product.quantity}, Giá: ${product.unitPrice})`
-        )
-        .join("<br>");
-
       row.innerHTML = `
-        <td>${order.idOder}</td>
-        <td>${order.date}</td>
-        <td>${order.idCustomer}</td>
-        <td>${products}</td>
-        <td>${order.totalQuantity}</td>
-        <td>${order.address.street}, ${order.address.district}, ${order.address.city}</td>
-        <td>${order.total} USD</td>
-        <td>${order.payment}</td>
-        <td>${order.status}</td>
-        <td><a href="#" class="view-details" data-id="${order.idOder}">Xem chi tiết</a></td>
-      `;
+              <td>${order.idOder}</td>
+              <td>${order.date}</td>
+              <td>${order.idCustomer}</td>
+              <td>${order.listProduct.map((p) => p.name).join(", ")}</td>
+              <td>${order.totalQuantity}</td>
+              <td>${order.address.street}, ${order.address.district}, ${
+        order.address.city
+      }</td>
+              <td>${order.total}</td>
+              <td>${order.payment}</td>
+              <td>${order.status}</td>
+              <td><button class="view-btn" data-id="${
+                order.idOder
+              }">View</button></td>
+          `;
       orderTableBody.appendChild(row);
+    });
+    //Thêm chức năng là nút xem
+    document.querySelectorAll(".view-btn").forEach((button) => {
+      button.addEventListener("click", function () {
+        const orderId = this.getAttribute("data-id");
+        const order = orders.find((o) => o.idOder === orderId);
+        showOrderDetails(order);
+      });
     });
   }
 
-  function convertDateFormat(dateString) {
-    const [day, month, year] = dateString.split("/");
-    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  //Hàm hiển thị chi tiết
+  function showOrderDetails(order) {
+    orderDetails.innerHTML = `
+          <p><strong>ID Đơn hàng:</strong> ${order.idOder}</p>
+          <p><strong>Ngày:</strong> ${order.date}</p>
+          <p><strong>ID Khách hàng:</strong> ${order.idCustomer}</p>
+          <p><strong>Sản phẩm:</strong></p>
+          <ul>
+              ${order.listProduct
+                .map(
+                  (p) =>
+                    `<li>${p.name} - Số lượng: ${p.quantity} - Đơn giá: ${p.unitPrice}</li>`
+                )
+                .join("")}
+          </ul>
+          <p><strong>Tổng sản phẩm:</strong> ${order.totalQuantity}</p>
+          <p><strong>Địa chỉ:</strong> ${order.address.street}, ${
+      order.address.district
+    }, ${order.address.city}</p>
+          <p><strong>Tổng tiền:</strong> ${order.total}</p>
+          <p><strong>Hình thức thanh toán:</strong> ${order.payment}</p>
+          <p><strong>Trạng thái:</strong> ${order.status}</p>
+      `;
+
+    orderModal.style.display = "block";
   }
 
-  function applyFilters() {
-    const dateFrom = document.getElementById("date-from").value;
-    const dateTo = document.getElementById("date-to").value;
-    const statusValue = statusFilter.value;
-    const districtFilter = document.getElementById("district-filter").value;
+  //Ấn nút tắt bảng
+  span.onclick = function () {
+    orderModal.style.display = "none";
+  };
 
-    let filteredOrders = [...orders];
-
-    // Lọc theo trạng thái
-    if (statusValue && statusValue !== "all") {
-      filteredOrders = filteredOrders.filter(
-        (order) => order.status === statusValue
-      );
+  //Khi ấn ra ngoài thì đóng
+  window.onclick = function (event) {
+    if (event.target == orderModal) {
+      orderModal.style.display = "none";
     }
+  };
 
-    // Lọc theo ngày
-    if (dateFrom) {
-      filteredOrders = filteredOrders.filter((order) => {
-        const orderDate = convertDateFormat(order.date);
-        return orderDate >= dateFrom;
-      });
-    }
-    if (dateTo) {
-      filteredOrders = filteredOrders.filter((order) => {
-        const orderDate = convertDateFormat(order.date);
-        return orderDate <= dateTo;
-      });
-    }
+  // FSự keienj lọc
+  function filterOrders() {
+    const dateFromValue = dateFromInput.value;
+    const dateToValue = dateToInput.value;
+    const status = statusFilter.value;
+    const district = districtFilter.value.toLowerCase();
 
-    // Lọc theo quận
-    if (districtFilter) {
-      filteredOrders = filteredOrders.filter(
-        (order) =>
-          order.address.district.toLowerCase().trim() ===
-          districtFilter.toLowerCase().trim()
-      );
-    }
+    const filteredOrders = orders.filter((order) => {
+      const orderDate = new Date(order.date.split("/").reverse().join("-")); // Chuyển đổi định dạng từ dd/MM/yyyy sang yyyy-MM-dd
+      const matchDate =
+        (!dateFromValue || new Date(dateFromValue) <= orderDate) &&
+        (!dateToValue || new Date(dateToValue) >= orderDate);
+      const matchStatus = status === "all" || order.status === status;
+      const matchDistrict =
+        district === "" ||
+        order.address.street.toLowerCase().includes(district) ||
+        order.address.district.toLowerCase().includes(district) ||
+        order.address.city.toLowerCase().includes(district);
+      return matchDate && matchStatus && matchDistrict;
+    });
 
-    renderOrders(filteredOrders);
+    displayOrders(filteredOrders);
   }
 
-  // Gắn sự kiện cho nút lọc
-  filterBtn.addEventListener("click", applyFilters);
+  //Thêm chức năng cho nút lọc
+  filterBtn.addEventListener("click", filterOrders);
+});
 
-  // Khởi tạo bằng cách đọc dữ liệu từ file
-  fetchOrders();
+fetch("../resource/oder.json")
+  .then((response) => response.json())
+  .then((data) => localStorage.setItem("oder", JSON.stringify(data)));
+
+fetch("../resource/user.json")
+  .then((response) => response.json())
+  .then((data) => localStorage.setItem("user", JSON.stringify(data)));
+
+fetch("../resource/product.json")
+  .then((response) => response.json())
+  .then((data) => localStorage.setItem("product", JSON.stringify(data)));
+
+const listOrders = JSON.parse(localStorage.getItem("oder")) || [];
+const listUsers = JSON.parse(localStorage.getItem("user")) || [];
+const listProducts = JSON.parse(localStorage.getItem("product")) || [];
+
+//Hàm lọc hóa đơn theo khoảng thời gian
+function filterOrdersByDateRange(orders, startDate, endDate) {
+  if (startDate === null || endDate === null) {
+    alert("Vui lòng chọn đầy dủ khoảng thời gian!");
+    return;
+  }
+
+  // Chuyển đổi các ngày từ chuỗi sang đối tượng Date
+  const start = new Date(startDate.split("/").reverse().join("-"));
+  const end = new Date(endDate.split("/").reverse().join("-"));
+
+  // Lọc các hóa đơn nằm trong khoảng thời gian
+  return orders.filter((order) => {
+    if (order.status !== "Đã thanh toán") {
+      return false;
+    }
+    const orderDate = new Date(order.date.split("/").reverse().join("-"));
+    return orderDate >= start && orderDate <= end;
+  });
+}
+
+// Hàm tính tổng doanh thu của các khách hàng sau khi đã lọc
+function calculateTotalRevenueByCustomer(orders) {
+  const customerRevenue = {};
+
+  orders.forEach((order) => {
+    const customerId = order.idCustomer;
+    const orderTotal = parseInt(order.total);
+
+    if (!customerRevenue[customerId]) {
+      customerRevenue[customerId] = {
+        totalRevenue: 0,
+        orderIds: [], // Mảng lưu các id hóa đơn của khách hàng
+      };
+    }
+
+    customerRevenue[customerId].totalRevenue += orderTotal;
+    customerRevenue[customerId].orderIds.push(order.idOder); // Lưu id hóa đơn
+  });
+
+  // Chuyển đối tượng thành mảng
+  const result = Object.keys(customerRevenue).map((customerId) => ({
+    customerId,
+    totalRevenue: customerRevenue[customerId].totalRevenue,
+    orderIds: customerRevenue[customerId].orderIds, // Lưu id hóa đơn
+  }));
+
+  return result;
+}
+
+// Hàm để hiển thị các hóa đơn vào trong bảng
+function showAllOrders(orderIds) {
+  // Lấy phần tử tbody của bảng để cập nhật dữ liệu
+  const tableBody = document.getElementById("body-order-details");
+  tableBody.innerHTML = ""; // Xóa các dữ liệu cũ trước khi thêm mới
+
+  // Duyệt qua các hóa đơn đã lọc và thêm từng dòng vào bảng
+  orderIds.forEach((order) => {
+    const detail = listOrders.find((o) => o.idOder === order);
+
+    const row = document.createElement("tr");
+
+    // Tạo các ô trong mỗi dòng của bảng
+    const idCell = document.createElement("td");
+    idCell.textContent = detail.idOder;
+
+    const dateCell = document.createElement("td");
+    dateCell.textContent = detail.date;
+
+    const quantityCell = document.createElement("td");
+    quantityCell.textContent = detail.totalQuantity;
+
+    const totalCell = document.createElement("td");
+    totalCell.textContent = detail.total;
+
+    // Thêm các ô vào trong dòng
+    row.appendChild(idCell);
+    row.appendChild(dateCell);
+    row.appendChild(quantityCell);
+    row.appendChild(totalCell);
+
+    // Thêm dòng vào bảng
+    tableBody.appendChild(row);
+  });
+
+  // Mở popup (hiện bảng chi tiết hóa đơn)
+  document.getElementById("order-list").style.display = "flex";
+}
+
+// Hàm để cập nhật bảng với dữ liệu khách hàng
+function updateCustomerTable(orders) {
+  const tableBody = document
+    .getElementById("customer-table")
+    .getElementsByTagName("tbody")[0];
+  tableBody.innerHTML = "";
+
+  orders.forEach((e) => {
+    const user = listUsers.find((user) => user.id === e.customerId);
+    const row = document.createElement("tr");
+    if (!user) {
+      return;
+    }
+
+    const idCusCell = document.createElement("td");
+    idCusCell.textContent = e.customerId;
+
+    const cusNameCell = document.createElement("td");
+    cusNameCell.textContent = user.fullname;
+
+    const totalCell = document.createElement("td");
+    totalCell.textContent = e.totalRevenue;
+
+    const detailsCell = document.createElement("td");
+    const detailsButton = document.createElement("button");
+    detailsButton.textContent = "Xem chi tiết";
+    console.log(e.orderIds);
+    detailsButton.addEventListener("click", () => showAllOrders(e.orderIds));
+    detailsCell.appendChild(detailsButton);
+
+    //thêm các dòng vào bảng
+    row.appendChild(idCusCell);
+    row.appendChild(cusNameCell);
+    row.appendChild(totalCell);
+    row.appendChild(detailsCell);
+    tableBody.appendChild(row);
+  });
+}
+
+//Hiển thị kết quả tìm kiếm
+document.getElementById("show").addEventListener("click", () => {
+  const startDate = document.getElementById("startDate").value;
+  const endDate = document.getElementById("endDate").value;
+
+  const listSearch = filterOrdersByDateRange(listOrders, startDate, endDate);
+  console.log(listSearch);
+  console.log(calculateTotalRevenueByCustomer(listSearch));
+  if (listSearch.length === 0) {
+    alert("Không có hóa đơn nào trong khoảng thời gian đã chọn.");
+    return;
+  }
+  updateCustomerTable(calculateTotalRevenueByCustomer(listSearch));
 });

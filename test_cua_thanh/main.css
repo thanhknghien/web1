@@ -1,71 +1,40 @@
-/* Reset some default styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-}
-
-header {
-  background-color: #007bff;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  font-size: 1.5em;
-}
-
-.wrapper {
+.product{
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  flex-direction: column;
 }
 
-.container {
+.title-revenue{
   display: flex;
-  width: 80%;
-  max-width: 800px;
+  flex-direction: column;
+}
+
+/* Ẩn popup mặc định */
+.hidden {
+  display: none;
+}
+
+/* Bạn có thể thêm các kiểu CSS cho popup nếu cần */
+.orders {
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
   background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
   padding: 20px;
-  border-radius: 10px;
+  z-index: 1000;
+  overflow-y: auto;
 }
 
-.nav-bar {
-  background-color: #007bff;
-  width: 30%;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  border-radius: 5px;
-  margin: 10px;
-}
-
-.content{
-  width: 70%;
-  box-shadow: 0px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 2px;
-}
-
-.content p {
-  margin: 10px 0;
-  font-size: 1em;
-}
-
-.output {
-  font-weight: bold;
-  color: #007bff;
-  margin-bottom: 15px;
-  font-size: 1.1em;
-}
-
-@media (max-width: 768px) {
-  .container {
-    width: 95%;
-  }
+/* Thêm một lớp để làm mờ nền khi popup hiển thị */
+.orders:before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
 }

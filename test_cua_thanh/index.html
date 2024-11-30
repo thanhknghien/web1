@@ -3,36 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Admin</title>
   <link rel="stylesheet" href="main.css">
+  
 </head>
 <body>
   <header>Đây là header</header>
 
   <div class="wrapper">
-    <div class="container">
-      <div class="nav-bar">Day la thanh nav bar</div>
-      <div class="content">
-        <p>Tên đăng nhập: </p>
-        <p id="username" class="output"></p>
-        <p>Tên: </p>
-        <p id="name" class="output"></p>
-        <p>Email: </p>
-        <p id="email" class="output"></p>
-        <p>SĐT: </p>
-        <p id="sdt" class="output"></p>
-        <p>Địa chỉ</p>
-        <p id="address" class="output"></p>
-        <p>Giới tính: </p>
-        <p id="sex" class="output"></p>
-        <p>Ngày sinh: </p>
-        <p id="birthday" class="output"></p>
-        <p>Trạng thái tài khoản: </p>
-        <p id="status" class="output"></p>
-        <button onclick="loadUser(0)">Click me</button>
+    <div class="nav-bar">
+      <div class="nav-thongke">
+        Thống kê
       </div>
     </div>
-  </div>
-  <script src="index.js"></script>
+
+    <div class="container">
+      <div class="content">
+        <div class="search-form">
+          <h3>Thống kê tình hình kinh doanh</h3>
+          <label for="startDate">Từ ngày</label>
+          <input type="date" name="startDate" id="startDate">
+          <label for="endDate">Đến ngày</label>
+          <input type="date" name="endDate" id="endDate">
+          <label for="top-selling">Top:</label>
+          <select name="top-selling" id="top-selling">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+          </select>
+          <button id="show">Xem</button>
+        </div>
+
+        <div class="statistical">
+          <div class="title-revenue">
+            <p><strong>Tổng số xe đã bán: </strong> <span id="total-sold"></span></p>
+            <p><strong>Tổng doanh thu: </strong> <span id="total-revenue"></span> $</p>
+          </div>
+
+          <div class="customer">
+            <div class="customer">
+              <h3>Các khách hàng phát sinh nhiều doanh thu nhất:</h3>
+              <table id="customer-table">
+                <thead>
+                  <th>ID khách hàng</th>
+                  <th>Tên khách hàng</th>
+                  <th>Tổng doanh thu phát sinh</th>
+                  <th>Chi tiết</th>
+                </thead>
+                <tbody>
+                  <!--Các KH hiện ở đây-->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!--popup chi tiết hóa đơn-->
+          <ul id="order-list" class="orders hidden">
+            <table id="order-details">
+              <thead>
+                <th>ID hóa đơn</th>
+                <th>Ngày</th>
+                <th>Số lượng</th>
+                <th>Tổng tiền</th>
+              </thead>
+              <tbody id="body-order-details">
+                <!--Các hóa đơn hiện ở đây-->
+              </tbody>
+            </table>
+            <button id="close-popup">Đóng</button>
+          </ul>
+
+          <div class="product">
+            <div class="product">
+              <h3>Các sản phẩm bán chạy nhất:</h3>
+              <table id="best-selling">
+                <thead>
+                  <th>ID</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng đã bán</th>
+                  <th>Doanh thu</th>
+                  <th>Chi tiết các đơn hàng</th>
+                </thead>
+                <tbody>
+                  <!--Tất cả các đơn hàng hiện ở đây-->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="product">
+              <h3>Các sản phẩm bán chậm nhất:</h3>
+              <table id="worst-selling">
+                <thead>
+                  <th>ID</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng đã bán</th>
+                  <th>Doanh thu</th>
+                  <th>Chi tiết các đơn hàng</th>
+                </thead>
+                <tbody>
+                  <!--Tất cả các đơn hàng hiện ở đây-->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="product">
+              <h3>Các mặt hàng đã bán:</h3>
+              <table id="all-selling">
+                <thead>
+                  <th>ID</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng đã bán</th>
+                  <th>Doanh thu</th>
+                  <th>Chi tiết các đơn hàng</th>
+                </thead>
+                <tbody>
+                  <!--Tất cả các đơn hàng hiện ở đây-->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <script src="index.js"></script>
 </body>
 </html>
