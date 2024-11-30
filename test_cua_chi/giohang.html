@@ -15,18 +15,18 @@
         <div class="cart-header cart-grid">
           <div class="quantity-product">
             <input type="checkbox">
-            <span>Tất cả (3 sản phẩm)</span>
+            <span>Tất cả</span>
           </div>
           
           <span class="header-price">Đơn giá</span>
           <span class="header-quantity">Số lượng</span>
           <span class="header-total">Thành tiền</span>
-          <div>🗑</div>
+          <div class="delete-all">🗑</div>
         </div>
         
         <!-- Danh sách sản phẩm có trong giỏ hàng -->
         <div class="cart-product" id="cart-product">
-          <div class="item cart-grid">
+          <!-- <div class="item cart-grid">
             <div class="item-infor">
               <input type="checkbox">
               <img src="S1.jpg" alt="hình ảnh">
@@ -49,7 +49,7 @@
               8.0000
               <sup>$</sup>
             </div>
-            <div class="delect">
+            <div class="delete">
               <div>🗑</div>
             </div>
           </div>
@@ -76,10 +76,10 @@
               8.0000
               <sup>$</sup>
             </div>
-            <div class="delect">
+            <div class="delete">
               <div>🗑</div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <!-- Địa chỉ và thanh toán -->
@@ -103,10 +103,6 @@
             </label>
             <br>
             <label for="">
-              <input type="radio" name="payment-method" value="momo">MoMo</input>
-            </label>
-            <br>
-            <label for="">
               <input type="radio" name="payment-method" value="bank">Ngân hàng</input>
             </label>
             <br>
@@ -115,7 +111,7 @@
             </label>
             <br>
           </form>
-          <div>
+          <div class="summary-total">
             Tổng tiền: 0000000$
           </div>
           <div>
@@ -129,6 +125,7 @@
   <footer>
 
   </footer>
+  
   <script src="giohangupdate.js"></script>
 </body>
 </html>

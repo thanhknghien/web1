@@ -1,60 +1,46 @@
 // Hàm lấy tất cả các sản phẩm trong giỏ hàng
 function getCartItems() {
-  return document.querySelectorAll(".item");
-}
-function showCreditCardForm() {
-  document.getElementById("credit-card-form").style.display = "block";  // Hiển thị form thẻ tín dụng
-  document.getElementById("payment-methods").style.display = "none";  // Ẩn phần lựa chọn phương thức thanh toán
+  return document.querySelectorAll('.item.cart-grid');
 }
 
-function showPaymentMethods() {
-  document.getElementById("credit-card-form").style.display = "none";  // Ẩn form thẻ tín dụng
-  document.getElementById("payment-methods").style.display = "block";  // Hiển thị lại phần phương thức thanh toán
-}
-
-// Hàm lấy tất cả các sản phẩm trong giỏ hàng
-function getCartItems() {
-  return document.querySelectorAll(".item");
+function getCartItemsValue(){
+  return document.querySelectorAll('.item.cart-grid').value;
 }
 // Hàm tính toán tổng tiền và số lượng
 function updateCartSummary() {
+  console.log('update')
   let totalQuantity = 0;
   let totalPrice = 0;
 
   // Lấy danh sách sản phẩm hiện tại sau mỗi lần cập nhật
-  const cartItems = getCartItems();
-
+  const cartItems = getCartItemsValue();
+  console.log(cartItems)
   cartItems.forEach((item) => {
     const checkbox = item.querySelector("input[type='checkbox']");
     const priceText = item.querySelector(".price").textContent;
-    const price = parseFloat(priceText.replace(" đ", "").replace(/\./g, "").replace(",", ""));
-    const quantity = parseInt(item.querySelector(".quantity input").value);
-
-    // Chỉ tính "Thành tiền" và tổng giá khi sản phẩm được chọn
-    if (checkbox.checked) {
+    const price = parseInt(priceText.replace(" $", ""));
+    const quantity = parseInt(item.querySelector(".item-quantity input").value);
+    
       const total = price * quantity;
 
       // Cập nhật thành tiền cho sản phẩm
-      item.querySelector(".total").textContent = `${total.toLocaleString()} đ`;
+      item.querySelector(".item-total").textContent = `${total.toLocaleString()} $`;
 
       // Cộng dồn vào tổng số lượng và tổng tiền
       totalQuantity += quantity;
       totalPrice += total;
-    } else {
-      // Nếu không chọn, thành tiền là 0
-      item.querySelector(".total").textContent = "0 đ";
-    }
+
   });
 
   // Hiển thị tổng tiền
-  document.querySelector(".summary-total p strong").textContent = `Tổng tiền: ${totalPrice.toLocaleString()} đ`;
+  // document.querySelector(".summary-total p strong").textContent = `Tổng tiền: ${totalPrice.toLocaleString()} đ`;
 }
 
 // Lắng nghe sự thay đổi số lượng của mỗi sản phẩm
 function attachQuantityListeners(item) {
-  const quantityInput = item.querySelector(".quantity input");
-  const incrementBtn = item.querySelector(".quantity button:nth-child(3)");
-  const decrementBtn = item.querySelector(".quantity button:nth-child(1)");
+  const quantityInput = item.querySelector(".item-quantity .quantity input");
+  const incrementBtn = item.querySelector(".item-quantity .quantity button:nth-child(3)");
+  const decrementBtn = item.querySelector(".item-quantity .quantity button:nth-child(1)");
   const checkbox = item.querySelector("input[type='checkbox']");
 
   // Tăng số lượng
@@ -79,8 +65,8 @@ function attachQuantityListeners(item) {
     updateCartSummary();
   });
 
-  // Cập nhật khi chọn checkbox sản phẩm
-  checkbox.addEventListener("change", updateCartSummary);
+  // // Cập nhật khi chọn checkbox sản phẩm
+  // checkbox.addEventListener("change", updateCartSummary);
 }
 
 // Lắng nghe sự kiện xóa sản phẩm
@@ -142,10 +128,14 @@ document.querySelectorAll('.delete').forEach(button => {
 // Khởi chạy tính toán ban đầu
 function initializeCart() {
   const cartItems = getCartItems();
+  console.log(`Cart contains ${cartItems.length} items.`);
+  
   cartItems.forEach(item => {
-    attachQuantityListeners(item);
-    attachDeleteListener(item);
+      console.log('Initializing item:', item);
+      attachQuantityListeners(item);
+      attachDeleteListener(item);
   });
+
   updateCartSummary();
 }
 // Hàm kiểm tra ngày hết hạn (định dạng DD/MM/YYYY)
