@@ -651,3 +651,24 @@ document.addEventListener("DOMContentLoaded", function () {
   //Thêm chức năng cho nút lọc
   filterBtn.addEventListener("click", filterOrders);
 });
+
+//hàm tạo dữ liệu mẫu lên localStorage
+function addData(){
+  Promise.all([
+    fetch("../resource/oder.json").then(response => response.json()),
+    fetch("../resource/user.json").then(response => response.json()),
+    fetch("../resource/product.json").then(response => response.json()),
+    fetch("../resource/cart.json").then(response => response.json()),
+    fetch("../resource/user-address.json").then(response => response.json())
+  ])
+  .then(([orders, users, products,carts,userAddress]) => {
+    localStorage.setItem("order", JSON.stringify(orders));
+    localStorage.setItem("user", JSON.stringify(users));
+    localStorage.setItem("product", JSON.stringify(products));
+    localStorage.setItem("cart", JSON.stringify(carts));
+    localStorage.setItem("user-address", JSON.stringify(userAddress));
+  })
+  .catch(error => console.error("Error loading resources:", error));
+  
+}
+

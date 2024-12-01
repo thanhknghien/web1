@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="../style/kiet.css" />
+    <link rel="stylesheet" href="../test_cua_thanh/main.css">
 </head>
 
 <body>
@@ -16,11 +17,12 @@
         </div>
         <nav>
             <ul class="menu">
+                <li style="cursor: pointer;" onclick="addData()">Tạo dữ liệu mẫu</li>
                 <li><a href="trang_chu.html" class="btn">Trang chủ</a></li>
                 <li><a href="#" class="btn manage-user">Quản lý người dùng</a></li>
                 <li><a href="#" class="btn manage-product">Quản lý sản phẩm</a></li>
                 <li><a href="#" class="btn manage-order">Quản lý đơn hàng</a></li>
-                <li><a href="#" class="btn manage-stats">Thống kê kinh doanh</a></li>
+                <li><a id="manage-stats" class="btn manage-stats">Thống kê kinh doanh</a></li>
             </ul>
         </nav>
     </header>
@@ -53,6 +55,122 @@
             </div>
         </div>
 
+        <!--Thống kê kinh doanh-->
+        <div class="admin-content" style="display: block;">
+            <div class="container">
+                <div class="content">
+                  <div class="search-form">
+                    <h3>Thống kê tình hình kinh doanh</h3>
+                    <label for="startDate">Từ ngày</label>
+                    <input type="date" name="startDate" id="startDate">
+                    <label for="endDate">Đến ngày</label>
+                    <input type="date" name="endDate" id="endDate">
+                    <label for="top-selling">Top:</label>
+                    <select name="top-selling" id="top-selling">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                    </select>
+                    <button id="show">Xem</button>
+                  </div>
+          
+                  <div class="statistical">
+                    <div class="title-revenue">
+                      <p><strong>Tổng số xe đã bán: </strong> <span id="total-sold">0</span></p>
+                      <p><strong>Tổng doanh thu: </strong> <span id="total-revenue">0</span> $</p>
+                    </div>
+          
+                    <div class="customer">
+                      <div class="customer">
+                        <h3>Các khách hàng phát sinh nhiều doanh thu nhất:</h3>
+                        <table id="customer-table">
+                          <thead>
+                            <th>ID khách hàng</th>
+                            <th>Tên khách hàng</th>
+                            <th>Tổng doanh thu phát sinh</th>
+                            <th>Chi tiết</th>
+                          </thead>
+                          <tbody>
+                            <!--Các KH hiện ở đây-->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+          
+                    <!--popup chi tiết hóa đơn-->
+                    <ul id="order-list" class="orders hidden">
+                      <table id="order-details">
+                        <thead>
+                          <th>ID hóa đơn</th>
+                          <th>Ngày</th>
+                          <th>Số lượng</th>
+                          <th>Tổng tiền</th>
+                        </thead>
+                        <tbody id="body-order-details">
+                          <!--Các hóa đơn hiện ở đây-->
+                        </tbody>
+                      </table>
+                      <button id="close-popup">Đóng</button>
+                    </ul>
+          
+                    <div class="product">
+                      <div class="product">
+                        <h3>Các sản phẩm bán chạy nhất:</h3>
+                        <table id="best-selling">
+                          <thead>
+                            <th>ID</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng đã bán</th>
+                            <th>Doanh thu</th>
+                            <th>Chi tiết các đơn hàng</th>
+                          </thead>
+                          <tbody>
+                            <!--Tất cả các đơn hàng hiện ở đây-->
+                          </tbody>
+                        </table>
+                      </div>
+          
+                      <div class="product">
+                        <h3>Các sản phẩm bán chậm nhất:</h3>
+                        <table id="worst-selling">
+                          <thead>
+                            <th>ID</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng đã bán</th>
+                            <th>Doanh thu</th>
+                            <th>Chi tiết các đơn hàng</th>
+                          </thead>
+                          <tbody>
+                            <!--Tất cả các đơn hàng hiện ở đây-->
+                          </tbody>
+                        </table>
+                      </div>
+          
+                      <div class="product">
+                        <h3>Các mặt hàng đã bán:</h3>
+                        <table id="all-selling">
+                          <thead>
+                            <th>ID</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng đã bán</th>
+                            <th>Doanh thu</th>
+                            <th>Chi tiết các đơn hàng</th>
+                          </thead>
+                          <tbody>
+                            <!--Tất cả các đơn hàng hiện ở đây-->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+          
+                </div>
+          
+        </div>
+
+        <!--Quản lí người dùng-->
         <div class="admin-content">
             <div class="table-container">
                 <h4>Quản lý người dùng</h4>
@@ -74,6 +192,7 @@
             </div>
         </div>
 
+        <!--Quản lí sản phẩm-->
         <div class="admin-content">
             <div class="table-container">
                 <h4>Quản lý sản phẩm</h4>
@@ -96,6 +215,7 @@
             </div>
         </div>
 
+        <!--Quản lí đơn hàng-->
         <div class="admin-content">
             <div class="table-container">
                 <h4>Quản lý đơn hàng</h4>
@@ -321,6 +441,7 @@
     </div>
 
     <script src="../javascript/admin.js"></script>
+    <script src="../test_cua_thanh/index.js"></script>
 </body>
 
 </html>
