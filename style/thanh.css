@@ -20,7 +20,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ff5722; /* Màu chủ đạo của Shopee */
+  background-color: #ff5722; 
   padding: 15px 30px;
   color: #fff;
 }

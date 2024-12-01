@@ -1,23 +1,4 @@
-// Load dữ liệu từ file Json lên localStorage 
-fetch("../resource/user.json") // User
-  .then(response => response.json())
-  .then(data => localStorage.setItem("user", JSON.stringify(data)));
 
-fetch("../resource/user-address.json") //User address
-  .then(response => response.json())
-  .then(data => localStorage.setItem("user-address", JSON.stringify(data)));
-
-fetch("../resource/oder.json") // Oder
-  .then(response => response.json())
-  .then(data => localStorage.setItem("oder",JSON.stringify(data)));
-
-fetch("../resource/product.json") // Product
-    .then(response => response.json())
-    .then(data => localStorage.setItem("product",JSON.stringify(data)));
-
-fetch("../resource/cart.json") // Cart
-    .then(response => response.json())
-    .then(data => localStorage.setItem("cart",JSON.stringify(data)));
 
 // Tạo key isLogin(dùng để value id người đăng nhập)
 createIsLoginKey();
@@ -147,8 +128,6 @@ function updatePagination() {
     document.getElementById('product-next').innerHTML = pagination;
 }
 
-
-
 // JS tạo giao diện phân trang 1 2 3....
 function renderPageNumber() {
     var html = '<ul class="pagination">';
@@ -165,7 +144,6 @@ function renderPageNumber() {
     return html;
 }
 
-
 function changePage(page) {
     if (page >= 1 && page <= totalPage) {
         currentPage = page;
@@ -173,12 +151,10 @@ function changePage(page) {
     }
 }
 
-
 // Hàm khởi tạo
 function init() {
     updatePagination(products);
 }
-
 
 // JS Hiẹn chi tiết sản phẩm
 function ClickChiTiet(input) {
@@ -210,7 +186,6 @@ function ClickChiTiet(input) {
         console.error("Không tìm thấy sản phẩm với ID:", input);
     }
 }
-
 
 //Hàm đóng chi tiết sản phẩm
 function closeDetal(){
@@ -312,8 +287,6 @@ function sortProducts(input) {
     filterbar()   
 }
 
-
-
 // JS hiện thi danh sách sản phẩm theo thương hiệu
 function company_menu(input) {
     console.log("Đã click vào menu hãng sản xuất:", input);
@@ -329,7 +302,6 @@ function company_menu(input) {
 }
 
 //JS thanh tìm kiếm
-
 function Search(){
     let valueSearch = document.getElementById('search-input').value;
     let search = products.filter(sanPham =>{
@@ -626,3 +598,11 @@ function overLay2(){
         document.getElementById('overlay').style.display = 'none';
     }
 }
+
+const searchFromUserPage = localStorage.getItem('search');
+let search = products.filter(sanPham =>{
+    return sanPham.name.toUpperCase().includes(searchFromUserPage.toUpperCase());
+})
+product = search;
+updatePagination();
+localStorage.setItem('search','');

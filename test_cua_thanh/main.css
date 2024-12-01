@@ -1,7 +1,7 @@
 /* Reset CSS */
 body, h1, h2, h3, p, ul, ol, li, table, th, td, input, select, button {
   margin: 0;
-  padding: 0;
+  padding: 10px;
   border: 0;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
@@ -14,6 +14,9 @@ body, h1, h2, h3, p, ul, ol, li, table, th, td, input, select, button {
 }
 
 .search-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   background: #fafafa;
   padding: 15px;
   border: 1px solid #ddd;
@@ -21,10 +24,10 @@ body, h1, h2, h3, p, ul, ol, li, table, th, td, input, select, button {
   margin-bottom: 20px;
 }
 
-.search-form h3 {
+h3 {
   margin-bottom: 10px;
   font-size: 18px;
-  color: #ff5722;
+  color: #007bff;
 }
 
 .search-form label {
@@ -40,7 +43,7 @@ body, h1, h2, h3, p, ul, ol, li, table, th, td, input, select, button {
 }
 
 .search-form button {
-  background-color: #ff5722;
+  background-color: #007bff;
   color: #fff;
   border: none;
   padding: 10px 15px;
@@ -49,7 +52,7 @@ body, h1, h2, h3, p, ul, ol, li, table, th, td, input, select, button {
 }
 
 .search-form button:hover {
-  background-color: #e64a19;
+  background-color: #0056b3;
 }
 
 /* Tables */
@@ -60,7 +63,7 @@ table {
 }
 
 thead {
-  background: #ff5722;
+  background: #007bff;
   color: white;
   font-size: 14px;
 }
@@ -76,7 +79,7 @@ tbody tr:hover {
 }
 
 button#close-popup {
-  background-color: #ff5722;
+  background-color: #007bff;
   color: white;
   padding: 8px 15px;
   border-radius: 5px;
@@ -85,7 +88,7 @@ button#close-popup {
 }
 
 button#close-popup:hover {
-  background-color: #e64a19;
+  background-color: #0056b3;
 }
 
 /* Popup styles */
@@ -139,12 +142,12 @@ button#close-popup:hover {
 }
 
 .orders th {
-  background-color: #ff5722;
+  background-color: #007bff;
   color: white;
 }
 
 #close-popup {
-  background-color: #ff5722;
+  background-color: #007bff;
   color: white;
   border: none;
   padding: 8px 15px;
@@ -154,5 +157,5 @@ button#close-popup:hover {
 }
 
 #close-popup:hover {
-  background-color: #e64a19;
+  background-color: #0056b3;
 }

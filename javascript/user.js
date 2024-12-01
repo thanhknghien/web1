@@ -1,19 +1,6 @@
 // Lấy dữ liệu từ Local Storage
 const userID = localStorage.getItem("isLogIn");
 
-// Fetch dữ liệu từ file JSON và lưu vào Local Storage
-fetch("../resource/user.json")
-  .then(response => response.json())
-  .then(data => localStorage.setItem("user", JSON.stringify(data)));
-
-fetch("../resource/user-address.json")
-  .then(response => response.json())
-  .then(data => localStorage.setItem("user-address", JSON.stringify(data)));
-
-fetch("../resource/oder.json")
-  .then(response => response.json())
-  .then(data => localStorage.setItem("oder",JSON.stringify(data)));
-
 // Lấy danh sách người dùng và địa chỉ từ Local Storage
 const listUser = JSON.parse(localStorage.getItem("user")) || [];
 const listOder = JSON.parse(localStorage.getItem("oder")) || [];
@@ -504,3 +491,15 @@ document.getElementById("reset-btn").addEventListener('click', () => {
     select.selectedIndex = 0; // Đặt về tùy chọn đầu tiên
   }
 });
+
+//DOM tìm kiếm
+document.getElementById('search-form').addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const search = document.getElementById('searching').value;
+  if(search === null){
+    alert("Bạn chưa nhập thông tin tìm kiếm!"); return;
+  }else{
+    localStorage.setItem("search",search);
+    window.location.href = 'trang_chu.html'
+  }
+})
