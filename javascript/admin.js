@@ -67,6 +67,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //CRUD của user
   //Hiển thị modal thên ng dùng
+  fetch("../resource/user.json")
+    .then((response) => response.json())
+    .then((data) => localStorage.setItem("user", JSON.stringify(data)));
+
   addUserButton.addEventListener("click", () => {
     userModal.style.display = "block";
     resetForm();

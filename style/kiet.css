@@ -398,3 +398,44 @@ label {
   text-decoration: none;
   cursor: pointer;
 }
+
+.product {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-revenue {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ẩn popup mặc định */
+.hidden {
+  display: none;
+}
+
+/* Bạn có thể thêm các kiểu CSS cho popup nếu cần */
+.orders {
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+/* Thêm một lớp để làm mờ nền khi popup hiển thị */
+.orders:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
