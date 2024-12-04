@@ -491,3 +491,15 @@ document.getElementById("reset-btn").addEventListener('click', () => {
     select.selectedIndex = 0; // Đặt về tùy chọn đầu tiên
   }
 });
+
+//DOM tìm kiếm
+document.getElementById('search-form').addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const search = document.getElementById('searching').value;
+  if(search === null){
+    alert("Bạn chưa nhập thông tin tìm kiếm!"); return;
+  }else{
+    localStorage.setItem("search",search);
+    window.location.href = 'trang_chu.html'
+  }
+})
