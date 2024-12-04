@@ -1,18 +1,5 @@
 // Lấy dữ liệu từ Local Storage
-const userID = localStorage.getItem("isLogIn");
-
-// Fetch dữ liệu từ file JSON và lưu vào Local Storage
-fetch("../resource/user.json")
-  .then(response => response.json())
-  .then(data => localStorage.setItem("user", JSON.stringify(data)));
-
-fetch("../resource/user-address.json")
-  .then(response => response.json())
-  .then(data => localStorage.setItem("user-address", JSON.stringify(data)));
-
-fetch("../resource/oder.json")
-  .then(response => response.json())
-  .then(data => localStorage.setItem("oder",JSON.stringify(data)));
+const userID = localStorage.getItem("isLogIn"); 
 
 // Lấy danh sách người dùng và địa chỉ từ Local Storage
 const listUser = JSON.parse(localStorage.getItem("user")) || [];

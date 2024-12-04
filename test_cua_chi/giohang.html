@@ -8,6 +8,7 @@
 </head>
 <body>
   <div class="container">
+    <div class="overlay" id="overlay"></div>
     <h1>Giỏ Hàng</h1>
     <div class="cart">
       <div class="cart-infor">
@@ -84,14 +85,39 @@
       </div>
       <!-- Địa chỉ và thanh toán -->
       <div class="address-payment">
-        <!-- Địa chỉ giao hàng -->
         <div class="address">
           <label>Địa chỉ giao hàng</label>
-          <div>
-            <div> 123 Đibnh tiên hoàng</div>
-            <button>Thay đổi</button>
+          <div id="current-address">
+              <div id="selected-address">Chưa có địa chỉ nào.</div>
+              <button onclick="showAddressList(); overLay1()">Thay đổi</button>
           </div>
-        </div>
+          <div class="address-list-form">
+            <button class="btn-exit">X</button>
+            <div class="address-list">
+              <!-- Danh sách các địa chỉ sẽ hiển thị ở đây -->
+            </div>
+            <div id="popup" class="popup" style="display: none"> 
+           
+              <div class="popup-content">
+                <h3>Thêm Địa Chỉ Mới</h3>
+        
+                <input type="text" id="popup-street" placeholder="Đường">
+                <input type="text" id="popup-district" placeholder="Quận/Huyện">
+                <input type="text" id="popup-city" placeholder="Thành phố">
+                <div class="popup-buttons">
+                  <button id="save-address-btn">Lưu</button>
+                  <button id="close-popup-btn">Đóng</button> 
+                </div>
+              </div>
+            </div>
+            <button id="add-address-btn">them dia chi</button>
+            
+          </div>
+
+          </div> 
+     
+      
+      
         <!-- Phương thức thanh toán -->
         <div class="payment">
           <label> Thanh toán</label>
