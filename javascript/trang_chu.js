@@ -15,7 +15,7 @@ function createIsLoginKey() {
 
 function updateIsLoginKey(userId) {
     if (localStorage.getItem('isLogIn') !== null) {
-        localStorage.setItem('isLogIn', JSON.stringify(userId));
+        localStorage.setItem('isLogIn', JSON.stringify(parseInt(userId)));
         console.log('Key isLogIn đã được cập nhật với ID:', userId);
     } else {
         console.error('Key isLogIn chưa được tạo!');
@@ -130,8 +130,17 @@ function updatePagination() {
 
 // JS tạo giao diện phân trang 1 2 3....
 function renderPageNumber() {
+    // Nếu chỉ có 1 trang thì không hiển thị phân trang
+    if (totalPage <= 1) {
+        return '';
+    }
+
     var html = '<ul class="pagination">';
-    html += '<li><a href="#" onclick="changePage(' + (currentPage - 1) + '); filterbar()">&laquo;</a></li>';
+
+    // Ẩn nút chuyển trang sang trái nếu ở đầu trang
+    if (currentPage > 1) {
+        html += '<li><a href="#" onclick="changePage(' + (currentPage - 1) + '); filterbar()">&laquo;</a></li>';
+    }
 
     for (var i = 1; i <= totalPage; i++) {
         html += '<li class="' + (i === currentPage ? 'active' : '') + '">';
@@ -139,7 +148,11 @@ function renderPageNumber() {
         html += '</li>';
     }
 
-    html += '<li><a href="#" onclick="changePage(' + (currentPage + 1) + '); filterbar()">&raquo;</a></li>';
+    // Ẩn nút chuyển trang sang phải nếu ở cuối trang
+    if (currentPage < totalPage) {
+        html += '<li><a href="#" onclick="changePage(' + (currentPage + 1) + '); filterbar()">&raquo;</a></li>';
+    }
+
     html += '</ul>';
     return html;
 }
@@ -235,6 +248,8 @@ function initSlideShow(container, images) {
 
 // JS lọc sản phẩm
 function findProduct() {
+    let valueSearch = document.getElementById('search-input').value;
+
     let selectedCategories = [];
     const categoryCheckboxes = document.querySelectorAll('.filter-category input[type="checkbox"]:checked');
     categoryCheckboxes.forEach(checkbox => {
@@ -252,6 +267,7 @@ function findProduct() {
 
     const filteredProducts = products.filter((sanPham) => {
         return (
+            sanPham.name.toUpperCase().includes(valueSearch.toUpperCase())&&
             (!selectedCategories.length || selectedCategories.includes(sanPham.brand)) &&
             (!selectedFuelTypes.length || selectedFuelTypes.includes(sanPham.fuel)) &&
             sanPham.price >= priceMin &&
@@ -321,13 +337,26 @@ document.getElementById('form-login').addEventListener('submit', function(event)
     let username = document.getElementById('username').value;
     let password = document.getElementById('password').value;
 
+    // // Kiểm tra độ dài tài khoản
+    // if (username.length < 8) {
+    //     alert('Tên tài khoản phải có ít nhất 8 ký tự.');
+    //     return;
+    // }
+
+    // // Kiểm tra độ dài mật khẩu
+    // if (password.length < 8) {
+    //     alert('Mật khẩu phải có ít nhất 8 ký tự.');
+    //     return;
+    // }
+
     let userValue = users.find(user => {
         return password.includes(user.password) && username.includes(user.username);
     });
 
     if (userValue){
         updateIsLoginKey(userValue.id);
-        showFormLogin();
+        hidePopup('form-login');
+        overLay1();
         showAvatar();
     }else{
         alert('Sai tài khoảng hoặc mật khẩu!');
@@ -339,9 +368,22 @@ document.getElementById('form-signIn').addEventListener('submit', function(event
     event.preventDefault();
 
     let name = document.getElementById('fullname').value;
+    let number = document.getElementById('soDienThoai').value;
     let username = document.getElementById('username-sign').value;
     let password = document.getElementById('password-sign').value;
     let confirmPassword = document.getElementById('confirmPassword').value;
+
+    // // Kiểm tra độ dài tài khoản
+    // if (username.length < 8) {
+    //     alert('Tên tài khoản phải có ít nhất 8 ký tự.');
+    //     return;
+    // }
+
+    // // Kiểm tra độ dài mật khẩu
+    // if (password.length < 8) {
+    //     alert('Mật khẩu phải có ít nhất 8 ký tự.');
+    //     return;
+    // }
 
     let userValue = users.find(user => {
         return username == user.username;
@@ -350,6 +392,8 @@ document.getElementById('form-signIn').addEventListener('submit', function(event
         alert('Tên tài khoản đã tồn tại.')
         return;
     }
+
+    if(number)
 
     if(password != confirmPassword){
         alert('Xác nhận mật khẩu và mật khẩu không trùng khớp.')
@@ -364,14 +408,15 @@ document.getElementById('form-signIn').addEventListener('submit', function(event
             fullname: name,
             username: username,
             password: password,
-            sdt: 'null'
+            sdt: number
     }
     users.push(user);
     localStorage.setItem('users', JSON.stringify(users));
     // update value isLogin
     updateIsLoginKey(user.id);
     // Tắt form đăng kí
-    showFormSignIn();
+    hidePopup('form-signIn');
+    overLay1();
     // Kiểm tra isLogin để hiện icon mặc định cho tài khoảng mới
     showAvatar();
 
@@ -415,9 +460,9 @@ function addProductCart(idSanPham, priceSanPham){
         if(!userCart){
             alert('Đã thêm sản phẩm vào giỏ hàng')
             var listProductBuy = [{
-                idProduct : idSanPham,
+                idProduct : String(idSanPham),
                 quantity : "1",
-                price : priceSanPham
+                price : String(priceSanPham)
             }]
 
             var cart = {
@@ -442,9 +487,9 @@ function addProductCart(idSanPham, priceSanPham){
             }else{          
                 alert('Đã thêm sản phẩm vào giỏ hàng')
                 var SanPham = {
-                    idProduct : idSanPham,
+                    idProduct : String(idSanPham),
                     quantity : "1",
-                    price : priceSanPham
+                    price : String(priceSanPham)
                 }
                 userCart.listProduct.push(SanPham);
                 userCart.total = String(parseFloat(userCart.total) + parseFloat(priceSanPham));
@@ -599,10 +644,11 @@ function overLay2(){
     }
 }
 
-const searchFromUserPage = localStorage.getItem('search');
-let search = products.filter(sanPham =>{
-    return sanPham.name.toUpperCase().includes(searchFromUserPage.toUpperCase());
-})
-product = search;
-updatePagination();
-localStorage.setItem('search','');
+
+document.querySelector('.form-signIn .form-box .form-value .inputbox input[type="number"]').addEventListener('keypress', function (event) {
+    if (!/\d/.test(event.key)) {
+        event.preventDefault();
+    }
+});
+
+

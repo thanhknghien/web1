@@ -17,7 +17,8 @@
                     <a onclick="showPopup('form-login'); overLay1()">Đăng Nhập</a>
                 </div>
                 <div class="avatar-login" id="avatar-login">
-                    <img src="..//assets/logo-icon/account.svg">
+                    
+                    <a href="../pages/user.html"><img src="..//assets/logo-icon/account.svg"></a>
                     <div id="logout">Đăng xuất</div>
                 </div>
             </div>
@@ -65,7 +66,10 @@
                     <form>
                         <h2>Đăng kí</h2>
                         <div class="inputbox">
-                            <input type="text" id="fullname" placeholder="Tên người dùng" required>
+                            <input type="text" id="fullname" placeholder="Họ và tên" required>
+                        </div>
+                        <div class="inputbox">
+                            <input type="number" id="soDienThoai" placeholder="Nhập số điện thoại" required>
                         </div>
                         <div class="inputbox">
                             <input type="text" id="username-sign" placeholder="Tài khoản" required>
@@ -183,10 +187,10 @@
                             <span class="filter-title">Nhiên liệu:</span>
                             <div class="filter-fuel">
                                 <label>
-                                    <input type="checkbox" class="filter-option" value="Dien"> Điện
+                                    <input type="checkbox" class="filter-option" value="Điện"> Điện
                                 </label>
                                 <label>
-                                    <input type="checkbox" class="filter-option" value="Xang"> Xăng
+                                    <input type="checkbox" class="filter-option" value="Xăng"> Xăng
                                 </label>
                             </div>
                         
