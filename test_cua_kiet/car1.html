@@ -9,87 +9,356 @@
 </head>
 
 <body>
-  <table class="main-table">
-    <div class="container active">
-      <tr>
-        <td>
-          <div class="inner-table">
-            <img src="../assets/img/Bentley/Continental_2023/B11.jpg" width="250" height="150" />
-            <div class="second-inner-table">
-              Tên xe: Bentley Continental 2023
-            </div>
-            <div class="second-inner-table">Giá:</div>
-            <div class="second-inner-table">
-              <div class="last-table">Mua</div>
-              <div class="last-table">Chi tiết</div>
+  <!--Thống kê kinh doanh-->
+  <div class="admin-content">
+    <div class="table-container">
+      <div class="content">
+        <div class="search-form">
+          <h3>Thống kê tình hình kinh doanh</h3>
+          <label for="startDate">Từ ngày</label>
+          <input type="date" name="startDate" id="startDate">
+          <label for="endDate">Đến ngày</label>
+          <input type="date" name="endDate" id="endDate">
+          <label for="top-selling">Top:</label>
+          <select name="top-selling" id="top-selling">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+          </select>
+          <button id="show">Xem</button>
+        </div>
+
+        <div class="statistical">
+          <div class="title-revenue">
+            <p><strong>Tổng số xe đã bán: </strong> <span id="total-sold">0</span></p>
+            <p><strong>Tổng doanh thu: </strong> <span id="total-revenue">0</span> $</p>
+          </div>
+
+          <div class="customer">
+            <div class="customer">
+              <h3>Các khách hàng phát sinh nhiều doanh thu nhất:</h3>
+              <table id="customer-table">
+                <thead>
+                  <th>ID khách hàng</th>
+                  <th>Tên khách hàng</th>
+                  <th>Tổng doanh thu phát sinh</th>
+                  <th>Chi tiết</th>
+                </thead>
+                <tbody>
+                  <!--Các KH hiện ở đây-->
+                </tbody>
+              </table>
             </div>
           </div>
-        </td>
-        <td>
-          <div class="inner-table">
-            <img src="../assets/img/Bentley/Flying_Spur_2021/B1.jpg" width="250" height="150" />
-            <div class="second-inner-table">
-              Tên xe: Bentley Flying Spur 2021
+
+          <!--popup chi tiết hóa đơn-->
+          <ul id="order-list" class="orders hidden">
+            <table id="order-details">
+              <thead>
+                <th>ID hóa đơn</th>
+                <th>Ngày</th>
+                <th>Số lượng</th>
+                <th>Tổng tiền</th>
+              </thead>
+              <tbody id="body-order-details">
+                <!--Các hóa đơn hiện ở đây-->
+              </tbody>
+            </table>
+            <button id="close-popup">Đóng</button>
+          </ul>
+
+          <div class="product">
+            <div class="product">
+              <h3>Các sản phẩm bán chạy nhất:</h3>
+              <table id="best-selling">
+                <thead>
+                  <th>ID</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng đã bán</th>
+                  <th>Doanh thu</th>
+                  <th>Chi tiết các đơn hàng</th>
+                </thead>
+                <tbody>
+                  <!--Tất cả các đơn hàng hiện ở đây-->
+                </tbody>
+              </table>
             </div>
-            <div class="second-inner-table">Giá:</div>
-            <div class="second-inner-table">
-              <div class="last-table">Mua</div>
-              <div class="last-table">Chi tiết</div>
+
+            <div class="product">
+              <h3>Các sản phẩm bán chậm nhất:</h3>
+              <table id="worst-selling">
+                <thead>
+                  <th>ID</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng đã bán</th>
+                  <th>Doanh thu</th>
+                  <th>Chi tiết các đơn hàng</th>
+                </thead>
+                <tbody>
+                  <!--Tất cả các đơn hàng hiện ở đây-->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="product">
+              <h3>Các mặt hàng đã bán:</h3>
+              <table id="all-selling">
+                <thead>
+                  <th>ID</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Số lượng đã bán</th>
+                  <th>Doanh thu</th>
+                  <th>Chi tiết các đơn hàng</th>
+                </thead>
+                <tbody>
+                  <!--Tất cả các đơn hàng hiện ở đây-->
+                </tbody>
+              </table>
             </div>
           </div>
-        </td>
-        <td>
-          <div class="inner-table">
-            <img src="../assets/img/Bugatti/Chiron/B32.jpg" width="250" height="150" />
-            <div class="second-inner-table">Tên xe: Bugatti Chiron</div>
-            <div class="second-inner-table">Giá:</div>
-            <div class="second-inner-table">
-              <div class="last-table">Mua</div>
-              <div class="last-table">Chi tiết</div>
-            </div>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="inner-table">
-            <img src="../assets/img/Bugatti/Divo/B26.jpg" width="250" height="150" />
-            <div class="second-inner-table">Tên xe: Bugatti Divo</div>
-            <div class="second-inner-table">Giá:</div>
-            <div class="second-inner-table">
-              <div class="last-table">Mua</div>
-              <div class="last-table">Chi tiết</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="inner-table">
-            <img src="../assets/img/Ferrari/812Superfast/pic3.jpg" width="250" height="150" />
-            <div class="second-inner-table">Tên xe: Ferrari 812Superfast</div>
-            <div class="second-inner-table">Giá:</div>
-            <div class="second-inner-table">
-              <div class="last-table">Mua</div>
-              <div class="last-table">Chi tiết</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="inner-table">
-            <img src="../assets/img/Ferrari/SF90Stradale/pic7.jpg" width="250" height="150" />
-            <div class="second-inner-table">Tên xe: Ferrari SF90Stradale</div>
-            <div class="second-inner-table">Giá:</div>
-            <div class="second-inner-table">
-              <div class="last-table">Mua</div>
-              <div class="last-table">Chi tiết</div>
-            </div>
-          </div>
-        </td>
-      </tr>
+        </div>
+
+      </div>
+
     </div>
-    <button><a href="../test_cua_kiet/car1.html">1</a></button>
-    <button><a href="../test_cua_kiet/car2.html">2</a></button>
-    <button><a href="../test_cua_kiet/car3.html">3</a></button>
-  </table>
-</body>
+  </div>
+
+  <script>
+    //Thống kê
+    // Hàm để cập nhật bảng với dữ liệu khách hàng
+    function updateCustomerTable(orders) {
+      const tableBody = document
+        .getElementById("customer-table")
+        .getElementsByTagName("tbody")[0];
+      tableBody.innerHTML = "";
+
+      orders.forEach((e) => {
+        const user = listUsers.find((user) => user.id === e.customerId);
+        const row = document.createElement("tr");
+        if (!user) {
+          return;
+        }
+
+        const idCusCell = document.createElement("td");
+        idCusCell.textContent = e.customerId;
+
+        const cusNameCell = document.createElement("td");
+        cusNameCell.textContent = user.fullname;
+
+        const totalCell = document.createElement("td");
+        totalCell.textContent = e.totalRevenue;
+
+        const detailsCell = document.createElement("td");
+        const detailsButton = document.createElement("button");
+        detailsButton.textContent = "Xem chi tiết";
+        detailsButton.addEventListener("click", () => showAllOrders(e.orderIds));
+        detailsCell.appendChild(detailsButton);
+
+        //thêm các dòng vào bảng
+        row.appendChild(idCusCell);
+        row.appendChild(cusNameCell);
+        row.appendChild(totalCell);
+        row.appendChild(detailsCell);
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Sắp xếp khách hàng theo tổng doanh thu giảm dần
+    function getTopCustomers(customerData, topN) {
+      const sortedCustomers = customerData.sort(
+        (a, b) => b.totalRevenue - a.totalRevenue
+      );
+      return sortedCustomers.slice(0, topN + 1);
+    }
+
+    // Sắp xếp sản phẩm theo số lượng bán từ cao đến thấp
+    function getTopProductsBySales(productDetails, topN) {
+      const sortedProducts = productDetails.sort((a, b) => b.quantity - a.quantity);
+
+      // Lấy top N sản phẩm bán chạy nhất (số lượng lớn nhất)
+      const bestSellingProducts = sortedProducts.slice(0, topN);
+      // Lấy top N sản phẩm bán ế nhất (số lượng nhỏ nhất)
+      const worstSellingProducts = sortedProducts.slice(-topN);
+
+      return { bestSellingProducts, worstSellingProducts };
+    }
+
+    //Đếm số sản phẩm của các hóa đơn để tìm sản phẩm có số lượng mua cao nhất
+    function countProductsByOrder(orders) {
+      const productDetails = [];
+
+      // Duyệt qua tất cả các đơn hàng
+      orders.forEach((order) => {
+        // Duyệt qua danh sách sản phẩm trong mỗi đơn hàng
+        order.listProduct.forEach((product) => {
+          const productId = product.idProduct;
+          const orderId = order.idOder;
+          const quantity = parseInt(product.quantity, 10);
+          const revenue = quantity * parseInt(product.unitPrice, 10); // Tính doanh thu
+
+          // Kiểm tra xem sản phẩm đã có trong danh sách productDetails chưa
+          let existingProduct = productDetails.find(
+            (item) => item.idProduct === productId
+          );
+
+          if (existingProduct) {
+            // Nếu sản phẩm đã có trong danh sách, cộng thêm số lượng và doanh thu
+            existingProduct.quantity += quantity;
+            existingProduct.revenue += revenue;
+
+            // Kiểm tra nếu chưa có idOrder này trong mảng, thì thêm vào
+            if (!existingProduct.idOrders.includes(orderId)) {
+              existingProduct.idOrders.push(orderId);
+            }
+          } else {
+            // Nếu chưa có, thêm sản phẩm mới vào danh sách
+            productDetails.push({
+              idProduct: productId,
+              idOrders: [orderId], // Khởi tạo mảng idOrder với id hóa đơn hiện tại
+              quantity: quantity,
+              revenue: revenue,
+            });
+          }
+        });
+      });
+
+      return productDetails;
+    }
+
+    //Hàm hiển thị các sản phẩm ra bảng
+    function displayTopSellingProducts(product, tableID) {
+      const table = document
+        .getElementById(tableID)
+        .getElementsByTagName("tbody")[0];
+      table.innerHTML = "";
+      product.forEach((product) => {
+        const row = document.createElement("tr");
+
+        const idProductCell = document.createElement("td");
+        idProductCell.textContent = product.idProduct || "N/A";
+
+        const productNameCell = document.createElement("td");
+        const p = listProducts.find((e) => e.id === product.idProduct);
+        productNameCell.textContent = p.name || "N/A";
+
+        const quantityCell = document.createElement("td");
+        quantityCell.textContent = product.quantity || "N/A";
+
+        const revenueCell = document.createElement("td");
+        revenueCell.textContent = (product.revenue || "0") + "$";
+
+        const detailsCell = document.createElement("td");
+        const detailsButton = document.createElement("button");
+        detailsButton.textContent = "Xem chi tiết";
+        detailsButton.addEventListener("click", () =>
+          showAllOrders(product.idOrders)
+        );
+        detailsCell.appendChild(detailsButton);
+
+        row.appendChild(idProductCell);
+        row.appendChild(productNameCell);
+        row.appendChild(quantityCell);
+        row.appendChild(revenueCell);
+        row.appendChild(detailsCell);
+
+        table.appendChild(row);
+      });
+    }
+
+    // Gắn sự kiện cho nút đóng
+    document.getElementById("close-popup").addEventListener("click", () => {
+      const popup = document.querySelector(".orders");
+      popup.style.display = "none";
+    });
+
+    //hàm hiển thị các sản phẩm đã bán trong khoảng time
+    function displayProducts(products) {
+      const table = document
+        .getElementById("all-selling")
+        .getElementsByTagName("tbody")[0];
+      table.innerHTML = "";
+
+      products.forEach((p) => {
+        const row = document.createElement("tr");
+
+        const idCell = document.createElement("td");
+        idCell.textContent = p.idProduct;
+
+        const productNameCell = document.createElement("td");
+        const product = listProducts.find((pr) => pr.id === p.idProduct);
+        productNameCell.textContent = product.name;
+
+        const quantityCell = document.createElement("td");
+        quantityCell.textContent = p.quantity;
+
+        const revenueCell = document.createElement("td");
+        revenueCell.textContent = p.revenue + "$";
+
+        const detailsCell = document.createElement("td");
+        const detailsButton = document.createElement("button");
+        detailsButton.textContent = "Xem chi tiết";
+        detailsButton.addEventListener("click", () => showAllOrders(p.idOrders));
+        detailsCell.appendChild(detailsButton);
+
+        row.appendChild(idCell);
+        row.appendChild(productNameCell);
+        row.appendChild(quantityCell);
+        row.appendChild(revenueCell);
+        row.appendChild(detailsCell);
+
+        table.appendChild(row);
+      });
+    }
+
+    //Hiển thị kết quả tìm kiếm
+    document.getElementById("show").addEventListener("click", () => {
+      const startDate = document.getElementById("startDate").value;
+      const endDate = document.getElementById("endDate").value;
+      const topN = parseInt(document.getElementById("top-selling").value, 10);
+      const totalSold = document.getElementById("total-sold");
+      const totalRevenue = document.getElementById("total-revenue");
+      let objectTotal = { total: 0, revenue: 0 };
+
+      totalSold.textContent = "";
+      totalRevenue.textContent = "";
+
+      // Lọc hóa đơn theo khoảng thời gian
+      const listSearch = filterOrdersByDateRange(listOrders, startDate, endDate);
+
+      if (listSearch.length === 0) {
+        alert("Không có hóa đơn nào trong khoảng thời gian đã chọn.");
+        return;
+      }
+      objectTotal = calculateTotalSalesAndRevenue(listOrders, startDate, endDate);
+      console.log(objectTotal);
+
+      if (totalSold && totalRevenue) {
+        totalSold.textContent = objectTotal.totalQuantity;
+        totalRevenue.textContent = objectTotal.totalRevenue;
+      }
+
+      // Tính doanh thu tổng theo khách hàng
+      const customerData = calculateTotalRevenueByCustomer(listSearch);
+
+      // Lọc Top N khách hàng
+      const topCustomers = getTopCustomers(customerData, topN);
+
+      // Hiển thị danh sách khách hàng trong bảng
+      updateCustomerTable(topCustomers);
+
+      const productCounts = countProductsByOrder(listOrders);
+
+      const { bestSellingProducts, worstSellingProducts } = getTopProductsBySales(
+        productCounts,
+        topN
+      );
+
+      displayTopSellingProducts(bestSellingProducts, "best-selling");
+      displayTopSellingProducts(worstSellingProducts, "worst-selling");
+      displayProducts(productCounts);
+    });
+  </script>
 
 </html>

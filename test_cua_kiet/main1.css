@@ -1,75 +1,173 @@
-body {
+.title-revenue {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
-
-.main-table {
-  border-collapse: separate;
-  border-spacing: 25px;
-  text-align: center;
-  background-color: rgb(235, 225, 235);
-}
-
-.main-table td {
-  border-radius: 15px;
-  overflow: hidden;
-  border-collapse: separate;
-  border: 1px solid transparent;
-  width: 250px;
-  height: 250px;
-}
-
-.inner-table {
-  border: 1px solid transparent;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
   flex-direction: column;
-  align-items: center;
-  border-radius: 15px;
-  overflow: hidden;
 }
 
-.second-inner-table {
-  border: 1px solid transparent;
+.search-form {
+  background: #fafafa;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.search-form h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #3b5998;
+}
+
+.search-form label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.search-form input,
+.search-form select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.search-form button {
+  background-color: #3b5998;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background-color: #3b5998;
+}
+
+table {
   width: 100%;
-  height: 5%;
-  margin: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-.last-table {
-  border: 1px solid gray;
-  width: 100%;
-  height: 100%;
-  padding: 3px;
-  margin: 5px;
+thead {
+  background: #3b5998;
+  color: white;
+  font-size: 14px;
 }
 
-.container {
-  display: none;
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-.active {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
+tbody tr:hover {
+  background-color: #f9f9f9;
 }
 
-button {
-  padding: 3px;
-  background-color: transparent;
-  color: rgb(0, 0, 0);
+button#close-popup {
+  background-color: #3b5998;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
   border: none;
   cursor: pointer;
 }
-button:hover {
-  background-color: transparent;
+
+button#close-popup:hover {
+  background-color: #3b5998;
+}
+
+/* Popup styles */
+.orders.hidden {
+  display: none;
+}
+
+.orders {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.orders.active {
+  display: block; /* Hiển thị khi được kích hoạt */
+}
+
+.orders table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+.orders th,
+.orders td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.orders th {
+  background-color: #3b5998;
+  color: white;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 300px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#main-content.blurred {
+  pointer-events: none; /* Ngăn tương tác khi popup hiện */
+}
+
+/* CSS cho thẻ div bao tất cả bảng */
+.content {
+  padding: 20px;
+  border: 2px solid #ccc; /* Viền cho thẻ div */
+  border-radius: 10px; /* Bo góc */
+  background-color: #f9f9f9; /* Màu nền */
+  overflow-x: auto; /* Cho phép cuộn ngang nếu cần */
+  max-width: 100%; /* Đảm bảo không vượt quá khung bố cục */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng */
 }

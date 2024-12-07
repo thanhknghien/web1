@@ -233,16 +233,6 @@ label {
   outline: none;
 }
 
-/* Phong cách admin-content nằm bên phải */
-.admin-content {
-  width: 75%;
-  padding: 20px;
-  display: none;
-  /* Ẩn tất cả bảng ban đầu */
-  transition: all 0.3s ease-in-out;
-  overflow-y: auto;
-}
-
 .admin-content h4 {
   font-size: 35px;
 }
@@ -268,7 +258,7 @@ label {
 }
 
 #user-table th {
-  background-color: #f2f2f2;
+  background: #3b5998;
 }
 
 #product-table {
@@ -284,7 +274,7 @@ label {
 }
 
 #product-table th {
-  background-color: #f2f2f2;
+  background: #3b5998;
 }
 
 #oder-table {
@@ -300,19 +290,30 @@ label {
 }
 
 #oder-table th {
-  background-color: #f2f2f2;
+  background: #3b5998;
 }
 
 /* Khi hiển thị, bảng chiếm toàn bộ phần bên phải */
 .admin-content.active {
   display: block;
-  width: calc(100% - 20%);
+  width: calc(100% - 25%);
   /* Trừ đi chiều rộng của sidebar */
   margin: 0 auto;
   padding: 20px;
   background: #f9f9f9;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+}
+
+/*admin-content nằm bên phải */
+.admin-content {
+  width: 75%;
+  padding: 20px;
+  display: none;
+  /* Ẩn tất cả bảng ban đầu */
+  transition: all 0.3s ease-in-out;
+  overflow-y: auto;
+  float: right;
 }
 
 /* Căn chỉnh bảng */
@@ -409,33 +410,133 @@ label {
   flex-direction: column;
 }
 
-/* Ẩn popup mặc định */
-.hidden {
-  display: none;
+.search-form {
+  background: #fafafa;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
-/* Bạn có thể thêm các kiểu CSS cho popup nếu cần */
-.orders {
-  position: fixed;
-  top: 10%;
-  left: 10%;
-  right: 10%;
-  bottom: 10%;
-  background-color: white;
+.search-form h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #3b5998;
+}
+
+.search-form label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.search-form input,
+.search-form select {
+  padding: 8px 10px;
   border: 1px solid #ccc;
-  padding: 20px;
-  z-index: 1000;
-  overflow-y: auto;
+  border-radius: 5px;
+  margin-right: 10px;
 }
 
-/* Thêm một lớp để làm mờ nền khi popup hiển thị */
-.orders:before {
-  content: "";
+.search-form button {
+  background-color: #3b5998;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background-color: #3b5998;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+thead {
+  background: #3b5998;
+  color: white;
+  font-size: 14px;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+button#close-popup {
+  background-color: #3b5998;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+button#close-popup:hover {
+  background-color: #3b5998;
+}
+
+/* Popup styles */
+.popup {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 300px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#main-content.blurred {
+  pointer-events: none; /* Ngăn tương tác khi popup hiện */
+}
+
+/* CSS cho nút bên trong */
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
 }

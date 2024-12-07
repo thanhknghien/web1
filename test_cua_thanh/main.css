@@ -1,5 +1,18 @@
 /* Reset CSS */
-body, h1, h2, h3, p, ul, ol, li, table, th, td, input, select, button {
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+li,
+table,
+th,
+td,
+input,
+select,
+button {
   margin: 0;
   padding: 0;
   border: 0;
@@ -24,7 +37,7 @@ body, h1, h2, h3, p, ul, ol, li, table, th, td, input, select, button {
 .search-form h3 {
   margin-bottom: 10px;
   font-size: 18px;
-  color: #ff5722;
+  color: #3b5998;
 }
 
 .search-form label {
@@ -32,7 +45,8 @@ body, h1, h2, h3, p, ul, ol, li, table, th, td, input, select, button {
   font-weight: bold;
 }
 
-.search-form input, .search-form select {
+.search-form input,
+.search-form select {
   padding: 8px 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -40,7 +54,7 @@ body, h1, h2, h3, p, ul, ol, li, table, th, td, input, select, button {
 }
 
 .search-form button {
-  background-color: #ff5722;
+  background-color: #3b5998;
   color: #fff;
   border: none;
   padding: 10px 15px;
@@ -49,7 +63,7 @@ body, h1, h2, h3, p, ul, ol, li, table, th, td, input, select, button {
 }
 
 .search-form button:hover {
-  background-color: #e64a19;
+  background-color: #3b5998;
 }
 
 /* Tables */
@@ -60,12 +74,13 @@ table {
 }
 
 thead {
-  background: #ff5722;
+  background: #3b5998;
   color: white;
   font-size: 14px;
 }
 
-th, td {
+th,
+td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -76,7 +91,7 @@ tbody tr:hover {
 }
 
 button#close-popup {
-  background-color: #ff5722;
+  background-color: #3b5998;
   color: white;
   padding: 8px 15px;
   border-radius: 5px;
@@ -85,7 +100,7 @@ button#close-popup {
 }
 
 button#close-popup:hover {
-  background-color: #e64a19;
+  background-color: #3b5998;
 }
 
 /* Popup styles */
@@ -133,18 +148,19 @@ button#close-popup:hover {
   margin-bottom: 15px;
 }
 
-.orders th, .orders td {
+.orders th,
+.orders td {
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
 
 .orders th {
-  background-color: #ff5722;
+  background-color: #3b5998;
   color: white;
 }
 
 #close-popup {
-  background-color: #ff5722;
+  background-color: #3b5998;
   color: white;
   border: none;
   padding: 8px 15px;
@@ -154,5 +170,5 @@ button#close-popup:hover {
 }
 
 #close-popup:hover {
-  background-color: #e64a19;
+  background-color: #3b5998;
 }
