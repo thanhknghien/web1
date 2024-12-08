@@ -9,9 +9,14 @@ const listAddress = JSON.parse(localStorage.getItem("user-address")) || [];
 
 //lưu vào mảng
 const user = listUser.find(user => parseInt(user.id) === userID);
-const addressData = listAddress.find(user => user.id === userID);
-const oderData = listOder.filter(user => user.idCustomer === userID);
-console.log(user)
+const addressData = listAddress.find(user => parseInt(user.id) === userID) || {
+  "id" : String(userID),
+  "addresses" :[
+    
+]
+};
+const oderData = listOder.filter(user => parseInt(user.idCustomer) === userID);
+console.log(addressData)
 //Các biến
 const popupOder = document.getElementById('popup-oder');
 const popup = document.getElementById("popup");
@@ -140,6 +145,7 @@ document.getElementById("save-address-btn").addEventListener("click", () => {
 
     if (addressData) {
       addressData.addresses.push(newAddress);
+      listAddress.push(addressData)
 
       // Cập nhật Local Storage
       localStorage.setItem("user-address", JSON.stringify(listAddress));
