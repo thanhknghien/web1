@@ -61,9 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeUserModal = document.getElementById("close-user-modal");
   const saveUserButton = document.getElementById("add-user-btn");
 
-  // Khởi tạo biến
-  let currentRowToEdit = null;
-
   // Hàm ẩn tất cả các bảng
   const hideAllTables = () => {
     [
@@ -111,10 +108,15 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   // Quản lý người dùng
-  // Fetch dữ liệu người dùng
+  // Fetch dữ liệu người dùng từ file JSON
+  let userData = []; // Biến lưu trữ dữ liệu người dùng
+
   fetch("../resource/user.json")
     .then((response) => response.json())
-    .then((data) => localStorage.setItem("user", JSON.stringify(data)));
+    .then((data) => {
+      userData = data;
+      initializeUserTable(); // Khởi tạo bảng người dùng sau khi dữ liệu được load
+    });
 
   // Hiển thị modal thêm người dùng
   addUserButton.addEventListener("click", () => {
@@ -130,8 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Khởi tạo bảng người dùng
   function initializeUserTable() {
-    const users = JSON.parse(localStorage.getItem("user")) || [];
-    populateUserTable(users);
+    populateUserTable(userData);
   }
 
   // Điền dữ liệu vào bảng người dùng
@@ -142,19 +143,19 @@ document.addEventListener("DOMContentLoaded", () => {
     users.forEach((user) => {
       const row = document.createElement("tr");
       row.innerHTML = `
-        <td>${user.id}</td>
-        <td>${user.username}</td>
-        <td>${user.fullname}</td>
-        <td>${user.password}</td>
-        <td>${user.sdt}</td>
-        <td>
-          <button class="status-btn">${user.status}</button>
-        </td>
-        <td>
-          <button class="edit-btn">Sửa</button>
-          <button class="delete-btn">Xóa</button>
-        </td>
-      `;
+      <td>${user.id}</td>
+      <td>${user.username}</td>
+      <td>${user.fullname}</td>
+      <td>${user.password}</td>
+      <td>${user.sdt}</td>
+      <td>
+        <button class="status-btn">${user.status}</button>
+      </td>
+      <td>
+        <button class="edit-btn">Sửa</button>
+        <button class="delete-btn">Xóa</button>
+      </td>
+    `;
       tableBody.appendChild(row);
 
       // Chức năng thay đổi trạng thái
@@ -174,11 +175,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Hàm thay đổi trạng thái người dùng
   function toggleStatus(userId) {
-    const users = JSON.parse(localStorage.getItem("user")) || [];
-    const user = users.find((user) => user.id === userId);
+    const user = userData.find((user) => user.id === userId);
     if (user) {
       user.status = user.status === "ACTIVE" ? "LOCK" : "ACTIVE";
-      localStorage.setItem("user", JSON.stringify(users));
       initializeUserTable(); // Cập nhật lại bảng
     }
   }
@@ -192,16 +191,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Hàm xoá danh sách người dùng
   function deleteUser(userId) {
-    let users = JSON.parse(localStorage.getItem("user")) || [];
-    users = users.filter((user) => user.id !== userId);
-    localStorage.setItem("user", JSON.stringify(users));
+    userData = userData.filter((user) => user.id !== userId);
     initializeUserTable();
   }
 
   // Hiển thị thông tin người dùng cần sửa
   function editUser(userId) {
-    const users = JSON.parse(localStorage.getItem("user")) || [];
-    const user = users.find((user) => user.id === userId);
+    const user = userData.find((user) => user.id === userId);
     if (user) {
       document.getElementById("name").value = user.username;
       document.getElementById("full-name").value = user.fullname;
@@ -244,12 +240,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (hasError) return;
 
-    const users = JSON.parse(localStorage.getItem("user")) || [];
     if (currentRowToEdit) {
-      const userIndex = users.findIndex((user) => user.id === currentRowToEdit);
+      const userIndex = userData.findIndex(
+        (user) => user.id === currentRowToEdit
+      );
       if (userIndex !== -1) {
-        users[userIndex] = {
-          ...users[userIndex],
+        userData[userIndex] = {
+          ...userData[userIndex],
           username,
           fullname: fullName,
           password,
@@ -266,10 +263,9 @@ document.addEventListener("DOMContentLoaded", () => {
         sdt: phoneNumber,
         status: "ACTIVE",
       };
-      users.push(newUser);
+      userData.push(newUser);
     }
 
-    localStorage.setItem("user", JSON.stringify(users));
     initializeUserTable();
     userModal.style.display = "none";
     resetForm();
@@ -285,7 +281,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .querySelectorAll(".error-message")
       .forEach((el) => (el.textContent = ""));
   }
-  //Khởi tạo bảng người dùng
+
+  // Khởi tạo bảng người dùng
   initializeUserTable();
 });
 //CRUD của quản lý sản phẩm
