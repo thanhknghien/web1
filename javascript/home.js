@@ -425,14 +425,7 @@ document.getElementById('form-signIn').addEventListener('submit', function(event
 
 // JS tạo id 
 function generateId() {
-    // Lấy timestamp hiện tại
-    const timestamp = Date.now(); // Tính bằng milliseconds
-
-    // Tạo 10 chữ số ngẫu nhiên
-    const randomDigits = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10)).join('');
-
-    // Kết hợp timestamp và chữ số ngẫu nhiên
-    return `${timestamp}${randomDigits}`;
+    return Math.floor(1000 + Math.random() * 9000).toString();
 }
 
 // JS đăng xuất
