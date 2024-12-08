@@ -85,12 +85,6 @@ function hienThiSanPham(cart){
 }
 
 
-
-
-
-
-
-
 // Hàm lấy tất cả các sản phẩm trong giỏ hàng
 function getCartItems() {
     return document.querySelectorAll('.item.cart-grid');
@@ -141,7 +135,6 @@ function getCartItems() {
     localStorage.setItem('cart', JSON.stringify(carts));
   }
 
-
   // Lắng nghe sự thay đổi số lượng của mỗi sản phẩm
 function attachQuantityListeners(item) {
     const quantityInput = item.querySelector(".item-quantity .quantity input");
@@ -175,11 +168,10 @@ function attachQuantityListeners(item) {
     checkbox.addEventListener("change", updateCartSummary);
   }
 
-
 // Lắng nghe sự kiện xóa sản phẩm
 function attachDeleteListener(item) {
     const deleteBtn = item.querySelector(".delete");
-    deleteBtn.addEventListener("click", () => {
+    deleteBtn.addEventListener("click", ()=> { 
       if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?")) {
         let index = cartuser.listProduct.findIndex(product => product.id === item.querySelector("input[type='checkbox']").value)
         cartuser.listProduct.splice(index, 1);
@@ -190,11 +182,9 @@ function attachDeleteListener(item) {
     });
   }
 
-
-
 // Khởi chạy tính toán ban đầu
 function initializeCart() {
-    const cartItems = getCartItems();    
+    const cartItems = getCartItems();   // 
     cartItems.forEach(item => {
         attachQuantityListeners(item);
         attachDeleteListener(item);
@@ -220,7 +210,7 @@ document.querySelector(".quantity-product input[type='checkbox']").addEventListe
       const selectAllCheckbox = document.querySelector(".quantity-product input[type='checkbox']");
       
       // Kiểm tra nếu tất cả checkbox đều được chọn
-      const allChecked = [...allCheckboxes].every(cb => cb.checked);
+      const allChecked = [...allCheckboxes].every(cb => cb.checked);//
       
       // Cập nhật trạng thái checkbox "Chọn tất cả" nếu tất cả sản phẩm được chọn hoặc không
       selectAllCheckbox.checked = allChecked;
@@ -253,3 +243,152 @@ document.querySelector(".quantity-product input[type='checkbox']").addEventListe
 
     }
 });
+
+function findAddress(){
+  let add = address.find(find => {
+    return (find.id == isLogin)
+  });
+  return add;
+}
+
+let addressIndex = findAddress(); // Danh sách địa chỉ ban đầu, có thể trống
+console.log(addressIndex)
+// Hàm hiển thị địa chỉ mặc định
+function renderSelectedAddress(index) {
+  console.log('hien thi dia chi giao hang')
+  let selectedAddress = document.getElementById('selected-address');
+  if (addressIndex.addresses.length === 0) {
+      selectedAddress.textContent = 'Chưa có địa chỉ nào.';
+  } else {
+      selectedAddress.textContent = `${ addressIndex.addresses[index].street}, ${ addressIndex.addresses[index].district}, ${ addressIndex.addresses[index].city}`; // Hiển thị địa chỉ đầu tiên
+  }
+}
+
+// Hiển thị danh sách địa chỉ để thay đổi
+function showAddressList() {
+  let addressListForm = document.querySelector('.address-list-form');
+  let addressList = document.querySelector('.address-list');
+  addressListForm.style.display = 'block';
+  addressList.innerHTML = ''; // Xóa danh sách cũ
+
+  addressIndex.addresses.forEach((address, index) => {
+      let addressItem = document.createElement('div');
+      addressItem.className = 'address-item';
+      addressItem.innerHTML = `
+          <div>${address.street}, ${address.district}, ${address.city}</div>
+          <button class="select">Chọn</button>
+          <button class="delete">Xóa</button>
+      `;
+      // gán sự kiện chọn địa chỉ cho từng item địa chỉ
+      addressItem.querySelector('.select').addEventListener('click', function(event){
+        event.preventDefault();
+        selectAddress(index)
+      });
+      // gán sự kiện xóa địa chỉ cho từng item địa chỉ
+      addressItem.querySelector('.delete').addEventListener('click', function(event){
+        event.preventDefault();
+        deleteAddress(index)
+      });
+
+      addressList.appendChild(addressItem);
+  });
+
+}
+
+// Xóa địa chỉ từ danh sách
+function deleteAddress(index){
+  console.log('xoa dia chi',index)
+  addressIndex.addresses.splice(index, 1);
+  showAddressList();
+  // lưu thay đổi localStrorage
+  localStorage.setItem('user-address', JSON.stringify(address))
+}
+
+// Chọn địa chỉ từ danh sách
+function selectAddress(index) {
+  console.log('chon dia chi')
+  let addressListForm = document.querySelector('.address-list-form');
+  renderSelectedAddress(index); // Cập nhật địa chỉ được chọn
+  addressListForm.style.display = 'none'; // Ẩn danh sách
+  overLay1()
+}
+
+document.querySelector('.address-list-form .btn-exit').addEventListener('click', function(event){
+  console.log('111')
+  event.preventDefault();
+  document.querySelector('.address-list-form').style.display = 'none';
+  overLay1();
+})
+
+// Hiển thị địa chỉ mặc định ban đầu
+renderSelectedAddress(0);
+
+function overLay1(){
+  let over = document.querySelector('.address-list-form');
+  if(over.style.display == 'block'){
+    console.log('overlay')
+    document.getElementById('overlay').style.display = 'block'
+  }else{
+    console.log('off-overlay')
+    document.getElementById('overlay').style.display = 'none'
+  }
+}
+
+
+// hiện thị form thêm địa chỉ
+
+
+
+document.getElementById("save-address-btn").addEventListener("click", () => {
+  const street = document.getElementById("popup-street").value;
+  const district = document.getElementById("popup-district").value;
+  const city = document.getElementById("popup-city").value;
+
+
+
+
+  if (street && district && city) {
+    const newAddress = { street, district, city };
+
+    if (addressIndex) {
+      addressIndex.addresses.push(newAddress);
+
+      // Reset input và ẩn popup
+      document.getElementById("popup-street").value = "";
+      document.getElementById("popup-district").value = "";
+      document.getElementById("popup-city").value = "";
+      popup.style.display = "none";
+      showAddressList()
+
+      alert("Thêm địa chỉ thành công!");
+    } else {
+      alert("Không tìm thấy thông tin người dùng!");
+    }
+  } else {
+    alert("Vui lòng điền đầy đủ thông tin.");
+  }
+  console.log(addressIndex)
+  document.getElementById("add-address-btn").style.display="block";
+});
+
+document.getElementById("add-address-btn").addEventListener("click",()=>{
+  const form = document.getElementById("popup");
+  form.style.display="block";
+  const an= document.getElementById('add-address-btn' );
+  an.style.display="none";
+  
+
+  
+
+})
+//dong
+ document.getElementById("close-popup-btn").addEventListener('click',()=>{
+    const dong = document.getElementById("popup");
+    dong.style.display="none";
+    document.getElementById("add-address-btn").style.display="block";
+
+  })
+
+
+
+

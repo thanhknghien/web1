@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thông tin Người dùng</title>
   <link rel="stylesheet" href="../style/thanh.css">
-  <script src="../javascript/user.js" defer></script>
+  
 </head>
 <body>
   <header class="header">
@@ -13,8 +13,8 @@
         <img src="../assets/logo-icon/27Team.webp" alt="27 Team" class="logo" style="cursor: pointer;"  onclick="window.location.href='trang_chu.html';">
     </div>
     <div class="header-center">
-      <form id="search-form" action="trang_chu.html" method="get">
-        <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm..." class="search-bar">
+      <form id="search-form" >
+        <input type="text" placeholder="Tìm kiếm sản phẩm..." id="searching" class="search-bar">
       </form>
     </div>    
     <div class="header-right">
@@ -203,5 +203,7 @@
       <p>© 2024 27 Team. Tất cả quyền được bảo lưu.</p>
     </div>
   </footer>
+
+  <script src="../javascript/user.js"></script>
 </body>
 </html>

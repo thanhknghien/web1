@@ -161,7 +161,7 @@ function getTopProductsBySales(productDetails, topN) {
 
   // Lấy top N sản phẩm bán chạy nhất (số lượng lớn nhất)
   const bestSellingProducts = sortedProducts.slice(0, topN);
-  // Lấy top N sản phẩm bán ế nhất (số lượng nhỏ nhất)
+  // Lấy top N sản phẩm bán ế nhất 
   const worstSellingProducts = sortedProducts.slice(-topN);
 
   return { bestSellingProducts, worstSellingProducts };
