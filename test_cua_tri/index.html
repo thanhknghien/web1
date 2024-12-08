@@ -1,90 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <title>Giao diện quản trị - Admin</title>
-    <link rel="stylesheet" href="admin.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ Hàng</title>
+  <link rel="stylesheet" href="giohang.css">
 </head>
-
 <body>
-    <header class="header">
-        <div class="hamburger" id="hamburger">
-            <div></div>
-            <div></div>
-            <div></div>
+  <div class="container">
+    <h1>Giỏ Hàng</h1>
+    <div class="cart">
+      <div class="cart-items">
+        <!-- Mục tiêu đề -->
+        <div class="cart-header">
+          <input type="checkbox">
+          <span class="header-title">Tất cả (3 sản phẩm)</span>
+          <span class="header-price">Đơn giá</span>
+          <span class="header-quantity">Số lượng</span>
+          <span class="header-total">Thành tiền</span>
+          <span class="header-delete">Xóa</span>
         </div>
-        <img src="./assets/logo-icon/27Team.webp" alt="Logo" class="logo">
-        <nav>
-            <ul class="menu" id="menu">
-                <li><a href="admin.html">Trang chủ</a></li>
-                <li><a href="manage_users.html">Quản lý người dùng</a></li>
-                <li><a href="manage_products.html">Quản lý sản phẩm</a></li>
-                <li><a href="manage_orders.html">Quản lý đơn hàng</a></li>
-                <li><a href="#" id="logout-btn">Đăng xuất</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="admin-dashboard">
-        <h2>Chào mừng, Quản trị viên</h2>
-        <p>Tài khoản: Admin | <a href="edit_profile.html">Sửa thông tin cá nhân</a></p>
-
-        <div class="admin-functions">
-            <h3>Chức năng quản lý</h3>
-            <ul>
-                <li><a href="manage_users.html">Quản lý người dùng</a></li>
-                <li><a href="add_product.html">Thêm sản phẩm</a></li>
-                <li><a href="manage_products.html">Quản lý sản phẩm</a></li>
-                <li><a href="manage_orders.html">Quản lý đơn hàng</a></li>
-            </ul>
+        
+        <!-- Một sản phẩm -->
+        <div class="item">
+          <input type="checkbox">
+          <img src="image1.jpg" alt="Sản phẩm">
+          <div class="item-info">
+            <p>Sản phẩm của tôi</p>
+            <span>Giao Thứ Sáu, 29/11</span>
+          </div>
+          <p class="price">8.000 đ</p>
+          <div class="quantity">
+            <button>-</button>
+            <input type="number" value="1">
+            <button>+</button>
+          </div>
+          <p class="total">8.000 đ</p>
+          <button class="delete">🗑</button>
         </div>
 
-        <div class="stats">
-            <h3>Thống kê nhanh</h3>
-            <div class="stat-item">
-                <h4>Tổng số người dùng:</h4>
-                <p>120</p>
-            </div>
-            <div class="stat-item">
-                <h4>Tổng số sản phẩm:</h4>
-                <p>50</p>
-            </div>
-            <div class="stat-item">
-                <h4>Tổng số đơn hàng:</h4>
-                <p>150</p>
-            </div>
+        <!-- Sản phẩm thứ 2 -->
+        <div class="item">
+          <input type="checkbox">
+          <img src="image2.jpg" alt="Sản phẩm">
+          <div class="item-info">
+            <p>Sản phẩm của tôi 2</p>
+            <span>Giao Thứ Sáu, 29/11</span>
+          </div>
+          <p class="price">8.500 đ</p>
+          <div class="quantity">
+            <button>-</button>
+            <input type="number" value="1">
+            <button>+</button>
+          </div>
+          <p class="total">8.500 đ</p>
+          <button class="delete">🗑</button>
         </div>
+      </div>
+      
+      <div class="cart-summary">
+        <h2>Giao Tới</h2>
+        <p>Tên người dùng | Số điện thoại</p>
+        <p>Địa chỉ: Người dùng</p>
+        <input type="text" placeholder="Ghi chú đơn hàng">
+        <div class="summary-total">
+          <p><strong>Tổng tiền: 0 đ</strong></p>
+        </div>
+        <div id="payment-methods">
+            <h3>Chọn hình thức thanh toán</h3>
+            <label>
+              <input type="radio" name="payment-method" value="cash"> Thanh toán tiền mặt
+            </label><br>
+            <label>
+              <input type="radio" name="payment-method" value="momo"> Ví Momo
+            </label><br>
+            <label>
+              <input type="radio" name="payment-method" value="zalopay"> Ví ZaloPay
+            </label><br>
+            <label>
+              <input type="radio" name="payment-method" value="credit" onclick="showCreditCardForm()"> Thẻ tín dụng/Ghi nợ
+            </label><br>
+          </div>
+          <div id="credit-card-form" style="display: none;">
+            <h3>Nhập thông tin thẻ</h3>
+            <form id="credit-card-form">
+  <label for="card-number">Số thẻ:</label><br>
+  <input type="text" id="card-number" name="card-number" required><br>
+  
+  <label for="expiry-date">Ngày hết hạn:</label><br>
+  <input type="text" id="expiry-date" name="expiry-date" placeholder="dd/mm/yyyy" required><br>
+  
+  <label for="cvv">CVV:</label><br>
+  <input type="text" id="cvv" name="cvv" required><br><br>
+  
+  <button type="button" onclick="saveCardDetails()">Lưu thẻ</button>
+
+</form>
+          </div>
+          
+        <button class="checkout">MUA HÀNG</button>
+      </div>
     </div>
+  </div><!-- Thêm phần lựa chọn phương thức thanh toán -->
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section about">
-                <h2>Về chúng tôi</h2>
-                <p>
-                    Chúng tôi là 27Team, một nền tảng cung cấp dịch vụ mua bán xe ô tô sang trọng.
-                </p>
-            </div>
-            <div class="footer-section links">
-                <h2>Liên kết nhanh</h2>
-                <ul>
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Giới thiệu</a></li>
-                    <li><a href="#">Dịch vụ</a></li>
-                </ul>
-            </div>
-            <div class="footer-section contact">
-                <h2>Liên hệ</h2>
-                <p>Điện thoại: +84 0011223344</p>
-                <p>Email: info@carpla.com</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 27Team | Thiết kế bởi 27Team</p>
-        </div>
-    </footer>
+  <footer>
 
-    <script src="./admin.js"></script>
+  </footer>
+  <script src="admin.js"></script>
 </body>
-
 </html>

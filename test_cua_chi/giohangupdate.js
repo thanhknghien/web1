@@ -276,8 +276,10 @@ function showAddressList() {
       addressItem.className = 'address-item';
       addressItem.innerHTML = `
           <div>${address.street}, ${address.district}, ${address.city}</div>
-          <button class="select">Chọn</button>
-          <button class="delete">Xóa</button>
+          <div>
+            <button class="select">Chọn</button>
+            <button class="delete">Xóa</button>
+          </div> 
       `;
       // gán sự kiện chọn địa chỉ cho từng item địa chỉ
       addressItem.querySelector('.select').addEventListener('click', function(event){
@@ -297,16 +299,16 @@ function showAddressList() {
 
 // Xóa địa chỉ từ danh sách
 function deleteAddress(index){
-  console.log('xoa dia chi',index)
   addressIndex.addresses.splice(index, 1);
-  showAddressList();
+  showAddressList()
+  document.getElementById('selected-address').textContent = 'Chưa có địa chỉ nào.';
+  
   // lưu thay đổi localStrorage
   localStorage.setItem('user-address', JSON.stringify(address))
 }
 
 // Chọn địa chỉ từ danh sách
 function selectAddress(index) {
-  console.log('chon dia chi')
   let addressListForm = document.querySelector('.address-list-form');
   renderSelectedAddress(index); // Cập nhật địa chỉ được chọn
   addressListForm.style.display = 'none'; // Ẩn danh sách
@@ -314,7 +316,6 @@ function selectAddress(index) {
 }
 
 document.querySelector('.address-list-form .btn-exit').addEventListener('click', function(event){
-  console.log('111')
   event.preventDefault();
   document.querySelector('.address-list-form').style.display = 'none';
   overLay1();
@@ -334,18 +335,11 @@ function overLay1(){
   }
 }
 
-
 // hiện thị form thêm địa chỉ
-
-
-
 document.getElementById("save-address-btn").addEventListener("click", () => {
   const street = document.getElementById("popup-street").value;
   const district = document.getElementById("popup-district").value;
   const city = document.getElementById("popup-city").value;
-
-
-
 
   if (street && district && city) {
     const newAddress = { street, district, city };
@@ -361,6 +355,9 @@ document.getElementById("save-address-btn").addEventListener("click", () => {
       showAddressList()
 
       alert("Thêm địa chỉ thành công!");
+      address.push(addressIndex)
+      localStorage.setItem('user-address', JSON.stringify(address));
+      document.getElementById("add-address-btn").style.display="block";
     } else {
       alert("Không tìm thấy thông tin người dùng!");
     }
@@ -368,7 +365,6 @@ document.getElementById("save-address-btn").addEventListener("click", () => {
     alert("Vui lòng điền đầy đủ thông tin.");
   }
   console.log(addressIndex)
-  document.getElementById("add-address-btn").style.display="block";
 });
 
 document.getElementById("add-address-btn").addEventListener("click",()=>{
@@ -376,11 +372,8 @@ document.getElementById("add-address-btn").addEventListener("click",()=>{
   form.style.display="block";
   const an= document.getElementById('add-address-btn' );
   an.style.display="none";
-  
-
-  
-
 })
+
 //dong
  document.getElementById("close-popup-btn").addEventListener('click',()=>{
     const dong = document.getElementById("popup");
@@ -388,7 +381,260 @@ document.getElementById("add-address-btn").addEventListener("click",()=>{
     document.getElementById("add-address-btn").style.display="block";
 
   })
+  function showCreditCardForm(){
+    document.getElementById("credit-card-form").style.display="block";
+  
+  }
+  function dongform(){
+    
+    document.getElementById("credit-card-form").style.display="none";
+  }
+  
+  function TaoHoaDon(e){
+    if (!e) {
+      alert("Vui lòng chọn phương thức thanh toán.");
+      return;
+    }
+  
+    // Kiểm tra nếu chưa chọn địa chỉ giao hàng
+    const diachichon= document.getElementById("selected-address").textContent;
+    if (diachichon === '' || diachichon === 'Chưa có địa chỉ nào.') {
+      alert("Vui lòng chọn địa chỉ giao hàng.");
+      return;
+    }
+    // Kiểm tra nếu không có sản phẩm nào được chọn
+    const check = getCartItems();
+    let isAnyProductChecked = false;
+    check.forEach((item) => {
+        const checkbox = item.querySelector("input[type='checkbox']");
+        if (checkbox.checked) {
+            isAnyProductChecked = true;
+        }
+    });
 
+    if (!isAnyProductChecked) {
+        alert("Vui lòng chọn ít nhất một sản phẩm để thanh toán.");
+        return; // Dừng hàm nếu không có sản phẩm nào được chọn
+    }
 
+    if(e==='Thẻ tín dụng'){
+      if(!saveCardDetails()){
+        return;
+      }
+    }
 
+    newhoadon.idOder = generateInvoiceID();
+    newhoadon.idCustomer = isLogin;
+    newhoadon.payment = e;
+    newhoadon.date = getCurrentDate();
+   
+    if(e === 'Thẻ tín dụng'||e === 'Chuyển Khoản'){
+      newhoadon.status = 'Đang xử lý';
+  
+    }else {
+    newhoadon.status = 'Chưa thanh toán';
+    }
+    
+      // Lấy danh sách sản phẩm hiện tại sau mỗi lần cập nhật
+      const temp=[];
+      var tongtien=0;
+      var tongsl=0;
+      const cartItems = getCartItems();
+      cartItems.forEach((item) => {
+          let id = item.querySelector("input[type='checkbox']").value;
 
+          let product = findProduct(id)
+          
+          if (!product) {
+              console.error(`Không tìm thấy sản phẩm với ID: ${id}`);
+          }
+          
+        const checkbox = item.querySelector("input[type='checkbox']");
+        const priceText = item.querySelector(".price").textContent;
+        const price = parseInt(priceText.replace(" $", ""));
+        const quantity = parseInt(item.querySelector(".item-quantity input").value);
+      
+        const total = price * quantity;
+        
+   
+        const tem={  
+          idProduct: id,
+          quantity: quantity,
+          name: product.name,
+          unitPrice: product.price
+        }
+        if(checkbox.checked){
+          temp.push(tem)
+          tongtien += total;
+          tongsl+=quantity;
+          
+        }
+        }
+      )
+      newhoadon.listProduct =temp;
+    
+      newhoadon.total=tongtien;
+    
+      newhoadon.totalQuantity=tongsl;
+    
+      const address =   document.getElementById("selected-address").textContent;
+      var bien=address.split(',');
+      const diachi={
+        street: bien[0],
+        district:bien[1],
+        city: bien[2]
+      }
+
+    newhoadon.address=diachi;
+    inhoadon();
+  
+  }
+
+  function generateInvoiceID() {
+    // Tạo số ngẫu nhiên từ 1000 đến 9999
+    return Math.floor(1000 + Math.random() * 9000);
+  }
+  function getCurrentDate() {
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0'); // Lấy ngày (2 chữ số)
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Lấy tháng (2 chữ số, tháng bắt đầu từ 0)
+    const year = today.getFullYear(); // Lấy năm
+  
+    return `${day}/${month}/${year}`; // Định dạng dd/mm/yyyy
+  }
+
+  var newhoadon = { 
+    idOder: "",
+    idCustomer: "",
+    listProduct: [],
+    totalQuantity: "",
+    total: "",
+    payment: "",
+    address: {},
+    date: "",
+    status: ""
+  }
+
+  document.getElementById("x-confirmOrderForm").addEventListener("click",()=>{
+    document.getElementById("confirmOrderForm").style.display="none";
+  });
+
+  function inhoadon(){
+        document.getElementById("confirmOrderForm").style.display="block";
+        
+    const id= document.getElementById("id-confirmOrderForm");
+      id.textContent = `ID hóa đơn: ${newhoadon.idOder}`;
+    const date  = document.getElementById("date-confirmOrderForm");
+      date.textContent = `Ngày thanh toán: ${newhoadon.date}`;
+    const listsp = document.getElementById("listproduct-confirmOrderForm");
+    
+      listsp.innerHTML ='';
+      newhoadon.listProduct.forEach((item)=>{
+        const div = document.createElement('div');
+        div.className = "item-confirmOrderForm"
+        const totall = parseInt(item.quantity)*parseInt(item.unitPrice);
+        var unitPrice = parseInt(item.unitPrice)
+        div.innerHTML=`
+        <div> ${item.name}</div>
+        <div class="item-1">
+          <div>${item.quantity}</div>
+          <div>${unitPrice.toLocaleString()}</div>
+          <div>${totall.toLocaleString()}</div>
+        </div>
+        `;
+        listsp.appendChild(div);
+
+      }) 
+  
+  const totalQuantity = document.getElementById("totalQuantity-confirmOrderForm");
+  totalQuantity.textContent = `Tổng sản phẩm: ${newhoadon.totalQuantity}`;
+  const total = document.getElementById("total-confirmOrderForm");
+  total.textContent = `Tổng tiền: ${newhoadon.total.toLocaleString()} $`;
+  const payment = document.getElementById("payment-confirmOrderForm");
+  payment.textContent = `Phương thức thanh toán: ${newhoadon.payment}`;
+  const diachi = document.getElementById("diachi-confirmOrderForm")
+  diachi.textContent=`Địa chỉ: ${newhoadon.address.street}, ${newhoadon.address.district}, ${newhoadon.address.city}`  ;
+}
+  
+  function setdata(){
+  oders.push(newhoadon)
+  localStorage.setItem('oder', JSON.stringify(oders));
+  console.log(oders)  
+  }
+
+  // Hàm kiểm tra ngày hết hạn (định dạng DD/MM/YYYY)
+function validateExpiryDate(expiryDate) {
+  // Kiểm tra định dạng ngày hết hạn (DD/MM/YYYY)
+  const expiryDateRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+  const match = expiryDate.match(expiryDateRegex);
+  
+  if (!match) {
+    return false;
+  }
+
+  const day = parseInt(match[1], 10);
+  const month = parseInt(match[2], 10);
+  const year = parseInt(match[3], 10);
+
+  // Kiểm tra năm trong khoảng từ 2000 đến 2100
+  if (year < 2000 || year > 2100) {
+    return false;
+  }
+
+  // Kiểm tra tháng trong khoảng từ 1 đến 12
+  if (month < 1 || month > 12) {
+    return false;
+  }
+
+  // Kiểm tra ngày hợp lệ cho mỗi tháng
+  const daysInMonth = new Date(year, month, 0).getDate();  // Số ngày trong tháng
+  if (day < 1 || day > daysInMonth) {
+    return false;
+  }
+
+  return true;
+}
+
+// Hàm kiểm tra số thẻ (16 chữ số)
+function validateCardNumber(cardNumber) {
+  const cardNumberRegex = /^\d{16}$/;  // Kiểm tra nếu số thẻ có đúng 16 chữ số
+  return cardNumberRegex.test(cardNumber);
+}
+
+// Hàm kiểm tra CVV (3 chữ số)
+function validateCVV(cvv) {
+  const cvvRegex = /^\d{3}$/;  // Kiểm tra nếu CVV có đúng 3 chữ số
+  return cvvRegex.test(cvv);
+}
+
+// Hàm để kiểm tra và lưu thông tin thẻ
+function saveCardDetails() {
+  const cardNumber = document.getElementById('card-number').value;
+  const expiryDate = document.getElementById('expiry-date').value;
+  const cvv = document.getElementById('cvv').value;
+
+  // Kiểm tra các trường nhập vào
+  if (!cardNumber || !expiryDate || !cvv) {
+    alert("Vui lòng nhập đầy đủ thông tin thẻ.");
+    return false;
+  }
+
+  if (!validateCardNumber(cardNumber)) {
+    alert("Số thẻ phải có 16 chữ số.");
+    return false;
+  }
+
+  if (!validateExpiryDate(expiryDate)) {
+    alert("Ngày hết hạn không đúng định dạng (MM/YYYY).");
+    return false;
+  }
+
+  if (!validateCVV(cvv)) {
+    alert("CVV phải có 3 chữ số.");
+    return false;
+  }
+
+  // Hiển thị thông báo và quay lại phần phương thức thanh toán
+  alert("Thông tin thẻ đã được lưu thành công!");
+  return true;
+} 
