@@ -4,6 +4,103 @@ body {
     padding: 0;
     background-color: #f5f5f5;
 }
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ff5722; 
+    padding: 15px 30px;
+    color: #fff;
+    height: 130px;
+  }
+  
+  .header-left .logo {
+    width: 115px;
+  }
+  
+  .header-center .search-bar {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+  }
+  
+  .header-right{
+    display: flex;
+  }
+  
+  .header-right .icon {
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+  
+  .header-right .icon:hover {
+    color: #ffd54f;
+  }
+  
+  /* Wrapper */
+  .wrapper {
+    display: flex;
+    min-height: calc(100vh - 70px);
+  }
+  
+  /* Sidebar */
+  .nav-bar {
+    width: 20%;
+    background-color: #ffffff;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .nav-bar .logo-user {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .nav-bar .logo-user img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .nav-bar .logo-user #username {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .nav-bar .menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nav-bar .menu-li {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-bar .menu-li img {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+  }
+  
+  .nav-bar .menu-li:hover {
+    background-color: #ffeb3b;
+  }
+  
 
 .container {
     width: 1200px;
@@ -284,4 +381,73 @@ body {
 
     .confirmOrderForm1 div{
         margin-top: 10px;
+    .payment-form{
+            display: none;
+            margin-top: 20px;
+        }
     }
+@media (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+    }
+    .nav-bar {
+        width: 100%;
+    }
+    .container {
+        padding: 10px;
+    }
+}
+
+
+#credit-card-form{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    background-color: #7063638d;
+}
+
+.credit-card-form1{
+    border-radius: 6px;
+    top: 60px;
+    position: relative;
+    background-color: #ede9e8;
+    padding: 15px;
+    width: 200px;   
+    height: 250px;
+}
+
+.btn-credit{
+    border-radius: 6px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    border: none;
+   cursor: pointer;
+}
+
+.btn-credit:hover{
+    background-color: #c5b9b9;
+}
+
+
+.credit-card-form1 form{
+    display: flex;
+    flex-direction: column;
+}
+
+.credit-card-form1 form button{
+    border: none;
+    border-radius: 6px;
+    padding: 3px;
+    background-color: rgb(52, 215, 52);
+    cursor: pointer;
+}
+
+.credit-card-form1 form button:hover{
+    background-color: rgb(11, 195, 11);
+}

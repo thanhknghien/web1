@@ -7,9 +7,23 @@
   <link rel="stylesheet" href="giohang.css">
 </head>
 <body>
+  <header class="header">
+    <div class="header-left">
+        <img src="../assets/logo-icon/27Team.webp" alt="27 Team" class="logo" style="cursor: pointer;"  onclick="window.location.href='home.html';">
+    </div>
+    <div class="header-center">
+      <form id="search-form" >
+      </form>
+    </div>    
+    <div class="header-right">
+        <a href="#" class="icon" onclick="window.location.href='cart.html';">Giỏ hàng</a>
+        <a href="#" class="icon" onclick="location.reload()">Tài khoản</a>
+        <a id="logOut" class="icon" style="display: none; cursor: pointer;">Đăng xuất</a>
+        <a id="logIn" class="icon" style="display: none; cursor: pointer;">Đăng nhập</a>
+    </div>
+  </header>
   <div class="container">
     <div class="overlay" id="overlay"></div>
-    <h1>Giỏ Hàng</h1>
     <div class="cart">
       <div class="cart-infor">
         <!-- Mục tiêu đề -->
@@ -144,6 +158,13 @@
       </div>
     </div>
   </div>
+  <!-- Momo/ZaloPay QR Code Form -->
+ <div id="momoForm" class="payment-form" style="display: none;">
+  <h3>Thanh toán qua Momo/ZaloPay</h3>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code" width="200">
+  <br><br>
+  <button type="button" onclick="TaoHoaDon('Momo/ZaloPay')">Mua hàng</button>
+</div>
 
 
   <div id="credit-card-form" style="display: none;">

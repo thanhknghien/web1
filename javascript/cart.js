@@ -1,17 +1,36 @@
-// Lấy dữ liệu từ localStrorage
-
+// Get data from localStorage
 const isLogin = JSON.parse(localStorage.getItem('isLogIn'));
+const listUser = JSON.parse(localStorage.getItem("user")) || [];
 const address = JSON.parse(localStorage.getItem('user-address')) || [];
 const carts = JSON.parse(localStorage.getItem('cart')) || [];
 const products = JSON.parse(localStorage.getItem('product')) || [];
 const oders = JSON.parse(localStorage.getItem('oder')) || [];
 let cartuser = null;
-
-// Kiểm tra đã đăng nhập chưa
-
-
-//Hiện thị các sản phẩm trong giỏ hàng
+taoAddress();
 showProductInCart();
+let addressIndex = taoAddress(); // Danh sách địa chỉ ban đầu, có thể trống
+console.log(addressIndex)
+function taoAddress(){
+  let diachi1 = findAddress();
+console.log("tim di ch8i",diachi1)
+
+if(!diachi1){
+ 
+var add = {
+  id: isLogin,
+  addresses: []
+}
+
+console.log(add)
+address.push(add)
+localStorage.setItem('user-address',JSON.stringify(address))
+}
+else{
+  return diachi1
+}
+
+}
+
 function showProductInCart(){
     // Tìm giỏ hàng của khách hàng đăng nhập qua id
         //  không có return
@@ -251,8 +270,8 @@ function findAddress(){
   return add;
 }
 
-let addressIndex = findAddress(); // Danh sách địa chỉ ban đầu, có thể trống
-console.log(addressIndex)
+
+
 // Hàm hiển thị địa chỉ mặc định
 function renderSelectedAddress(index) {
   console.log('hien thi dia chi giao hang')
@@ -382,7 +401,7 @@ document.getElementById("add-address-btn").addEventListener("click",()=>{
 
   })
   function showCreditCardForm(){
-    document.getElementById("credit-card-form").style.display="block";
+    document.getElementById("credit-card-form").style.display="flex";
   
   }
   function dongform(){
@@ -423,8 +442,8 @@ document.getElementById("add-address-btn").addEventListener("click",()=>{
       }
     }
 
-    newhoadon.idOder = generateInvoiceID();
-    newhoadon.idCustomer = isLogin;
+    newhoadon.idOder = String(generateInvoiceID());
+    newhoadon.idCustomer = String(isLogin);
     newhoadon.payment = e;
     newhoadon.date = getCurrentDate();
    
@@ -473,9 +492,9 @@ document.getElementById("add-address-btn").addEventListener("click",()=>{
       )
       newhoadon.listProduct =temp;
     
-      newhoadon.total=tongtien;
+      newhoadon.total=String(tongtien);
     
-      newhoadon.totalQuantity=tongsl;
+      newhoadon.totalQuantity=String(tongsl);
     
       const address =   document.getElementById("selected-address").textContent;
       var bien=address.split(',');
@@ -486,8 +505,13 @@ document.getElementById("add-address-btn").addEventListener("click",()=>{
       }
 
     newhoadon.address=diachi;
-    inhoadon();
+    if(document.getElementById("credit-card-form").style.display === 'flex'){
+      document.getElementById("credit-card-form").style.display = 'none'
+    }
   
+    inhoadon();
+
+
   }
 
   function generateInvoiceID() {
@@ -557,9 +581,23 @@ document.getElementById("add-address-btn").addEventListener("click",()=>{
 }
   
   function setdata(){
+    console.log(newhoadon)
   oders.push(newhoadon)
   localStorage.setItem('oder', JSON.stringify(oders));
-  console.log(oders)  
+  console.log(oders)
+  document.querySelector(".confirmOrderForm").style.display = 'none' 
+  const cartItems = document.querySelectorAll('.item.cart-grid');
+  cartItems.forEach(item => item.remove());
+
+  // Xóa tất cả sản phẩm khỏi danh sách giỏ hàng
+  if (cartuser && cartuser.listProduct) {
+      cartuser.listProduct = [];
+  }
+
+  // Cập nhật tổng tiền và lưu dữ liệu vào localStorage
+  updateCartSummary();
+  localStorage.setItem('cart', JSON.stringify(carts));
+
   }
 
   // Hàm kiểm tra ngày hết hạn (định dạng DD/MM/YYYY)
@@ -638,3 +676,11 @@ function saveCardDetails() {
   alert("Thông tin thẻ đã được lưu thành công!");
   return true;
 } 
+
+document.getElementById("btn-credit").addEventListener('click', ()=>{
+  document.getElementById("credit-card-form").style.display = 'none'
+
+  
+})
+
+

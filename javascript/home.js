@@ -373,18 +373,6 @@ document.getElementById('form-signIn').addEventListener('submit', function(event
     let password = document.getElementById('password-sign').value;
     let confirmPassword = document.getElementById('confirmPassword').value;
 
-    // // Kiểm tra độ dài tài khoản
-    // if (username.length < 8) {
-    //     alert('Tên tài khoản phải có ít nhất 8 ký tự.');
-    //     return;
-    // }
-
-    // // Kiểm tra độ dài mật khẩu
-    // if (password.length < 8) {
-    //     alert('Mật khẩu phải có ít nhất 8 ký tự.');
-    //     return;
-    // }
-
     let userValue = users.find(user => {
         return username == user.username;
     });
@@ -393,7 +381,12 @@ document.getElementById('form-signIn').addEventListener('submit', function(event
         return;
     }
 
-    if(number)
+    // Kiểm tra số điện thoại
+    const phoneRegex = /^0[1-9]\d{8}$/; // Bắt đầu bằng 0, chữ số thứ hai khác 0, và tổng cộng 10 chữ số
+    if (!phoneRegex.test(number)) {
+        alert('Số điện thoại không hợp lệ. Số điện thoại phải bắt đầu bằng 0, chữ số thứ hai khác 0 và có đúng 10 chữ số.');
+        return;
+    }
 
     if(password != confirmPassword){
         alert('Xác nhận mật khẩu và mật khẩu không trùng khớp.')
@@ -412,7 +405,7 @@ document.getElementById('form-signIn').addEventListener('submit', function(event
             status: "ACTIVE"
     }
     users.push(user);
-    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('user', JSON.stringify(users));
     // update value isLogin
     updateIsLoginKey(user.id);
     // Tắt form đăng kí
@@ -426,14 +419,8 @@ document.getElementById('form-signIn').addEventListener('submit', function(event
 
 // JS tạo id 
 function generateId() {
-    // Lấy timestamp hiện tại
-    const timestamp = Date.now(); // Tính bằng milliseconds
-
-    // Tạo 10 chữ số ngẫu nhiên
-    const randomDigits = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10)).join('');
-
-    // Kết hợp timestamp và chữ số ngẫu nhiên
-    return `${timestamp}${randomDigits}`;
+    
+    return Array.from({ length: 4 }, () => Math.floor(Math.random() * 10)).join('');
 }
 
 // JS đăng xuất

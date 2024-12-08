@@ -109,14 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Quản lý người dùng
   // Fetch dữ liệu người dùng từ file JSON
-  let userData = []; // Biến lưu trữ dữ liệu người dùng
-
-  fetch("../resource/user.json")
-    .then((response) => response.json())
-    .then((data) => {
-      userData = data;
-      initializeUserTable(); // Khởi tạo bảng người dùng sau khi dữ liệu được load
-    });
+  let userData = JSON.parse(localStorage.getItem("user")); // Biến lưu trữ dữ liệu người dùng
+  initializeUserTable();
+  
 
   // Hiển thị modal thêm người dùng
   addUserButton.addEventListener("click", () => {
@@ -598,16 +593,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const orderDetails = document.getElementById("orderDetails");
   const span = document.getElementsByClassName("close")[0];
   //Khởi tạo lưu trữ đơn hàng
-  let orders = [];
-
-  //Lấy dữ liệu từ local
-  fetch("../resource/oder.json")
-    .then((response) => response.json())
-    .then((data) => {
-      orders = data;
-      displayOrders(orders);
-    })
-    .catch((error) => console.error("Error fetching data:", error));
+  let orders = JSON.parse(localStorage.getItem("oder"));
+  displayOrders(orders);
 
   //Hàm hiển thị danh sách đơn hàng
   function displayOrders(orders) {
