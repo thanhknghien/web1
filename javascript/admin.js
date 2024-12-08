@@ -225,10 +225,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const inputElement = document.getElementById(inputId);
       const errorElement = inputElement.nextElementSibling;
       errorElement.textContent = message;
-      hasError = !!message;
+      if (message) {
+        hasError = true; // Cập nhật trạng thái lỗi nếu có thông báo lỗi
+      }
     }
 
     showError("name", username === "" ? "Vui lòng nhập tên đăng nhập!" : "");
+    showError("full-name", fullName === "" ? "Vui lòng nhập họ và tên!" : "");
     showError("password", password === "" ? "Vui lòng nhập mật khẩu!" : "");
     showError(
       "sdt",
