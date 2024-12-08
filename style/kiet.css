@@ -15,6 +15,13 @@ a {
   color: inherit;
 }
 
+.admin-nd {
+  flex: 1; /* Phần admin-nd sẽ chiếm phần còn lại của không gian */
+  padding: 20px;
+  box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
+  background-color: #f9f9f9; /* Màu nền nhẹ để phân biệt */
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -497,6 +504,7 @@ button#close-popup:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(10px); /* Làm mờ toàn bộ phần phía sau */
 }
 
 .popup-content {

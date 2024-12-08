@@ -8,8 +8,8 @@ document
     const errorMessage = document.getElementById("error-message");
 
     // Thay đổi username và password
-    const validUsername = "1";
-    const validPassword = "1";
+    const validUsername = "admin";
+    const validPassword = "admin123";
 
     if (username === validUsername && passwordss === validPassword) {
       // Xóa popup và bỏ hiệu ứng mờ
@@ -73,8 +73,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  function clearAdminNdContent() {
+    const element = document.querySelector(".admin-nd"); // Tìm phần tử có class admin-nd
+    if (element) {
+      element.innerHTML = ""; // Xóa toàn bộ nội dung bên trong
+    }
+  }
   // Hàm hiển thị bảng được chọn
   const showTable = (table) => {
+    clearAdminNdContent();
     hideAllTables(); // Ẩn các bảng khác
     if (table) table.style.display = "block"; // Hiển thị bảng được chọn
   };
