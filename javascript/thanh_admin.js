@@ -54,22 +54,12 @@ function calculateTotalRevenueByCustomer(orders) {
 }
 
 // Hàm tính tổng doanh thu và số lượng xe đã bán trong khoảng thời gian
-function calculateTotalSalesAndRevenue(orders, startDate, endDate) {
+function calculateTotalSalesAndRevenue(orders) {
   let totalQuantity = 0;
   let totalRevenue = 0;
-
-  // Chuyển đổi các ngày từ chuỗi sang đối tượng Date
-  const start = new Date(startDate.split("/").reverse().join("-"));
-  const end = new Date(endDate.split("/").reverse().join("-"));
-
   orders.forEach(order => {
-    // Lọc các đơn hàng có ngày trong khoảng thời gian đã chọn và trạng thái đã thanh toán
-    const orderDate = new Date(order.date.split("/").reverse().join("-"));
-    if (orderDate >= start && orderDate <= end && order.status === "Đã thanh toán") {
-      // Tính tổng số lượng xe và doanh thu cho đơn hàng
-      totalQuantity += parseInt(order.totalQuantity);
-      totalRevenue += parseInt(order.total);
-    }
+    totalQuantity += parseInt(order.totalQuantity);
+    totalRevenue += parseInt(order.total);
   });
 
   return { totalQuantity, totalRevenue };
@@ -305,7 +295,7 @@ document.getElementById('show').addEventListener('click', () => {
     alert("Không có hóa đơn nào trong khoảng thời gian đã chọn.");
     return;
   }
-  objectTotal = calculateTotalSalesAndRevenue(listOrders,startDate,endDate);
+  objectTotal = calculateTotalSalesAndRevenue(listOrders);
   console.log(objectTotal)
 
   if (totalSold && totalRevenue) {
@@ -331,3 +321,41 @@ document.getElementById('show').addEventListener('click', () => {
   displayTopSellingProducts(worstSellingProducts,'worst-selling');
   displayProducts(productCounts);
 })
+
+// Hàm hiển thị dữ liệu mặc định
+function displayDefaultData() {
+  // Lọc các hóa đơn đã thanh toán
+  const paidOrders = listOrders.filter(order => order.status === "Đã thanh toán");
+
+  if (paidOrders.length === 0) {
+    alert("Không có hóa đơn nào đã thanh toán.");
+    return;
+  }
+
+  // Tính doanh thu tổng theo khách hàng
+  const customerData = calculateTotalRevenueByCustomer(paidOrders);
+
+  // Lọc Top N khách hàng (ví dụ: top 5)
+  const topCustomers = getTopCustomers(customerData, 5);
+
+  // Hiển thị danh sách khách hàng trong bảng
+  updateCustomerTable(topCustomers);
+  const productCounts = countProductsByOrder(paidOrders);
+
+  const { bestSellingProducts, worstSellingProducts } = getTopProductsBySales(productCounts, 5);
+
+  displayTopSellingProducts(bestSellingProducts, 'best-selling');
+  displayTopSellingProducts(worstSellingProducts, 'worst-selling');
+
+  // Hiển thị tất cả sản phẩm đã bán
+  displayProducts(productCounts);
+  
+  const totalRevenueOj = calculateTotalSalesAndRevenue(paidOrders)
+  const total = document.getElementById('total-sold'); total.textContent = totalRevenueOj.totalQuantity
+  const revenue = document.getElementById('total-revenue'); revenue.textContent = totalRevenueOj.totalRevenue
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  displayDefaultData();
+});
