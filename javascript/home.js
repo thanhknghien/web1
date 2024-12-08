@@ -408,7 +408,8 @@ document.getElementById('form-signIn').addEventListener('submit', function(event
             fullname: name,
             username: username,
             password: password,
-            sdt: number
+            sdt: number,
+            status: "ACTIVE"
     }
     users.push(user);
     localStorage.setItem('users', JSON.stringify(users));
