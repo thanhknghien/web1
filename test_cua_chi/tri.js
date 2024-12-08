@@ -1,76 +1,57 @@
-// Thêm địa chỉ mới
- var addressData=
- {
-    "id": "1111",
-    "addresses": [
-      {
-        "street": "123 Nguyễn Trãi",
-        "district": "Thanh Xuân",
-        "city": "Hà Nội"
-      },
-      {
-        "street": "456 Lê Lợi",
-        "district": "Hà Đông",
-        "city": "Hà Nội"
-      }
-    ]
-  };
-document.getElementById("save-address-btn").addEventListener("click", () => {
-    const street = document.getElementById("popup-street").value;
-    const district = document.getElementById("popup-district").value;
-    const city = document.getElementById("popup-city").value;
+const isLogin = JSON.parse(localStorage.getItem('isLogIn'));
+const address = JSON.parse(localStorage.getItem('user-address')) || [];
+const carts = JSON.parse(localStorage.getItem('cart')) || [];
+const products = JSON.parse(localStorage.getItem('product')) || [];
+const oders = JSON.parse(localStorage.getItem('oder')) || [];
+let cartuser = null;
+function showCreditCardForm(){
+  document.getElementById("credit-card-form").style.display="block";
+
+}
+function dongform(){
+  
+  document.getElementById("credit-card-form").style.display="none";
+}
+
+function TaoHoaDon(e){
+
+  var newhoadon = {
+    idOder: "",
+    idCustomer: "",
+    listProduct: [],
+    totalQuantity: "",
+    total: "",
+    payment: "",
+    address: {},
+    date: "",
+    status: ""
+  }
+  newhoadon.idOder =generateInvoiceID();
+  newhoadon.idCustomer=isLogin;
+  newhoadon.payment =e;
+  newhoadon.date=getCurrentDate();
+  console.log(newhoadon.date)
+  if(e==='Thẻ tín dụng'||e==='Chuyển Khoản'){
+    newhoadon.status='Đang xử lý';
+
+  }
+else {
+  newhoadon.status='Chưa thanh toán';
+}
 
   
-    if (street && district && city) {
-      const newAddress = { street, district, city };
-  
-      if (addressData) {
-        addressData.addresses.push(newAddress);
-  
-        // Reset input và ẩn popup
-        document.getElementById("popup-street").value = "";
-        document.getElementById("popup-district").value = "";
-        document.getElementById("popup-city").value = "";
-        popup.style.display = "none";
-        hienthi()
-  
-        alert("Thêm địa chỉ thành công!");
-      } else {
-        alert("Không tìm thấy thông tin người dùng!");
-      }
-    } else {
-      alert("Vui lòng điền đầy đủ thông tin.");
-    }
-    console.log(addressData)
-  });
-  document.getElementById("add-address-btn").addEventListener("click",()=>{
-    const form = document.getElementById("popup");
-    form.style.display="block";
-    
+}
+function generateInvoiceID() {
+  // Tạo số ngẫu nhiên từ 1000 đến 9999
+  return Math.floor(1000 + Math.random() * 9000);
+}
+function getCurrentDate() {
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, '0'); // Lấy ngày (2 chữ số)
+  const month = String(today.getMonth() + 1).padStart(2, '0'); // Lấy tháng (2 chữ số, tháng bắt đầu từ 0)
+  const year = today.getFullYear(); // Lấy năm
 
-  })
-  document.getElementById("close-popup-btn").addEventListener('click',()=>{
-    const dong = document.getElementById("popup");
-    dong.style.display="none";
-  })
-
- function hienthi(){
-    const show=document.getElementById("all-address");
-    show.innerHTML = "";
-    addressData.addresses.forEach(element => {
-        const duong=element.street;
-        const quan=element.district;
-        const tinh=element.city;
-        const diachi=document.createElement('div')
-        diachi.innerHTML=`
-        <div id="duong">${duong}</div> 
-        <div id="quan">${quan}</div>
-        <div id="tinh">${tinh}</div>
-        `
-    show.appendChild(diachi);
-    });
+  return `${day}/${month}/${year}`; // Định dạng dd/mm/yyyy
+}
 
 
- }
-
- hienthi()

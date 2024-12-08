@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Giỏ Hàng</title>
-  <link rel="stylesheet" href="giohang.css">
+  <link rel="stylesheet" href="../style/tri.css">
 </head>
 <body>
+  
   <header class="header">
     <div class="header-left">
         <img src="../assets/logo-icon/27Team.webp" alt="27 Team" class="logo" style="cursor: pointer;"  onclick="window.location.href='home.html';">
@@ -16,14 +17,15 @@
       </form>
     </div>    
     <div class="header-right">
-        <a href="#" class="icon" onclick="window.location.href='cart.html';">Giỏ hàng</a>
-        <a href="#" class="icon" onclick="location.reload()">Tài khoản</a>
+        <a href="user.html" class="icon" onclick="location.reload()">Tài khoản</a>
         <a id="logOut" class="icon" style="display: none; cursor: pointer;">Đăng xuất</a>
         <a id="logIn" class="icon" style="display: none; cursor: pointer;">Đăng nhập</a>
     </div>
   </header>
+
   <div class="container">
     <div class="overlay" id="overlay"></div>
+    <h1>Giỏ Hàng</h1>
     <div class="cart">
       <div class="cart-infor">
         <!-- Mục tiêu đề -->
@@ -140,10 +142,6 @@
               <input type="radio" name="payment-method" value="cash" onclick="dongform()"checked> Thanh toán tiền mặt
             </label><br>
             <label>
-              <input type="radio" name="payment-method" value="Chuyển Khoản" onclick="dongform()"> Momo/ZaloPay
-            </label><br>
-            
-            <label>
               <input type="radio" name="payment-method" value="Thẻ tín dụng" onclick="showCreditCardForm()"> Thẻ tín dụng/Ghi nợ
             </label><br>
             <br>
@@ -158,29 +156,25 @@
       </div>
     </div>
   </div>
-  <!-- Momo/ZaloPay QR Code Form -->
- <div id="momoForm" class="payment-form" style="display: none;">
-  <h3>Thanh toán qua Momo/ZaloPay</h3>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" alt="QR Code" width="200">
-  <br><br>
-  <button type="button" onclick="TaoHoaDon('Momo/ZaloPay')">Mua hàng</button>
-</div>
-
+ 
 
   <div id="credit-card-form" style="display: none;">
-    <h3>Nhập thông tin thẻ</h3>
-    <form >
-      <label for="card-number">Số thẻ:</label><br>
-      <input type="text" id="card-number" name="card-number" required><br>
+    <div class="credit-card-form1">
+      <button id="btn-credit" class="btn-credit">X</button>
+      <h3>Nhập thông tin thẻ</h3>
+      <form >
+        <label for="card-number">Số thẻ:</label>
+        <input type="text" id="card-number" name="card-number" required><br>
 
-      <label for="expiry-date">Ngày hết hạn:</label><br>
-      <input type="text" id="expiry-date" name="expiry-date" placeholder="dd/mm/yyyy" required><br>
+        <label for="expiry-date">Ngày hết hạn:</label>
+        <input type="text" id="expiry-date" name="expiry-date" placeholder="dd/mm/yyyy" required><br>
 
-      <label for="cvv">CVV:</label><br>
-      <input type="text" id="cvv" name="cvv" required><br><br>
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" required><br>
 
-      <button type="button" onclick="TaoHoaDon('Thẻ tín dụng')">Thanh toán </button>
-    </form>
+        <button type="button" onclick="TaoHoaDon('Thẻ tín dụng')">Thanh toán </button>
+      </form>
+    </div>
   </div>
   <!-- Form xa nhan mua hang -->
 
@@ -198,11 +192,12 @@
       <button class="confirmOrderForm-btn" type="button" onclick="setdata()"> Thanh toán</button>  
     </div>
       
-  </div>
+  
+  
   <footer>
 
   </footer>
   
-  <script src="giohangupdate.js"></script>
+  <script src="../javascript/cart.js"></script>
 </body>
 </html>

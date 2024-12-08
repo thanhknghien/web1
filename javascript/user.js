@@ -1,16 +1,17 @@
 // Lấy dữ liệu từ Local Storage
-const userID = localStorage.getItem("isLogIn"); 
+const userID = JSON.parse(localStorage.getItem("isLogIn")); 
 
+console.log(userID)
 // Lấy danh sách người dùng và địa chỉ từ Local Storage
 const listUser = JSON.parse(localStorage.getItem("user")) || [];
 const listOder = JSON.parse(localStorage.getItem("oder")) || [];
 const listAddress = JSON.parse(localStorage.getItem("user-address")) || [];
 
 //lưu vào mảng
-const user = listUser.find(user => user.id === userID);
+const user = listUser.find(user => parseInt(user.id) === userID);
 const addressData = listAddress.find(user => user.id === userID);
 const oderData = listOder.filter(user => user.idCustomer === userID);
-
+console.log(user)
 //Các biến
 const popupOder = document.getElementById('popup-oder');
 const popup = document.getElementById("popup");
@@ -436,7 +437,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     document.getElementById("logIn").style.display = "block";
     document.getElementById("logIn").addEventListener('click', () =>{
       alert("Chuyển về trang chủ để đăng nhập!");
-      window.location.href ='trang_chu.html';
+      window.location.href ='home.html';
       return false;
     })
   }else{
@@ -500,6 +501,6 @@ document.getElementById('search-form').addEventListener('submit',(e)=>{
     alert("Bạn chưa nhập thông tin tìm kiếm!"); return;
   }else{
     localStorage.setItem("search",search);
-    window.location.href = 'trang_chu.html'
+    window.location.href = 'home.html'
   }
 })
