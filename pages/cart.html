@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ Hàng</title>
+  <link rel="stylesheet" href="../style/tri.css">
+</head>
+<body>
+  <div class="container">
+    <div class="overlay" id="overlay"></div>
+    <h1>Giỏ Hàng</h1>
+    <div class="cart">
+      <div class="cart-infor">
+        <!-- Mục tiêu đề -->
+        <div class="cart-header cart-grid">
+          <div class="quantity-product">
+            <input type="checkbox">
+            <span>Tất cả</span>
+          </div>
+          
+          <span class="header-price">Đơn giá</span>
+          <span class="header-quantity">Số lượng</span>
+          <span class="header-total">Thành tiền</span>
+          <div class="delete-all">🗑</div>
+        </div>
+        
+        <!-- Danh sách sản phẩm có trong giỏ hàng -->
+        <div class="cart-product" id="cart-product">
+          <!-- <div class="item cart-grid">
+            <div class="item-infor">
+              <input type="checkbox">
+              <img src="S1.jpg" alt="hình ảnh">
+              <div>
+                Tên sản phẩm
+              </div>
+            </div>
+            <div>
+              <p class="price">8.000 đ</p>
+            </div>
+            
+            <div class="item-quantity">
+              <div class="quantity">
+                <button>-</button>
+                <input type="tel" class="quantity-input" value="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <button>+</button>
+              </div>
+            </div>
+            <div class="item-total">
+              8.0000
+              <sup>$</sup>
+            </div>
+            <div class="delete">
+              <div>🗑</div>
+            </div>
+          </div>
+          <div class="item cart-grid">
+            <div class="item-infor">
+              <input type="checkbox">
+              <img src="S1.jpg" alt="hình ảnh">
+              <div>
+                Tên sản phẩm
+              </div>
+            </div>
+            <div>
+              <p class="price">8.000 đ</p>
+            </div>
+            
+            <div class="item-quantity">
+              <div class="quantity">
+                <button>-</button>
+                <input type="tel" class="quantity-input" value="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <button>+</button>
+              </div>
+            </div>
+            <div class="item-total">
+              8.0000
+              <sup>$</sup>
+            </div>
+            <div class="delete">
+              <div>🗑</div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <!-- Địa chỉ và thanh toán -->
+      <div class="address-payment">
+        <div class="address">
+          <label>Địa chỉ giao hàng:</label>
+          <div id="current-address">
+              <div id="selected-address">Chưa có địa chỉ nào.</div>
+              <button onclick="showAddressList(); overLay1()">Thay đổi</button>
+          </div>
+          <div class="address-list-form">
+            <button class="btn-exit">X</button>
+            <div class="address-list">
+              <!-- Danh sách các địa chỉ sẽ hiển thị ở đây -->
+            </div>
+            <div id="popup" class="popup" style="display: none"> 
+           
+              <div class="popup-content">
+                <h3>Thêm Địa Chỉ Mới</h3>
+        
+                <input type="text" id="popup-street" placeholder="Đường">
+                <input type="text" id="popup-district" placeholder="Quận/Huyện">
+                <input type="text" id="popup-city" placeholder="Thành phố">
+                <div class="popup-buttons">
+                  <button id="save-address-btn">Lưu</button>
+                  <button id="close-popup-btn">Đóng</button> 
+                </div>
+              </div>
+            </div>
+            <button id="add-address-btn">Thêm địa chỉ mới</button>
+            
+          </div>
+
+          </div> 
+     
+      
+      
+        <!-- Phương thức thanh toán -->
+        <div class="payment">
+          <form class="pay-method">
+            <h3>Chọn hình thức thanh toán</h3>
+            <label>
+              <input type="radio" name="payment-method" value="cash" onclick="dongform()"checked> Thanh toán tiền mặt
+            </label><br>
+            <label>
+              <input type="radio" name="payment-method" value="Chuyển Khoản" onclick="dongform()"> Momo/ZaloPay
+            </label><br>
+            
+            <label>
+              <input type="radio" name="payment-method" value="Thẻ tín dụng" onclick="showCreditCardForm()"> Thẻ tín dụng/Ghi nợ
+            </label><br>
+            <br>
+          </form>
+          <div class="summary-total">
+            Tổng tiền: 0000000$
+          </div>
+          <div>
+            <button type="button" onclick="TaoHoaDon('Thanh toán tiền mặt')">Mua hàng</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="credit-card-form" style="display: none;">
+    <h3>Nhập thông tin thẻ</h3>
+    <form >
+      <label for="card-number">Số thẻ:</label><br>
+      <input type="text" id="card-number" name="card-number" required><br>
+
+      <label for="expiry-date">Ngày hết hạn:</label><br>
+      <input type="text" id="expiry-date" name="expiry-date" placeholder="dd/mm/yyyy" required><br>
+
+      <label for="cvv">CVV:</label><br>
+      <input type="text" id="cvv" name="cvv" required><br><br>
+
+      <button type="button" onclick="TaoHoaDon('Thẻ tín dụng')">Thanh toán </button>
+    </form>
+  </div>
+  <!-- Form xa nhan mua hang -->
+
+  <div id="confirmOrderForm" class="confirmOrderForm"  >
+    <div class="confirmOrderForm1">
+      <div class="text-confirmOrderForm">Xác nhận thanh toán</div>
+      <button id="x-confirmOrderForm">X</button>
+      <div id="id-confirmOrderForm">  </div>
+      <div id="date-confirmOrderForm"> </div>
+      <div id="listproduct-confirmOrderForm"> </div>
+      <div id="totalQuantity-confirmOrderForm"> </div>
+      <div id="total-confirmOrderForm"></div>   
+      <div id="payment-confirmOrderForm"></div>
+      <div id="diachi-confirmOrderForm"></div>
+      <button class="confirmOrderForm-btn" type="button" onclick="setdata()"> Thanh toán</button>  
+    </div>
+      
+  </div>
+  <footer>
+
+  </footer>
+  
+  <script src="../javascript/cart.js"></script>
+</body>
+</html>

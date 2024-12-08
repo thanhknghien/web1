@@ -458,7 +458,7 @@ function addProductCart(idSanPham, priceSanPham){
 
         console.log(userCart)
         if(!userCart){
-            alert('Đã thêm sản phẩm vào giỏ hàng')
+            showNotification('Đã thêm sản phẩm vào giỏ hàng')
             var listProductBuy = [{
                 idProduct : String(idSanPham),
                 quantity : "1",
@@ -480,12 +480,12 @@ function addProductCart(idSanPham, priceSanPham){
             });
 
             if (productValue){
-                alert('Đã thêm sản phẩm vào giỏ hàng')
+                showNotification('Đã thêm sản phẩm vào giỏ hàng')
                 productValue.quantity = String(parseInt(productValue.quantity) + 1);
                 userCart.total = String(parseFloat(userCart.total) + parseFloat(priceSanPham));
                 userCart.totalQuantity = String(parseInt(userCart.totalQuantity) + 1);
             }else{          
-                alert('Đã thêm sản phẩm vào giỏ hàng')
+                showNotification('Đã thêm sản phẩm vào giỏ hàng')
                 var SanPham = {
                     idProduct : String(idSanPham),
                     quantity : "1",
@@ -651,4 +651,14 @@ document.querySelector('.form-signIn .form-box .form-value .inputbox input[type=
     }
 });
 
+// Hàm hiển thị thông báo
+function showNotification(message) {
+    const notification = document.getElementById('notification');
+    notification.textContent = message; // Gán nội dung thông báo
+    notification.style.display = 'block'; // Hiển thị thông báo
 
+    // Ẩn thông báo sau 3 giây
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 2000); 
+}
