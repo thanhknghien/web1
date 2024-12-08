@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
     row.appendChild(totalQuantityCell);
 
     const total = document.createElement('td');
-    total.textContent = invoice.total;
+    total.textContent = (invoice.total || 0) + " $";
     row.appendChild(total);
 
     const statusCell = document.createElement('td');
