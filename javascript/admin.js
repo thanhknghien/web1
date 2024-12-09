@@ -118,7 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Fetch dữ liệu người dùng từ file JSON
   let userData = JSON.parse(localStorage.getItem("user")); // Biến lưu trữ dữ liệu người dùng
   initializeUserTable();
-  
 
   // Hiển thị modal thêm người dùng
   addUserButton.addEventListener("click", () => {
@@ -367,10 +366,22 @@ function validateForm() {
 
   fields.forEach((field) => {
     const input = document.getElementById(`product-${field}`);
-    const error = showError(
-      `product-${field}`,
-      input.value.trim() === "" ? errorMessages[field] : ""
-    );
+    let errorMessage = "";
+
+    if (input.value.trim() === "") {
+      errorMessage = errorMessages[field];
+    } else if (field === "price" && isNaN(Number(input.value))) {
+      errorMessage = "Giá sản phẩm phải là số!";
+    } else if (
+      field === "year" &&
+      (!/^\d{4}$/.test(input.value) ||
+        input.value < 1900 ||
+        input.value > new Date().getFullYear())
+    ) {
+      errorMessage = "Năm sản xuất phải là năm hợp lệ";
+    }
+
+    const error = showError(`product-${field}`, errorMessage);
     if (error) hasError = true;
   });
 
@@ -440,6 +451,10 @@ function closeProductModal() {
 // Xử lý form khi Submit (Thêm hoặc Cập nhật sản phẩm)
 function handleProductSubmit(event) {
   event.preventDefault();
+
+  if (!validateForm()) {
+    return;
+  }
 
   const formData = {
     name: document.getElementById("product-name").value.trim(),
@@ -526,48 +541,6 @@ function handleImageFiles(files) {
 document
   .getElementById("close-product-modal")
   .addEventListener("click", closeProductModal);
-
-// Cập nhật danh sách sản phẩm
-function initializeProductTable() {
-  const products = JSON.parse(localStorage.getItem("product")) || [];
-  const productTableBody = document.querySelector("#product-table tbody");
-
-  // Xóa nội dung cũ
-  productTableBody.innerHTML = "";
-
-  // Tạo hàng mới
-  products.forEach((product) => {
-    const newRow = productTableBody.insertRow();
-    newRow.innerHTML = `
-          <td>${product.id}</td>
-          <td>${product.name}</td>
-          <td>${product.price}</td>
-          <td>${product.brand}</td>
-          <td>${product.fuel}</td>
-          <td>${product.year}</td>
-          <td>
-              ${product.src
-                .map(
-                  (src) =>
-                    `<img src="${src}" alt="${product.name}" class="product-img">`
-                )
-                .join("")}
-          </td>
-          <td>
-              <button class="edit-btn">Sửa</button>
-              <button class="delete-btn">Xóa</button>
-          </td>
-      `;
-
-    // Gán sự kiện cho nút sửa và xóa
-    newRow
-      .querySelector(".edit-btn")
-      .addEventListener("click", () => editProduct(product.id));
-    newRow
-      .querySelector(".delete-btn")
-      .addEventListener("click", () => confirmDeleteProduct(product.id));
-  });
-}
 
 // Xóa sản phẩm
 function confirmDeleteProduct(productId) {
@@ -702,4 +675,3 @@ document.addEventListener("DOMContentLoaded", function () {
   //Thêm chức năng cho nút lọc
   filterBtn.addEventListener("click", filterOrders);
 });
-
