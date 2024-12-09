@@ -128,7 +128,7 @@ function updatePagination() {
     document.getElementById('product-next').innerHTML = pagination;
 }
 
-// JS tạo giao diện phân trang 1 2 3....
+// JS tạo giao diện phân trang
 function renderPageNumber() {
     // Nếu chỉ có 1 trang thì không hiển thị phân trang
     if (totalPage <= 1) {
