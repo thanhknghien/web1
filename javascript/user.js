@@ -1,5 +1,5 @@
 // Lấy dữ liệu từ Local Storage
-const userID = JSON.parse(localStorage.getItem("isLogIn")); 
+const userID = String(JSON.parse(localStorage.getItem("isLogIn"))); 
 
 console.log(userID)
 // Lấy danh sách người dùng và địa chỉ từ Local Storage
@@ -8,7 +8,7 @@ const listOder = JSON.parse(localStorage.getItem("oder")) || [];
 const listAddress = JSON.parse(localStorage.getItem("user-address")) || [];
 
 //lưu vào mảng
-const user = listUser.find(user => parseInt(user.id) === userID);
+const user = listUser.find(user => user.id === userID);
 const addressData = listAddress.find(user => user.id === userID);
 const oderData = listOder.filter(user => user.idCustomer === userID);
 console.log(user)
@@ -185,12 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //Hiển thị hóa đơn và chi tiết hóa đơn nếu click vào chi tiết hóa đơn
 document.addEventListener('DOMContentLoaded', () => {
-
+  console.log("jsjdj",oderData)
   // Hiển thị các hóa đơn trong bảng
   const invoiceTable = document.getElementById('invoice-table').getElementsByTagName('tbody')[0];
   oderData.forEach(invoice => {
     const row = document.createElement('tr');
-
+    console.log(invoice.idOder)
     // Tạo các ô cho từng cột
     const idCell = document.createElement('td');
     idCell.textContent = invoice.idOder;
